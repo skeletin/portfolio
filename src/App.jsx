@@ -3,6 +3,7 @@ import AppLayout from "./components/layouts/AppLayout";
 import Home from "./components/features/Home";
 
 function App() {
+  console.log(import.meta.env.VITE_BACKEND_URL);
   return (
     <BrowserRouter>
       <Routes>

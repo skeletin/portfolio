@@ -7,6 +7,7 @@ const Home = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
+    retry: false,
   });
 
   if (isLoading) return <div className="text-white">Loading...</div>;

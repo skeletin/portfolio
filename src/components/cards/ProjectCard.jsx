@@ -46,7 +46,7 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
         </div>
         <div className="flex items-center space-x-3">
           {techStack.map((tech) => (
-            <span className="w-10 h-10">
+            <span key={tech} className="w-10 h-10">
               <StackIcon name={tech} />
             </span>
           ))}

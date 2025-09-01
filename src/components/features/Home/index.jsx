@@ -13,7 +13,7 @@ const Home = () => {
   if (isLoading) return <div className="text-white">Loading...</div>;
 
   if (data) {
-    const { data: projects } = data;
+    const projects = data?.data;
     return (
       <div className="flex flex-col h-full text-white mt-10">
         <HomeNav />

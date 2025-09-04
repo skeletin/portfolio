@@ -1,6 +1,7 @@
 import ProjectStringField from "./Fields/ProjectStringField";
 import ProjectArrayField from "./Fields/ProjectArrayField";
 import stackOptions from "../../../../data/technologyStack";
+import ProjectFileField from "./Fields/ProjectFileField";
 
 export const projectSchema = {
   type: "object",
@@ -29,7 +30,7 @@ export const projectSchema = {
       uniqueItems: true,
     },
     year: {
-      description: "The year the project was made.",
+      description: "The year the project was made",
       type: "string",
       title: "Year",
     },
@@ -38,8 +39,13 @@ export const projectSchema = {
       type: "string",
       title: "Description",
     },
+    displayPicture: {
+      description: "A display picture for the project",
+      type: "object",
+      title: "Display Picture",
+    },
   },
-  required: ["name", "techStack", "year", "description"],
+  required: ["name", "techStack", "year", "description", "displayPicture"],
   additionalProperties: false,
 };
 
@@ -69,12 +75,14 @@ export const uiSchema = {
       multiline: true,
     },
   },
+  displayPicture: {
+    "ui:field": ProjectFileField,
+  },
   "ui:submitButtonOptions": {
     props: {
-      disabled: true,
-      className: "",
+      className:
+        "w-full bg-transparent rounded font-bold text-sm py-2 border border-gray-700 shadow-md shadow-gray-800 transition duration-400 hover:bg-gray-900 hover:shadow",
     },
-    norender: false,
     submitText: "Create Project",
   },
 };

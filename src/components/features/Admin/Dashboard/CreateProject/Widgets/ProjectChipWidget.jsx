@@ -4,7 +4,7 @@ const ProjectChipWidget = (props) => {
   const {
     removeChip,
     idSchema,
-    required,
+
     disabled,
     readonly,
     placeholder,
@@ -25,7 +25,6 @@ const ProjectChipWidget = (props) => {
         type="text"
         value={tech || ""}
         className="flex-1 shrink inline  rounded bg-transparent text-gray-200 focus:outline-none"
-        required={required}
         disabled={disabled || readonly}
         placeholder={placeholder}
         autoFocus={autofocus}

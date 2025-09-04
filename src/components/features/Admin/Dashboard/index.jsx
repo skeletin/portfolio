@@ -1,3 +1,4 @@
+import { Outlet } from "react-router";
 import useAdmin from "../../../../hooks/useAdmin";
 import useNavigateHome from "../../../../hooks/useNavigateHome";
 
@@ -11,7 +12,9 @@ const Dashboard = () => {
   return (
     <main className="flex h-full">
       <AdminPanel />
-      <AdminResources />
+      <AdminResources>
+        <Outlet />
+      </AdminResources>
     </main>
   );
 };

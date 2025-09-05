@@ -41,7 +41,9 @@ const AdminLinks = () => {
 const AdminPanel = () => {
   return (
     <section className="flex flex-col border-white h-full p-3">
-      <Logo className="" />
+      <Link to="/">
+        <Logo className="" />
+      </Link>
       <AdminLinks />
     </section>
   );

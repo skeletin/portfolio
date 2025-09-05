@@ -1,5 +1,5 @@
-import ProjectContainer from "../containers/ProjectContainer";
-
-export const HomeLayout = () => {
-  return <ProjectContainer projects={[{}]} />;
+export const HomeLayout = ({ children }) => {
+  return <div className="flex justify-center">{children}</div>;
 };
+
+export default HomeLayout;

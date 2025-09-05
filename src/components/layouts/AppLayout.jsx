@@ -9,9 +9,9 @@ const AppLayout = () => {
         <Link to="/">
           <Logo />
         </Link>
-        <button className="flex justify-center items-center group hover:bg-gray-200 w-10 h-10 rounded-full transition duration-500">
+        {/* <button className="flex justify-center items-center group hover:bg-gray-200 w-10 h-10 rounded-full transition duration-500">
           <FaBars className="text-white group-hover:text-black" />
-        </button>
+        </button> */}
       </nav>
       <Outlet />
     </div>

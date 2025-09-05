@@ -6,10 +6,21 @@ import Login from "./components/features/Admin/Login.jsx";
 import AdminLayout from "./components/layouts/AdminLayout.jsx";
 import AdminProjects from "./components/features/Admin/Dashboard/Projects/index.jsx";
 import CreateProject from "./components/features/Admin/Dashboard/CreateProject/index.jsx";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import SplashScreen from "./components/features/SplashScreen/index.jsx";
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    setShowSplash(false);
+  }, []);
+
   return (
     <BrowserRouter>
+      {/* <AnimatePresence>{showSplash && <SplashScreen />}</AnimatePresence> */}
+
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/" element={<Home />} />

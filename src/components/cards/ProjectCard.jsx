@@ -12,7 +12,7 @@ const ProjectCard = ({ project }) => {
       />
 
       {/* Overlay */}
-      <button className="absolute inset-0 transition duration-1000 opacity-0 bg-gray-900/50 group-hover:opacity-100 border-gray-900 group-hover:border-2 rounded-xl">
+      <button className="absolute inset-0 transition duration-1000 opacity-0 bg-gray-900/50 group-hover:opacity-100 border-gray-900 rounded-xl">
         <ProjectInformation {...project} />
       </button>
     </div>
@@ -40,15 +40,17 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
         </div>
       </div>
       <div className="flex justify-center text-4xl michroma">{name}</div>
-      <div className="flex items-center space-x-4 michroma">
-        <div>
-          <span>Tech:</span>
+      <div className="flex items-center space-x-4 michroma overflow-hidden">
+        <div className="">
+          <span>Tech</span>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="relative flex items-center space-x-3 overflow-x-auto overflow-y-hidden hide-scrollbar">
           {techStack.map((tech) => (
-            <span key={tech} className="w-10 h-10">
-              <StackIcon name={tech} />
-            </span>
+            <>
+              <span key={tech} className="w-10 h-10">
+                <StackIcon name={tech} className="w-10 h-10" />
+              </span>
+            </>
           ))}
         </div>
       </div>

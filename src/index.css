@@ -33,3 +33,13 @@ button {
 .aeogo {
   font-family: AeogoPxltdNext;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* for IE and Edge */
+}

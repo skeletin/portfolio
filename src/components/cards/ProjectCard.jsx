@@ -4,7 +4,7 @@ import StackIcon from "tech-stack-icons";
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="relative rounded-xl h-[30rem] overflow-hidden group">
+    <div className="relative rounded-xl h-[30rem] w-ful overflow-hidden text-white group">
       {/* Image */}
       <img
         src={project.displayPictureUrl}
@@ -46,11 +46,9 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
         </div>
         <div className="relative flex items-center space-x-3 overflow-x-auto overflow-y-hidden hide-scrollbar">
           {techStack.map((tech) => (
-            <>
-              <span key={tech} className="w-10 h-10">
-                <StackIcon name={tech} className="w-10 h-10" />
-              </span>
-            </>
+            <span key={tech} className="w-10 h-10">
+              <StackIcon name={tech} className="w-10 h-10" />
+            </span>
           ))}
         </div>
       </div>

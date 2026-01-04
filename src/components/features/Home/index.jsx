@@ -6,11 +6,15 @@ import HomeLayout from "../../layouts/HomeLayout";
 import { CgSpinnerTwo } from "react-icons/cg";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
+import { useState } from "react";
 
 const Home = () => {
+  const [projectType, setProjectType] = useState("personal");
+
   const { data, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
+    select: (res) => res?.data.filter((p) => p.projectType === projectType),
     retry: false,
   });
 
@@ -22,17 +26,10 @@ const Home = () => {
     );
 
   if (data) {
-    const projects = data?.data;
     return (
       <HomeLayout>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex flex-col h-full text-white mt-10 max-w-[50rem] items-center"
-        >
-          <HomeNav />
-          <ProjectContainer projects={projects} />
-        </motion.div>
+        <HomeNav projectType={projectType} setProjectType={setProjectType} />
+        <ProjectContainer projects={data} />
       </HomeLayout>
     );
   }

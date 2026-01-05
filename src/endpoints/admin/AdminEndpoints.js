@@ -30,4 +30,18 @@ async function status() {
   }
 }
 
-export { login, status };
+async function logout() {
+  const endpoint =
+    mode === "production" ? "/logout" : import.meta.env.VITE_ADMIN_LOGOUT;
+  try {
+    const response = await fetch(API + endpoint, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    return await response.json();
+  } catch (e) {
+    throw Error("Error: " + e);
+  }
+}
+
+export { login, logout, status };

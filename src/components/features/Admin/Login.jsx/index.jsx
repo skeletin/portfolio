@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Skeletin from "../../../svgs/Skeletin";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../../../../endpoints/admin/AdminEndpoints";
@@ -7,7 +7,7 @@ import useAdmin from "../../../../hooks/useAdmin";
 import AppLoader from "../../../loaders/AppLoader";
 
 const Login = () => {
-  const { admin, isLoading } = useAdmin();
+  const { data: admin, isLoading } = useAdmin();
 
   const [credentials, setCredentials] = useState({
     user: {
@@ -20,9 +20,7 @@ const Login = () => {
 
   const { mutate } = useMutation({
     mutationFn: login,
-    onSuccess: () => {
-      navigate("/admin/dashboard");
-    },
+    onSuccess: () => navigate("/admin/dashboard"),
   });
 
   const handleLogin = (e) => {
@@ -39,9 +37,13 @@ const Login = () => {
       },
     }));
   };
-  if (isLoading) return <AppLoader />;
 
-  if (admin) navigate("/admin/dashboard");
+  useEffect(() => {
+    if (admin) navigate("/admin/dashboard");
+  }, [admin, navigate]);
+  console.log("hi");
+
+  if (isLoading) return <AppLoader />;
 
   return (
     <main className="relative flex justify-center items-center h-full">

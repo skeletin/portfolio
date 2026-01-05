@@ -1,10 +1,13 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Logo from "../../../svgs/Logo";
 import { GrProjects } from "react-icons/gr";
 import { BiPlus } from "react-icons/bi";
+import { useMutation } from "@tanstack/react-query";
+import { logout } from "../../../../endpoints/admin/AdminEndpoints";
 
 const AdminLinks = () => {
   const { pathname } = useLocation();
+
   const links = [
     {
       path: "/admin/dashboard",
@@ -39,12 +42,27 @@ const AdminLinks = () => {
 };
 
 const AdminPanel = () => {
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationFn: logout,
+    onSuccess: () => navigate("/admin/login"),
+  });
+
   return (
-    <section className="flex flex-col border-white h-full p-3">
-      <Link to="/">
-        <Logo className="" />
-      </Link>
-      <AdminLinks />
+    <section className="flex flex-col border-white h-full p-3 justify-between">
+      <div>
+        <Link to="/">
+          <Logo />
+        </Link>
+        <AdminLinks />
+      </div>
+      <button
+        onClick={() => mutate()}
+        className="michroma text-xs  text-white text-start p-3 hover:bg-gray-900 rounded"
+      >
+        Log out
+      </button>
     </section>
   );
 };

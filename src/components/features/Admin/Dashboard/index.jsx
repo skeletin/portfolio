@@ -1,7 +1,6 @@
 import { Outlet } from "react-router";
 import useAdmin from "../../../../hooks/useAdmin";
 import useNavigateHome from "../../../../hooks/useNavigateHome";
-
 import AdminPanel from "./AdminPanel";
 import AdminResources from "./AdminResources";
 

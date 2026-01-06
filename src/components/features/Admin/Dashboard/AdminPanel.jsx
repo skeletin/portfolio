@@ -59,7 +59,7 @@ const AdminPanel = () => {
       </div>
       <button
         onClick={() => mutate()}
-        className="michroma text-xs  text-white text-start p-3 hover:bg-gray-900 rounded"
+        className="michroma text-xs  text-white text-start p-3 hover:bg-gray-900 rounded transition"
       >
         Log out
       </button>

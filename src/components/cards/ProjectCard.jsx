@@ -4,7 +4,7 @@ import StackIcon from "tech-stack-icons";
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="relative rounded-xl h-[30rem] w-ful overflow-hidden text-white group">
+    <div className="relative rounded-xl h-[30rem] w-full overflow-hidden text-white group">
       {/* Image */}
       <img
         src={project.displayPictureUrl}

@@ -4,17 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getProjects } from "../../../endpoints/ProjectEndpoints";
 import HomeLayout from "../../layouts/HomeLayout";
 import { CgSpinnerTwo } from "react-icons/cg";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "motion/react";
-import { useState } from "react";
+import title from "../../svgs/title.svg";
 
 const Home = () => {
-  const [projectType, setProjectType] = useState("personal");
-
   const { data, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
-    select: (res) => res?.data.filter((p) => p.projectType === projectType),
     retry: false,
   });
 
@@ -28,8 +23,11 @@ const Home = () => {
   if (data) {
     return (
       <HomeLayout>
-        <HomeNav projectType={projectType} setProjectType={setProjectType} />
-        <ProjectContainer projects={data} />
+        <div className="z-1 flex flex-col items-center  justify-center w-full h-full bg-transparent text-3xl text-white">
+          <div>
+            <img src={title} />
+          </div>
+        </div>
       </HomeLayout>
     );
   }

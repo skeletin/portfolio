@@ -5,6 +5,8 @@ import AdminLayout from "./components/layouts/AdminLayout.jsx";
 import { useEffect, useState, lazy, Suspense } from "react";
 import { AnimatePresence } from "motion/react";
 import SplashScreen from "./components/features/SplashScreen/index.jsx";
+import Projects from "./components/features/Projects/index.jsx";
+import Project from "./components/features/Project/index.jsx";
 
 const Login = lazy(() => import("./components/features/Admin/Login/index.jsx"));
 
@@ -33,6 +35,10 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:name" element={<Project />} />
+          <Route path="/contact" element={<Projects />} />
+          <Route path="/experience" element={<Projects />} />
         </Route>
         <Route path="admin" element={<AdminLayout />}>
           <Route path="login" element={<Login />} />

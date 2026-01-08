@@ -1,6 +1,7 @@
 import { FaGithub } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import StackIcon from "tech-stack-icons";
+import { Link } from "react-router";
 
 const ProjectCard = ({ project }) => {
   return (
@@ -12,9 +13,12 @@ const ProjectCard = ({ project }) => {
       />
 
       {/* Overlay */}
-      <button className="absolute inset-0 transition duration-1000 opacity-0 bg-gray-900/50 group-hover:opacity-100 border-gray-900 rounded-xl">
+      <Link
+        to={"/projects/" + project.name}
+        className="absolute inset-0 transition duration-1000 opacity-0 bg-gray-900/50 group-hover:opacity-100 border-gray-900 rounded-xl"
+      >
         <ProjectInformation {...project} />
-      </button>
+      </Link>
     </div>
   );
 };
@@ -26,7 +30,7 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
         <div>
           <span className="text-xl michroma">{year}</span>
         </div>
-        <div className="flex items-center space-x-2">
+        {/* <div className="flex items-center space-x-2">
           <span className="text-3xl hover:scale-110  transition-all">
             <a href={repoUrl}>
               <FaGithub />
@@ -37,7 +41,7 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
               <CgWebsite />
             </a>
           </span>
-        </div>
+        </div> */}
       </div>
       <div className="flex justify-center text-4xl michroma">{name}</div>
       <div className="flex items-center space-x-4 michroma overflow-hidden">

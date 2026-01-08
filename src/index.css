@@ -26,12 +26,21 @@ button {
   src: url("/fonts/Michroma/Michroma-Regular.ttf");
 }
 
+@font-face {
+  font-family: Orbitron;
+  src: url("/fonts/Orbitron/static/Orbitron-Regular.ttf");
+}
+
 .michroma {
   font-family: Michroma;
 }
 
 .aeogo {
   font-family: AeogoPxltdNext;
+}
+
+.orbitron {
+  font-family: Orbitron;
 }
 
 .hide-scrollbar::-webkit-scrollbar {

@@ -2,11 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import AppLayout from "./components/layouts/AppLayout";
 import Home from "./components/features/Home";
 import AdminLayout from "./components/layouts/AdminLayout.jsx";
-import { useEffect, useState, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { AnimatePresence } from "motion/react";
 import SplashScreen from "./components/features/SplashScreen/index.jsx";
 import Projects from "./components/features/Projects/index.jsx";
 import Project from "./components/features/Project/index.jsx";
+import Contact from "./components/features/Contact/index.jsx";
+import Experience from "./components/features/Experience/index.jsx";
 
 const Login = lazy(() => import("./components/features/Admin/Login/index.jsx"));
 
@@ -37,8 +39,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:name" element={<Project />} />
-          <Route path="/contact" element={<Projects />} />
-          <Route path="/experience" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/experience" element={<Experience />} />
         </Route>
         <Route path="admin" element={<AdminLayout />}>
           <Route path="login" element={<Login />} />

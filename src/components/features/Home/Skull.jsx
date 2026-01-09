@@ -39,7 +39,12 @@ export function Skull(props) {
       >
         {Object.values(nodes).map((node) =>
           node.geometry ? (
-            <mesh geometry={node.geometry} material={obsidianMaterial} />
+            <mesh
+              geometry={node.geometry}
+              material={obsidianMaterial}
+              castShadow
+              receiveShadow
+            />
           ) : null
         )}
       </group>

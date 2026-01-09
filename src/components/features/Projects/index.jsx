@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProjects } from "../../../endpoints/ProjectEndpoints";
 import { useState } from "react";
 import ProjectContainer from "../../containers/ProjectContainer";
+import { motion } from "motion/react";
 
 const Projects = () => {
   const [projectType, setProjectType] = useState("personal");
@@ -19,20 +20,29 @@ const Projects = () => {
 
   if (data)
     return (
-      <main className="flex flex-col z-1 w-full h-full mt-10 md:flex-row">
-        <header className="flex items-center justify-center text-white michroma font-thin space-x-20 md:flex-col md:justify-normal  md:items-stretch md:border-r md:space-x-0 md:space-y-3">
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7 }}
+        className="flex flex-col z-1 w-full h-full mt-10 md:flex-row"
+      >
+        <header className="flex items-center justify-center text-white michroma font-thin space-x-20 md:flex-col md:justify-normal  md:items-stretch md:border-r md:space-x-0 md:space-y-3 md:pr-4 md:border-gray-800">
           <button
             onClick={() => changeProjectType("personal")}
-            className={`text-start p-2 border-b-2 border-transparent transition duration-500 ${
-              projectType === "personal" ? "border-b-2 border-white" : null
+            className={`text-start p-2 border border-transparent transition duration-500 ${
+              projectType === "personal"
+                ? "bg-gray-950/50 rounded border border-gray-950"
+                : null
             }`}
           >
             personal
           </button>
           <button
             onClick={() => changeProjectType("works")}
-            className={`text-start p-2 border-b-2 border-transparent transition duration-500 ${
-              projectType === "works" ? "border-b-2 border-white " : null
+            className={`text-start p-2 border border-transparent transition duration-500 ${
+              projectType === "works"
+                ? "bg-gray-950/50 rounded border border-gray-950"
+                : null
             }`}
           >
             works
@@ -41,7 +51,7 @@ const Projects = () => {
         <div className="flex text-white px-8 mt-8 md:mt-0">
           <ProjectContainer projects={data} />
         </div>
-      </main>
+      </motion.main>
     );
 };
 

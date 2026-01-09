@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Center, Environment } from "@react-three/drei";
-import { SkullNeck } from "./SkullNeck";
+
 import { Skull } from "./Skull";
 
 const Background = () => {

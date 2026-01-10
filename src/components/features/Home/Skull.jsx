@@ -12,7 +12,7 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 export function Skull(props) {
-  const { nodes, materials } = useGLTF("public/skull/scene.gltf");
+  const { nodes, materials } = useGLTF("/skull/scene.gltf");
 
   const obsidianMaterial = useMemo(
     () =>
@@ -52,4 +52,4 @@ export function Skull(props) {
   );
 }
 
-useGLTF.preload("public/skull/scene.gltf");
+useGLTF.preload("/skull/scene.gltf");

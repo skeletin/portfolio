@@ -1,5 +1,4 @@
 const API = import.meta.env.VITE_BACKEND_URL;
-("");
 
 async function getProjects() {
   const endpoint = import.meta.env.VITE_GET_PROJECTS;

@@ -23,11 +23,9 @@ const UploadForm = () => {
   });
 
   const handleSubmit = () => {
-    const body = new FormData();
     if (formData.file) {
-      body.append("file", formData.file);
+      mutate(formData.file);
     }
-    mutate(body);
   };
 
   return (

@@ -42,7 +42,6 @@ const Login = () => {
   useEffect(() => {
     if (admin) navigate("/admin/dashboard");
   }, [admin, navigate]);
-  console.log("hi");
 
   if (isLoading) return <AppLoader />;
 

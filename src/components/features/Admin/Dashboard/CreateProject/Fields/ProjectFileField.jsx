@@ -1,5 +1,4 @@
 import { TiDelete } from "react-icons/ti";
-import ProjectFileWidget from "../Widgets/ProjectFileWidget";
 import { LuImagePlus } from "react-icons/lu";
 import { useRef, useMemo, useEffect } from "react";
 
@@ -13,7 +12,7 @@ const ProjectFileField = (props) => {
     rawErrors = [],
   } = props;
 
-  const ref = useRef();
+  const fileInputRef = useRef(null);
 
   // ✅ Only create object URL if formData is a File
   const url = useMemo(() => {
@@ -34,6 +33,13 @@ const ProjectFileField = (props) => {
 
   const handleRemoveImage = () => {
     onChange(""); // clear value in form
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      onChange(file);
+    }
   };
 
   return (
@@ -59,7 +65,7 @@ const ProjectFileField = (props) => {
         {!url && (
           <button
             type="button"
-            onClick={() => ref.current.click()}
+            onClick={() => fileInputRef.current?.click()}
             className="rounded-full border border-gray-600 p-3 hover:bg-gray-700 transition group"
           >
             <LuImagePlus className="text-2xl text-gray-500 group-hover:text-gray-300 transition" />
@@ -67,7 +73,14 @@ const ProjectFileField = (props) => {
         )}
       </div>
 
-      <ProjectFileWidget ref={ref} {...props} />
+      <input
+        ref={fileInputRef}
+        id={idSchema.$id}
+        type="file"
+        onChange={handleFileChange}
+        accept="image/*"
+        className="invisible h-0 w-0"
+      />
 
       {rawErrors.length > 0 && (
         <ul className="mt-1 text-sm text-red-400">

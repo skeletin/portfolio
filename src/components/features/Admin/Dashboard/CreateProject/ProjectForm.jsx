@@ -19,7 +19,17 @@ const ProjectForm = () => {
 
   const { mutate } = useMutation({
     mutationFn: createProject,
-    onSuccess: (data) => console.log(data),
+    onSuccess: () => {
+      setFormData({
+        name: "",
+        repoUrl: "",
+        siteUrl: "",
+        year: "",
+        description: "",
+        techStack: [],
+        displayPicture: null,
+      });
+    },
   });
 
   const handleSubmit = () => {

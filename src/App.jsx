@@ -22,6 +22,9 @@ const AdminProjects = lazy(() =>
 const CreateProject = lazy(() =>
   import("./components/features/Admin/Dashboard/CreateProject/index.jsx")
 );
+const Upload = lazy(() =>
+  import("./components/features/Admin/Dashboard/Upload/index.jsx")
+);
 
 function App() {
   // const [showSplash, setShowSplash] = useState(true);
@@ -47,6 +50,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />}>
             <Route index element={<AdminProjects />} />
             <Route path="create" element={<CreateProject />} />
+            <Route path="upload" element={<Upload />} />
           </Route>
         </Route>
       </Routes>

@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/curious-skeleton-757d9863b3504a75a439b2b
 Title: Curious skeleton
 */
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useGraph, useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
@@ -80,7 +80,7 @@ const waveFragmentModifier = `
   }
 `;
 
-export default function CuriousSkeleton(props) {
+function CuriousSkeletonContent(props) {
   const group = React.useRef();
   const { scene, animations } = useGLTF("/curious_skeleton/scene.gltf");
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
@@ -257,3 +257,37 @@ export default function CuriousSkeleton(props) {
 }
 
 useGLTF.preload("/curious_skeleton/scene.gltf");
+
+// Error boundary wrapper component
+class SkeletonErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Skeleton model loading error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // Return null to fail silently, or return a fallback component
+      return null;
+    }
+
+    return this.props.children;
+  }
+}
+
+// Export wrapped component
+export default function CuriousSkeleton(props) {
+  return (
+    <SkeletonErrorBoundary>
+      <CuriousSkeletonContent {...props} />
+    </SkeletonErrorBoundary>
+  );
+}

@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Logo from "../../../svgs/Logo";
 import { GrProjects } from "react-icons/gr";
 import { BiPlus } from "react-icons/bi";
+import { LuUpload } from "react-icons/lu";
 import { useMutation } from "@tanstack/react-query";
 import { logout } from "../../../../endpoints/admin/AdminEndpoints";
 
@@ -18,6 +19,11 @@ const AdminLinks = () => {
       path: "/admin/dashboard/create",
       title: "Create ",
       icon: <BiPlus />,
+    },
+    {
+      path: "/admin/dashboard/upload",
+      title: "Upload",
+      icon: <LuUpload />,
     },
   ];
 

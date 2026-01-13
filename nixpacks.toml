@@ -1,9 +1,2 @@
-[phases.setup]
-cmds = [
-  "apt-get update",
-  "apt-get install -y git-lfs",
-  "git lfs install || true"
-]
-
 [phases.install]
 cmds = ["npm ci --legacy-peer-deps"]

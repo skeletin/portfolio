@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postinstall": "git lfs pull || echo 'Git LFS pull skipped'"
+    "copy-assets": "node scripts/copy-assets.js",
+    "start": "npm run copy-assets && vite preview --host 0.0.0.0 --port $PORT"
   },
   "dependencies": {
     "@react-three/drei": "^9.122.0",

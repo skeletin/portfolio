@@ -18,4 +18,28 @@ async function createProject(formData) {
   }
 }
 
-export { createProject };
+async function uploadFile(formData) {
+  // Read lambda endpoint from environment variable
+  const lambdaUrl = import.meta.env.VITE_UPLOAD_LAMBDA_URL;
+  
+  if (!lambdaUrl) {
+    throw new Error("VITE_UPLOAD_LAMBDA_URL environment variable is not set");
+  }
+  
+  try {
+    const response = await fetch(lambdaUrl, {
+      method: "POST",
+      body: formData,
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
+    }
+    
+    return await response.json();
+  } catch (e) {
+    throw Error("Error: " + e);
+  }
+}
+
+export { createProject, uploadFile };

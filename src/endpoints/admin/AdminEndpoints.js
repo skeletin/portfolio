@@ -2,8 +2,7 @@ const API = import.meta.env.VITE_BACKEND_URL;
 const mode = import.meta.env.MODE;
 
 async function login(credentials) {
-  const endpoint =
-    mode === "production" ? "/login" : import.meta.env.VITE_ADMIN_LOGIN;
+  const endpoint = import.meta.env.VITE_ADMIN_LOGIN;
   try {
     const response = await fetch(API + endpoint, {
       method: "POST",
@@ -20,8 +19,7 @@ async function login(credentials) {
 }
 
 async function status() {
-  const endpoint =
-    mode === "production" ? "/status" : import.meta.env.VITE_ADMIN_STATUS;
+  const endpoint = import.meta.env.VITE_ADMIN_STATUS;
   try {
     const response = await fetch(API + endpoint, { credentials: "include" });
     return await response.json();
@@ -31,8 +29,7 @@ async function status() {
 }
 
 async function logout() {
-  const endpoint =
-    mode === "production" ? "/logout" : import.meta.env.VITE_ADMIN_LOGOUT;
+  const endpoint = import.meta.env.VITE_ADMIN_LOGOUT;
   try {
     const response = await fetch(API + endpoint, {
       method: "DELETE",

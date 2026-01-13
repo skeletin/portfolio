@@ -7,16 +7,16 @@ const AppLayout = () => {
   const { pathname } = useLocation();
 
   const navRefs = {
-    "/": useRef(null),
-    "/projects": useRef(null),
-    "/contact": useRef(null),
-    "/experience": useRef(null),
+    "/": useRef(),
+    "/projects": useRef(),
+    "/contact": useRef(),
+    "/experience": useRef(),
   };
 
-  const [cuurentTabWidth, setCurrentTabWidth] = useState(0);
+  const [currentTabWidth, setCurrentTabWidth] = useState(0);
   const [left, setLeft] = useState(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const activeRef = navRefs[pathname];
     if (!activeRef?.current) return;
 
@@ -39,37 +39,25 @@ const AppLayout = () => {
     return () => observer.disconnect();
   }, [pathname, navRefs]);
 
-  const reset = () => {
-    setCurrentTabWidth(0);
-    setLeft(0);
-  };
-
   return (
     <div className="relative flex flex-col w-full h-full bg-black p-8 overflow-auto">
       <nav className="z-1 flex space-x-4 items-center">
-        <Link onClick={reset} to="/">
+        <Link to="/">
           <Logo />
         </Link>
-        <div className="flex flex-col text-sm text-white font-thin orbitron">
+        <div className="flex flex-col text-xs text-white font-thin orbitron">
           <div className="flex space-x-4">
-            <Link className="" to="/" ref={navRefs["/"]}>
-              home
-            </Link>
-            <Link className="" to="/projects" ref={navRefs["/projects"]}>
-              projects
-            </Link>
-            <Link className="" to="/contact" ref={navRefs["/contact"]}>
-              contact
-            </Link>
-            <Link className="" to="/experience" ref={navRefs["/experience"]}>
-              experience
-            </Link>
+            {Object.entries(navRefs).map(([pathname, ref]) => (
+              <Link to={pathname} ref={ref}>
+                {pathname === "/" ? "home" : pathname.substring(1)}
+              </Link>
+            ))}
           </div>
           <div className="relative flex flex-1">
             <div
               style={{
                 transform: `translateX(${left}px)`,
-                width: `${cuurentTabWidth}px`,
+                width: `${currentTabWidth}px`,
               }}
               className={`transition duration-300 ease-out relative h-0.5 bg-white`}
             />

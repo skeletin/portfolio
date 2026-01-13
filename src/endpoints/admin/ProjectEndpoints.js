@@ -1,5 +1,4 @@
 const API = import.meta.env.VITE_BACKEND_URL;
-const mode = import.meta.env.MODE;
 
 async function createProject(formData) {
   const endpoint = import.meta.env.VITE_ADMIN_CREATE_PROJECT;
@@ -15,30 +14,32 @@ async function createProject(formData) {
   }
 }
 
-async function uploadFile(formData) {
-  // Read lambda endpoint from environment variable
-  const lambdaUrl = import.meta.env.VITE_UPLOAD_LAMBDA_URL;
+async function uploadFile(file) {
+  // 1️⃣ Ask server for a presigned upload
+  const res = await fetch(import.meta.env.VITE_PREPARE_UPLOAD_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      fileName: file.name,
+      contentType: file.type,
+    }),
+  });
 
-  if (!lambdaUrl) {
-    throw new Error("VITE_UPLOAD_LAMBDA_URL environment variable is not set");
-  }
+  const { url, fields } = await res.json();
 
-  try {
-    const response = await fetch(lambdaUrl, {
-      method: "POST",
-      body: formData,
-    });
+  // 2️⃣ Upload directly to the bucket
+  const form = new FormData();
+  Object.entries(fields).forEach(([key, value]) => {
+    form.append(key, value);
+  });
 
-    if (!response.ok) {
-      throw new Error(
-        `Upload failed: ${response.status} ${response.statusText}`
-      );
-    }
+  form.append("Content-Type", file.type);
+  form.append("file", file);
 
-    return await response.json();
-  } catch (e) {
-    throw Error("Error: " + e);
-  }
+  return await fetch(url, {
+    method: "POST",
+    body: form,
+  });
 }
 
 export { createProject, uploadFile };

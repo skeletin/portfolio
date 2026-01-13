@@ -1,2 +1,10 @@
+[phases.setup]
+cmds = [
+  "apt-get update",
+  "apt-get install -y git-lfs",
+  "git lfs install",
+  "git lfs pull"
+]
+
 [phases.install]
 cmds = ["npm ci --legacy-peer-deps"] # Your custom install commands

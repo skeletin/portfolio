@@ -67,7 +67,7 @@ const AppLayout = () => {
           </div>
         </div>
       </nav>
-      <Background />
+
       <Outlet />
     </div>
   );

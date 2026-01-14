@@ -81,8 +81,11 @@ const waveFragmentModifier = `
 `;
 
 function CuriousSkeletonContent(props) {
+  const filePath = import.meta.env.PROD
+    ? "/data/curious_skeleton/scene.gltf"
+    : "/curious_skeleton/scene.gltf";
   const group = React.useRef();
-  const { scene, animations } = useGLTF("/curious_skeleton/scene.gltf");
+  const { scene, animations } = useGLTF(filePath);
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
@@ -256,7 +259,7 @@ function CuriousSkeletonContent(props) {
   );
 }
 
-useGLTF.preload("/curious_skeleton/scene.gltf");
+useGLTF.preload(filePath);
 
 // Error boundary wrapper component
 class SkeletonErrorBoundary extends React.Component {

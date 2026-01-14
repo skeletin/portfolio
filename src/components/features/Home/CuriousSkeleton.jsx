@@ -106,7 +106,7 @@ function CuriousSkeletonContent(props) {
       emissive: "#2f2f3f",
       emissiveIntensity: 0.4,
       transparent: true,
-      opacity: 0,
+      opacity: 1,
     });
 
     // Add time uniform for animation - store reference for updates
@@ -209,23 +209,23 @@ function CuriousSkeletonContent(props) {
   }, []);
 
   // Animate the wave effect and fade-in
-  useFrame((state) => {
-    // Update wave time uniform
-    if (obsidianMaterial.userData.uTime) {
-      obsidianMaterial.userData.uTime.value = state.clock.elapsedTime;
-      // Force shader update if uniform exists
-      if (obsidianMaterial.uniforms && obsidianMaterial.uniforms.uTime) {
-        obsidianMaterial.uniforms.uTime.value = state.clock.elapsedTime;
-      }
-    }
+  // useFrame((state) => {
+  //   // Update wave time uniform
+  //   if (obsidianMaterial.userData.uTime) {
+  //     obsidianMaterial.userData.uTime.value = state.clock.elapsedTime;
+  //     // Force shader update if uniform exists
+  //     if (obsidianMaterial.uniforms && obsidianMaterial.uniforms.uTime) {
+  //       obsidianMaterial.uniforms.uTime.value = state.clock.elapsedTime;
+  //     }
+  //   }
 
-    // Animate fade-in
-    if (obsidianMaterial.opacity < 1) {
-      const elapsed = (Date.now() - fadeInStartTime.current) / 1000; // Convert to seconds
-      const fadeDuration = 1.5; // 1.5 seconds fade-in
-      obsidianMaterial.opacity = Math.min(elapsed / fadeDuration, 1);
-    }
-  });
+  //   // Animate fade-in
+  //   if (obsidianMaterial.opacity < 1) {
+  //     const elapsed = (Date.now() - fadeInStartTime.current) / 1000; // Convert to seconds
+  //     const fadeDuration = 1.5; // 1.5 seconds fade-in
+  //     obsidianMaterial.opacity = Math.min(elapsed / fadeDuration, 1);
+  //   }
+  // });
   return (
     <group ref={group} {...props} dispose={null} position={[0, -3, 4.5]}>
       <group name="Sketchfab_Scene">

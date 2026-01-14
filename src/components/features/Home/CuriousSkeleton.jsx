@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/curious-skeleton-757d9863b3504a75a439b2b
 Title: Curious skeleton
 */
 
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import { useGraph, useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
@@ -79,13 +79,10 @@ const waveFragmentModifier = `
     return normalize(originalNormal + tangent * gradient.x + bitangent * gradient.y);
   }
 `;
-const filePath = import.meta.env.PROD
-  ? "/data/curious_skeleton/scene.gltf"
-  : "/curious_skeleton/scene.gltf";
 
 function CuriousSkeletonContent(props) {
   const group = React.useRef();
-  const { scene, animations } = useGLTF(filePath);
+  const { scene, animations } = useGLTF("/curious_skeleton/scene.gltf");
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
@@ -259,7 +256,7 @@ function CuriousSkeletonContent(props) {
   );
 }
 
-useGLTF.preload(filePath);
+useGLTF.preload("/curious_skeleton/scene.gltf");
 
 // Error boundary wrapper component
 class SkeletonErrorBoundary extends React.Component {

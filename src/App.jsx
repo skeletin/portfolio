@@ -3,8 +3,7 @@ import AppLayout from "./components/layouts/AppLayout";
 import Home from "./components/features/Home";
 import AdminLayout from "./components/layouts/AdminLayout.jsx";
 import { lazy, Suspense } from "react";
-import { AnimatePresence } from "motion/react";
-import SplashScreen from "./components/features/SplashScreen/index.jsx";
+import AppInitializer from "./components/providers/AppInitializer.jsx";
 import Projects from "./components/features/Projects/index.jsx";
 import Project from "./components/features/Project/index.jsx";
 import Contact from "./components/features/Contact/index.jsx";
@@ -27,34 +26,28 @@ const Upload = lazy(() =>
 );
 
 function App() {
-  // const [showSplash, setShowSplash] = useState(true);
-
-  // useEffect(() => {
-  //   setShowSplash(false);
-  // }, []);
-
   return (
-    <BrowserRouter>
-      {/* <AnimatePresence>{showSplash && <SplashScreen />}</AnimatePresence> */}
-
-      <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:name" element={<Project />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/experience" element={<Experience />} />
-        </Route>
-        <Route path="admin" element={<AdminLayout />}>
-          <Route path="login" element={<Login />} />
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route index element={<AdminProjects />} />
-            <Route path="create" element={<CreateProject />} />
-            <Route path="upload" element={<Upload />} />
+    <AppInitializer>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AppLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:name" element={<Project />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/experience" element={<Experience />} />
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path="admin" element={<AdminLayout />}>
+            <Route path="login" element={<Login />} />
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route index element={<AdminProjects />} />
+              <Route path="create" element={<CreateProject />} />
+              <Route path="upload" element={<Upload />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AppInitializer>
   );
 }
 

@@ -31,6 +31,13 @@ button {
   src: url("/fonts/Orbitron/static/Orbitron-Regular.ttf");
 }
 
+.space-grotesk-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
 .michroma {
   font-family: Michroma;
 }

@@ -10,4 +10,14 @@ async function getProjects() {
   }
 }
 
-export { getProjects };
+async function getProject(name) {
+  const endpoint = `/api/v1/projects/${name}`;
+  try {
+    const response = await fetch(API + endpoint);
+    return await response.json();
+  } catch (e) {
+    throw Error("Error: " + e);
+  }
+}
+
+export { getProjects, getProject };

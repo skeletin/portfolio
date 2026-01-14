@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Logo from "../svgs/Logo";
+import Skeletin from "../svgs/Skeletin";
 import { Link, Outlet, useLocation } from "react-router";
 import Background from "../features/Home/Background";
 
@@ -9,8 +9,8 @@ const AppLayout = () => {
   const navRefs = {
     "/": useRef(),
     "/projects": useRef(),
-    "/contact": useRef(),
     "/experience": useRef(),
+    "/contact": useRef(),
   };
 
   const [currentTabWidth, setCurrentTabWidth] = useState(0);
@@ -40,10 +40,13 @@ const AppLayout = () => {
   }, [pathname, navRefs]);
 
   return (
-    <div className="relative flex flex-col w-full h-full bg-black p-8 overflow-auto">
-      <nav className="z-1 flex space-x-4 items-center">
-        <Link to="/">
-          <Logo />
+    <div className="relative flex flex-col w-full h-full bg-black overflow-auto items-center">
+      <nav className="z-2 sticky top-0 bg-black flex space-x-4 items-center p-2">
+        <Link
+          to="/"
+          className="justi hover:opacity-80 transition-opacity duration-300"
+        >
+          <Skeletin className="w-12 h-12 md:w-16 md:h-16" />
         </Link>
         <div className="flex flex-col text-xs text-white font-thin orbitron">
           <div className="flex space-x-4">

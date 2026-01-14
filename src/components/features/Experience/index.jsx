@@ -55,7 +55,7 @@ const Experience = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full h-full mt-10 px-4 md:px-8 lg:px-16"
+      className="flex flex-col z-1 w-full h-full mt-10 max-w-[60rem] px-4 md:px-8 lg:px-16"
     >
       <div className="w-full max-w-4xl mx-auto">
         <h2 className="michroma text-4xl md:text-5xl mb-8 text-white text-center">

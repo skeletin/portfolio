@@ -79,11 +79,11 @@ const waveFragmentModifier = `
     return normalize(originalNormal + tangent * gradient.x + bitangent * gradient.y);
   }
 `;
+const filePath = import.meta.env.PROD
+  ? "/data/curious_skeleton/scene.gltf"
+  : "/curious_skeleton/scene.gltf";
 
 function CuriousSkeletonContent(props) {
-  const filePath = import.meta.env.PROD
-    ? "/data/curious_skeleton/scene.gltf"
-    : "/curious_skeleton/scene.gltf";
   const group = React.useRef();
   const { scene, animations } = useGLTF(filePath);
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);

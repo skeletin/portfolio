@@ -53,7 +53,7 @@ const Project = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col border border-white z-1 w-full h-full overflow-y-auto hide-scrollbar pt-10 md:pt-16 px-8 max-w-[60rem]"
+      className="flex flex-col z-1 w-full h-full overflow-y-auto hide-scrollbar pt-10 md:pt-16 px-8 max-w-[60rem]"
     >
       <div className="relative w-full">
         {/* Hero Image Section */}

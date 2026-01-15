@@ -74,8 +74,8 @@ const Experience = () => {
               {/* Timeline dot */}
               <div className="absolute left-6 md:left-10 top-2 w-4 h-4 rounded-full bg-white border-2 border-gray-900 shadow-lg z-10"></div>
 
-              {/* Content card (no backdrop-blur; smoother on scroll) */}
-              <div className="bg-black/70 rounded-lg p-6 border border-gray-800/60 hover:border-white/50 transition-colors duration-300 shadow-lg">
+              {/* Content card */}
+              <div className="bg-black/50 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20">
                 {/* Header */}
                 <div className="mb-4">
                   <h3 className="michroma text-xl md:text-2xl text-white mb-1">
@@ -111,7 +111,7 @@ const Experience = () => {
                     {experience.projects.map((project, projectIndex) => (
                       <div
                         key={projectIndex}
-                        className="bg-gray-800/50 border border-gray-700/60 rounded-md px-3 py-2 text-sm"
+                        className="bg-gray-800/50 border border-gray-700/50 rounded-md px-3 py-2 text-sm"
                       >
                         <span className="text-white font-medium">
                           {project.name}

@@ -14,9 +14,16 @@ async function getProject(name) {
   const endpoint = `/api/v1/projects/${name}`;
   try {
     const response = await fetch(API + endpoint);
-    return await response.json();
+    const json = await response.json().catch(() => null);
+    if (!response.ok) {
+      const err = new Error(json?.message || "Project not found");
+      err.status = response.status;
+      err.data = json;
+      throw err;
+    }
+    return json;
   } catch (e) {
-    throw Error("Error: " + e);
+    throw e;
   }
 }
 

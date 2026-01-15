@@ -1,10 +1,16 @@
 import { FaGithub } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import StackIcon from "tech-stack-icons";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 
 const ProjectCard = ({ project }) => {
+  const navigate = useNavigate();
+
+  const openProject = () => {
+    navigate("/projects/" + project.name);
+  };
+
   return (
     <div className="relative rounded-xl h-[30rem] w-full overflow-hidden text-white group cursor-pointer">
       {/* Image */}
@@ -17,12 +23,18 @@ const ProjectCard = ({ project }) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
 
       {/* Overlay with Content */}
-      <Link
-        to={"/projects/" + project.name}
-        className="absolute inset-0 transition-all duration-700 opacity-0 group-hover:opacity-100 border-white/20 rounded-xl z-20"
+      <div
+        role="link"
+        tabIndex={0}
+        aria-label={`Open project ${project.name}`}
+        onClick={openProject}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") openProject();
+        }}
+        className="absolute inset-0 transition-all duration-700 opacity-0 group-hover:opacity-100 border-white/20 rounded-xl z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
       >
         <ProjectInformation {...project} />
-      </Link>
+      </div>
 
       {/* Shine effect */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30 pointer-events-none">

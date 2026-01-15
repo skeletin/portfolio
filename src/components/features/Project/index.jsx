@@ -6,13 +6,15 @@ import { FaGithub } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { IoArrowBack } from "react-icons/io5";
 import StackIcon from "tech-stack-icons";
+import Skeletin from "../../svgs/Skeletin";
 
 const Project = () => {
   const { name } = useParams();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["project", name],
     queryFn: () => getProject(name),
+    select: (res) => res.data,
     retry: false,
   });
 
@@ -28,14 +30,71 @@ const Project = () => {
     );
   }
 
-  if (isError || !data?.data) {
+  const isNotFound =
+    (isError && error?.status === 404) ||
+    (!isError && data && (data === null || data === undefined));
+
+  if (isNotFound) {
     return (
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex flex-col items-center justify-center h-full text-white"
+        className="relative flex flex-col items-center justify-center h-full text-white px-6"
       >
-        <div className="text-xl michroma mb-4">Project not found</div>
+        <div className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-black/55 backdrop-blur-md p-6 md:p-10">
+          <div
+            aria-hidden
+            className="absolute -inset-28 rounded-full bg-gradient-to-r from-cyan-400/10 via-fuchsia-400/10 to-emerald-400/10 blur-3xl"
+          />
+          <div className="relative flex flex-col md:flex-row items-center gap-6">
+            <motion.div
+              animate={{ y: [0, -10, 0], rotate: [-1.5, 1.5, -1.5] }}
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                filter: "drop-shadow(0 0 24px rgba(255,255,255,0.18))",
+              }}
+            >
+              <Skeletin className="w-20 h-20 md:w-24 md:h-24" />
+            </motion.div>
+
+            <div className="text-center md:text-left">
+              <div className="orbitron text-2xl md:text-3xl tracking-[0.25em]">
+                404
+              </div>
+              <div className="mt-2 text-white/85 space-grotesk-text text-base md:text-lg">
+                Project not found
+              </div>
+              <div className="mt-2 text-white/55 text-sm leading-relaxed">
+                We couldn’t find the project:{" "}
+                <span className="text-white/80">{name}</span>
+              </div>
+              <div className="mt-6 flex gap-3 justify-center md:justify-start">
+                <Link
+                  to="/projects"
+                  className="orbitron inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                >
+                  Back to Projects
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="z-1 flex flex-col items-center justify-center h-full text-white"
+      >
+        <div className="text-xl michroma mb-4">Something went wrong</div>
         <Link
           to="/projects"
           className="text-white/60 hover:text-white transition-colors"
@@ -46,7 +105,7 @@ const Project = () => {
     );
   }
 
-  const project = data.data;
+  const project = data;
 
   return (
     <motion.main
@@ -153,14 +212,14 @@ const Project = () => {
             <h2 className="michroma text-2xl md:text-3xl text-white mb-6">
               Tech Stack
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {project.techStack?.map((tech, index) => (
                 <motion.div
                   key={tech}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="bg-black/50 backdrop-blur-sm rounded-lg p-4 border border-white/10 hover:border-white/30 transition-all duration-300 hover:bg-black/70 flex items-center gap-3"
+                  className="bg-black/50 backdrop-blur-sm rounded-lg p-4 border border-white/10 hover:border-white/30 transition-all duration-300 hover:bg-black/70 flex items-center gap-3 w-full"
                 >
                   <div className="w-10 h-10 flex-shrink-0">
                     <StackIcon name={tech} className="w-full h-full" />

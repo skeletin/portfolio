@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Skeletin from "../svgs/Skeletin";
 import { Link, Outlet, useLocation } from "react-router";
 import Background from "../features/Home/Background";
@@ -41,7 +41,7 @@ const AppLayout = () => {
 
   return (
     <div className="relative flex flex-col w-full h-full bg-black overflow-auto items-center">
-      <nav className="z-2 sticky top-0 bg-black flex space-x-4 items-center p-2">
+      <nav className="w-full z-2 sticky top-0 bg-black flex space-x-4 items-center p-2">
         <Link
           to="/"
           className="justi hover:opacity-80 transition-opacity duration-300"
@@ -51,7 +51,7 @@ const AppLayout = () => {
         <div className="flex flex-col text-xs text-white font-thin orbitron">
           <div className="flex space-x-4">
             {Object.entries(navRefs).map(([pathname, ref]) => (
-              <Link to={pathname} ref={ref}>
+              <Link key={pathname} to={pathname} ref={ref}>
                 {pathname === "/" ? "home" : pathname.substring(1)}
               </Link>
             ))}

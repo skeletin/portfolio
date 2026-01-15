@@ -8,6 +8,7 @@ import Projects from "./components/features/Projects/index.jsx";
 import Project from "./components/features/Project/index.jsx";
 import Contact from "./components/features/Contact/index.jsx";
 import Experience from "./components/features/Experience/index.jsx";
+import NotFound from "./components/features/NotFound/index.jsx";
 
 const Login = lazy(() => import("./components/features/Admin/Login/index.jsx"));
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/projects/:name" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/experience" element={<Experience />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="admin" element={<AdminLayout />}>
             <Route path="login" element={<Login />} />
@@ -44,6 +46,7 @@ function App() {
               <Route path="create" element={<CreateProject />} />
               <Route path="upload" element={<Upload />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

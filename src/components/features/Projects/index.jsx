@@ -3,12 +3,14 @@ import { getProjects } from "../../../endpoints/ProjectEndpoints";
 import { useState } from "react";
 import ProjectContainer from "../../containers/ProjectContainer";
 import ComingSoon from "../../ui/ComingSoon";
+import PageTitle from "../../ui/PageTitle";
 import { motion, AnimatePresence } from "motion/react";
+import ServerError from "../ServerError";
 
 const Projects = () => {
   const [projectType, setProjectType] = useState("personal");
 
-  const { data } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
     select: (res) => res.data.filter((p) => p.projectType === projectType),
@@ -19,13 +21,40 @@ const Projects = () => {
     setProjectType(type);
   };
 
+  if (isLoading) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex items-center justify-center h-full text-white"
+      >
+        <div className="text-xl michroma">Loading...</div>
+      </motion.div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <ServerError
+        title="Projects unavailable"
+        message={
+          error?.status
+            ? `The server returned an error (${error.status}).`
+            : "We couldn’t reach the server."
+        }
+        onRetry={refetch}
+        showContact
+      />
+    );
+  }
+
   if (data)
     return (
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className="flex flex-col z-1 w-full h-full mt-6 md:mt-10 px-4 md:px-8 lg:px-16"
+        className="flex flex-col z-1 w-full min-h-full max-w-[60rem] px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-10"
       >
         {data.length === 0 ? (
           <ComingSoon />
@@ -33,14 +62,7 @@ const Projects = () => {
           <>
             {/* Title Section */}
             <div className="mb-8 md:mb-12 text-center">
-              <motion.h2
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="michroma text-4xl md:text-5xl lg:text-6xl text-white mb-6"
-              >
-                PROJECTS
-              </motion.h2>
+              <PageTitle className="mb-6">PROJECTS</PageTitle>
 
               {/* Filter Buttons */}
               <motion.div

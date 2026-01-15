@@ -7,11 +7,12 @@ import { CgWebsite } from "react-icons/cg";
 import { IoArrowBack } from "react-icons/io5";
 import StackIcon from "tech-stack-icons";
 import Skeletin from "../../svgs/Skeletin";
+import ServerError from "../ServerError";
 
 const Project = () => {
   const { name } = useParams();
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["project", name],
     queryFn: () => getProject(name),
     select: (res) => res.data,
@@ -89,19 +90,18 @@ const Project = () => {
 
   if (isError || !data) {
     return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="z-1 flex flex-col items-center justify-center h-full text-white"
-      >
-        <div className="text-xl michroma mb-4">Something went wrong</div>
-        <Link
-          to="/projects"
-          className="text-white/60 hover:text-white transition-colors"
-        >
-          Back to Projects
-        </Link>
-      </motion.div>
+      <ServerError
+        title="Project unavailable"
+        message={
+          error?.status
+            ? `The server returned an error (${error.status}).`
+            : "We couldn’t reach the server."
+        }
+        onRetry={refetch}
+        showHome={false}
+        showProjects
+        showContact
+      />
     );
   }
 

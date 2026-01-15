@@ -4,9 +4,16 @@ async function getProjects() {
   const endpoint = import.meta.env.VITE_GET_PROJECTS;
   try {
     const response = await fetch(API + endpoint);
-    return await response.json();
+    const json = await response.json().catch(() => null);
+    if (!response.ok) {
+      const err = new Error(json?.message || "Failed to load projects");
+      err.status = response.status;
+      err.data = json;
+      throw err;
+    }
+    return json;
   } catch (e) {
-    throw Error("Error: " + e);
+    throw e;
   }
 }
 

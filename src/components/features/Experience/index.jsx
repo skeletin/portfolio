@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import PageTitle from "../../ui/PageTitle";
 
 // Helper function to format YYYY-MM date strings
 const formatDate = (dateString) => {
@@ -55,80 +56,75 @@ const Experience = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full h-full mt-10 max-w-[60rem] px-4 md:px-8 lg:px-16"
+      className="flex flex-col z-1 w-full min-h-full max-w-[60rem] px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-10"
     >
+      <PageTitle className="mb-8">EXPERIENCE</PageTitle>
       <div className="w-full max-w-4xl mx-auto">
-        <h2 className="michroma text-4xl md:text-5xl mb-8 text-white text-center">
-          EXPERIENCE
-        </h2>
+        <div className="relative space-y-12 pb-8">
+          {/* Vertical timeline line - extends to cover all dots including the last one */}
+          <div className="absolute left-8 md:left-12 top-0 h-[calc(100%+1rem)] w-0.5 bg-white opacity-60"></div>
+          {experienceData.map((experience, index) => (
+            <motion.div
+              key={experience.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="relative pl-20 md:pl-24"
+            >
+              {/* Timeline dot */}
+              <div className="absolute left-6 md:left-10 top-2 w-4 h-4 rounded-full bg-white border-2 border-gray-900 shadow-lg z-10"></div>
 
-        <div className="relative overflow-y-auto hide-scrollbar max-h-[calc(100vh-200px)] pb-8">
-          <div className="relative space-y-12 pb-8">
-            {/* Vertical timeline line - extends to cover all dots including the last one */}
-            <div className="absolute left-8 md:left-12 top-0 h-[calc(100%+1rem)] w-0.5 bg-white opacity-60"></div>
-            {experienceData.map((experience, index) => (
-              <motion.div
-                key={experience.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="relative pl-20 md:pl-24"
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-6 md:left-10 top-2 w-4 h-4 rounded-full bg-white border-2 border-gray-900 shadow-lg z-10"></div>
-
-                {/* Content card */}
-                <div className="bg-black/50 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20">
-                  {/* Header */}
-                  <div className="mb-4">
-                    <h3 className="michroma text-xl md:text-2xl text-white mb-1">
-                      {experience.role}
-                    </h3>
-                    <p className="text-lg text-white font-semibold mb-1">
-                      {experience.company}
-                    </p>
-                    <div className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
-                      <span>{formatDate(experience.startDate)}</span>
-                      <span>—</span>
-                      <span>
-                        {experience.endDate === "Present"
-                          ? "Present"
-                          : formatDate(experience.endDate)}
-                      </span>
-                      <span className="text-gray-600">•</span>
-                      <span>{experience.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-gray-300 mb-6 leading-relaxed">
-                    {experience.description}
+              {/* Content card (no backdrop-blur; smoother on scroll) */}
+              <div className="bg-black/70 rounded-lg p-6 border border-gray-800/60 hover:border-white/50 transition-colors duration-300 shadow-lg">
+                {/* Header */}
+                <div className="mb-4">
+                  <h3 className="michroma text-xl md:text-2xl text-white mb-1">
+                    {experience.role}
+                  </h3>
+                  <p className="text-lg text-white font-semibold mb-1">
+                    {experience.company}
                   </p>
-
-                  {/* Projects/Teams */}
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-white uppercase tracking-wide">
-                      Projects & Teams
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {experience.projects.map((project, projectIndex) => (
-                        <div
-                          key={projectIndex}
-                          className="bg-gray-800/50 border border-gray-700/50 rounded-md px-3 py-2 text-sm"
-                        >
-                          <span className="text-white font-medium">
-                            {project.name}
-                          </span>
-                          <span className="text-gray-500 mx-2">•</span>
-                          <span className="text-gray-400">{project.team}</span>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
+                    <span>{formatDate(experience.startDate)}</span>
+                    <span>—</span>
+                    <span>
+                      {experience.endDate === "Present"
+                        ? "Present"
+                        : formatDate(experience.endDate)}
+                    </span>
+                    <span className="text-gray-600">•</span>
+                    <span>{experience.location}</span>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                {/* Description */}
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  {experience.description}
+                </p>
+
+                {/* Projects/Teams */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-white uppercase tracking-wide">
+                    Projects & Teams
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {experience.projects.map((project, projectIndex) => (
+                      <div
+                        key={projectIndex}
+                        className="bg-gray-800/50 border border-gray-700/60 rounded-md px-3 py-2 text-sm"
+                      >
+                        <span className="text-white font-medium">
+                          {project.name}
+                        </span>
+                        <span className="text-gray-500 mx-2">•</span>
+                        <span className="text-gray-400">{project.team}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </motion.main>

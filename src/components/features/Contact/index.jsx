@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { FaLinkedin, FaGithub, FaEnvelope, FaInstagram } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import PageTitle from "../../ui/PageTitle";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -105,18 +106,11 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full h-full mt-6 max-w-[60rem] pb-10 px-4  md:mt-10 md:px-8 lg:px-16"
+      className="flex flex-col z-1 w-full min-h-full max-w-[60rem] pb-10 px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
     >
+      <PageTitle className="mb-12">CONTACT</PageTitle>
       <div className="w-full max-w-4xl mx-auto">
         {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="michroma text-4xl md:text-5xl lg:text-6xl text-white mb-12 text-center"
-        >
-          CONTACT
-        </motion.h2>
 
         {/* Contact Card */}
         <motion.div

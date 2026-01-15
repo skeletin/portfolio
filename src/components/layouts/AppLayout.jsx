@@ -1,43 +1,14 @@
-import { useLayoutEffect, useRef, useState } from "react";
 import Skeletin from "../svgs/Skeletin";
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import Background from "../features/Home/Background";
 
 const AppLayout = () => {
-  const { pathname } = useLocation();
-
-  const navRefs = {
-    "/": useRef(),
-    "/projects": useRef(),
-    "/experience": useRef(),
-    "/contact": useRef(),
-  };
-
-  const [currentTabWidth, setCurrentTabWidth] = useState(0);
-  const [left, setLeft] = useState(0);
-
-  useLayoutEffect(() => {
-    const activeRef = navRefs[pathname];
-    if (!activeRef?.current) return;
-
-    const observer = new ResizeObserver(([entry]) => {
-      setCurrentTabWidth(entry.contentRect.width);
-    });
-
-    observer.observe(activeRef.current);
-
-    const entries = Object.entries(navRefs);
-
-    let width = 0;
-    for (const [key, ref] of entries) {
-      if (!ref.current) return; // safety
-      if (key === pathname) break;
-      width += ref.current.getBoundingClientRect().width + 16;
-    }
-
-    setLeft(width);
-    return () => observer.disconnect();
-  }, [pathname, navRefs]);
+  const navItems = [
+    { to: "/", label: "home" },
+    { to: "/projects", label: "projects" },
+    { to: "/experience", label: "experience" },
+    { to: "/contact", label: "contact" },
+  ];
 
   return (
     <div className="relative flex flex-col w-full h-full bg-black overflow-auto items-center">
@@ -50,20 +21,21 @@ const AppLayout = () => {
         </Link>
         <div className="flex flex-col text-xs text-white font-thin orbitron">
           <div className="flex space-x-4">
-            {Object.entries(navRefs).map(([pathname, ref]) => (
-              <Link key={pathname} to={pathname} ref={ref}>
-                {pathname === "/" ? "home" : pathname.substring(1)}
-              </Link>
+            {navItems.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                className={({ isActive }) =>
+                  `pb-1 transition-colors duration-200 ${
+                    isActive
+                      ? "text-white border-b border-white"
+                      : "text-white/70 hover:text-white"
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
             ))}
-          </div>
-          <div className="relative flex flex-1">
-            <div
-              style={{
-                transform: `translateX(${left}px)`,
-                width: `${currentTabWidth}px`,
-              }}
-              className={`transition duration-300 ease-out relative h-0.5 bg-white`}
-            />
           </div>
         </div>
       </nav>

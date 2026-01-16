@@ -1,8 +1,28 @@
 import Skeletin from "../svgs/Skeletin";
-import { Link, NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet, useLocation } from "react-router";
 import Background from "../features/Home/Background";
+import { useEffect } from "react";
 
 const AppLayout = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const page =
+      pathname === "/"
+        ? "HOME"
+        : pathname.startsWith("/projects/")
+        ? "PROJECT"
+        : pathname.startsWith("/projects")
+        ? "PROJECTS"
+        : pathname.startsWith("/experience")
+        ? "EXPERIENCE"
+        : pathname.startsWith("/contact")
+        ? "CONTACT"
+        : "HOME";
+
+    document.title = `SKELETIN - ${page}`;
+  }, [pathname]);
+
   const navItems = [
     { to: "/", label: "home" },
     { to: "/projects", label: "projects" },

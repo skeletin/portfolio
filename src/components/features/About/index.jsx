@@ -118,7 +118,7 @@ const About = () => {
                   transition={{ duration: 0.55, delay: 0.15 }}
                   className="michroma text-2xl md:text-3xl lg:text-4xl text-white mt-3"
                 >
-                  Web Developer & Creative
+                  Software Enginner & Creative
                 </motion.h3>
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
@@ -135,7 +135,7 @@ const About = () => {
                   transition={{ duration: 0.55, delay: 0.29 }}
                   className="mt-5 text-white/80 leading-relaxed text-base md:text-lg"
                 >
-                  I’m a web developer and creative who enjoys merging technology with art
+                  I enjoy merging technology with art
                   to build immersive experiences.
                 </motion.p>
                 <motion.p

@@ -49,7 +49,7 @@ const AppLayout = () => {
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `pb-1 transition-colors duration-200 ${
+                  `pb-1 transition-colors duration-200 border-b border-transparent ${
                     isActive
                       ? "text-white border-b border-white"
                       : "text-white/70 hover:text-white"

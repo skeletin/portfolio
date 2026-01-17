@@ -26,7 +26,7 @@ const AppLayout = () => {
   }, [pathname]);
 
   const navItems = [
-    { to: "/", label: "home" },
+
     { to: "/about", label: "about" },
     { to: "/projects", label: "projects" },
     { to: "/experience", label: "experience" },
@@ -38,7 +38,7 @@ const AppLayout = () => {
       <nav className="w-full z-20 sticky top-0 bg-black flex space-x-4 items-center p-2">
         <Link
           to="/"
-          className="justi hover:opacity-80 transition-opacity duration-300"
+          className={`hover:opacity-80 transition-opacity duration-300 ${pathname === "/" ? "hover:opacity-100":"opacity-70"}`}
         >
           <Skeletin className="w-12 h-12 md:w-16 md:h-16" />
         </Link>

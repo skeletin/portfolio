@@ -135,9 +135,8 @@ const About = () => {
                   transition={{ duration: 0.55, delay: 0.29 }}
                   className="mt-5 text-white/80 leading-relaxed text-base md:text-lg"
                 >
-                  I’m a web developer and creative, merging technology with art
-                  to build bold, immersive experiences that feel as good as they
-                  look.
+                  I’m a web developer and creative who enjoys merging technology with art
+                  to build immersive experiences.
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
@@ -145,8 +144,7 @@ const About = () => {
                   transition={{ duration: 0.55, delay: 0.35 }}
                   className="mt-3 text-white/65 leading-relaxed"
                 >
-                  I care about clean engineering, strong design, and subtle
-                  motion that adds personality without getting in the way.
+                 Ever since I transitioned to the tech space as a software engineer, I have not looked back. I love what I do. 
                 </motion.p>
 
                 <motion.div

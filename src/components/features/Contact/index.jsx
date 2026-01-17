@@ -129,14 +129,7 @@ const Contact = () => {
             >
               Julian Smith
             </motion.h3>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg md:text-xl text-gray-300"
-            >
-              Software Engineer
-            </motion.p>
+          
           </div>
 
           {/* Contact Information */}

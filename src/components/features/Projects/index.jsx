@@ -56,7 +56,7 @@ const Projects = () => {
         transition={{ duration: 0.7 }}
       className="flex flex-col z-1 w-full min-h-full max-w-[60rem] px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
       >
-        {[].length === 0 ? (
+        {data.length === 0 ? (
           <ComingSoon
             title="Projects"
             subtitle={"check back soon."}

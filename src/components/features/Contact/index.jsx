@@ -106,7 +106,7 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full min-h-full max-w-[60rem] px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
+      className="flex flex-col z-1 w-full min-h-full max-w-[60rem] pb-10 px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
     >
       <PageTitle className="mb-12">CONTACT</PageTitle>
       <div className="w-full max-w-4xl mx-auto">

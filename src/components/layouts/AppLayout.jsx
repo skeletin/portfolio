@@ -63,7 +63,7 @@ const AppLayout = () => {
         </div>
       </nav>
       <Background />
-      <div className="w-full flex-1">
+      <div className="w-full flex flex-1 justify-center items-center">
         <Outlet />
       </div>
 

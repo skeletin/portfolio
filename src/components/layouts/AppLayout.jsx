@@ -10,6 +10,8 @@ const AppLayout = () => {
     const page =
       pathname === "/"
         ? "HOME"
+        : pathname.startsWith("/about")
+        ? "ABOUT"
         : pathname.startsWith("/projects/")
         ? "PROJECT"
         : pathname.startsWith("/projects")
@@ -25,14 +27,15 @@ const AppLayout = () => {
 
   const navItems = [
     { to: "/", label: "home" },
+    { to: "/about", label: "about" },
     { to: "/projects", label: "projects" },
     { to: "/experience", label: "experience" },
     { to: "/contact", label: "contact" },
   ];
 
   return (
-    <div className="relative flex flex-col w-full h-full bg-black overflow-auto items-center">
-      <nav className="w-full z-2 sticky top-0 bg-black flex space-x-4 items-center p-2">
+    <div className="relative flex flex-col w-full h-full bg-black overflow-y-auto">
+      <nav className="w-full z-20 sticky top-0 bg-black flex space-x-4 items-center p-2">
         <Link
           to="/"
           className="justi hover:opacity-80 transition-opacity duration-300"
@@ -60,7 +63,13 @@ const AppLayout = () => {
         </div>
       </nav>
       <Background />
-      <Outlet />
+      <div className="w-full flex-1">
+        <Outlet />
+      </div>
+
+      <footer className="relative z-10 w-full px-4 py-4 text-center text-xs text-white/60 font-thin orbitron">
+        made with passion <span aria-hidden="true">♥</span>
+      </footer>
     </div>
   );
 };

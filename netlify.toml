@@ -1,10 +1,16 @@
 [[redirects]]
-  from = "/*"
-  to = "/"
-  status = 200
-
-[[redirects]]
   from = "https://skeletin.netlify.app/*"
   to = "https://skeletin.dev/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "https://skeletin.netlify.app"
+  to = "https://skeletin.dev"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200

@@ -4,7 +4,7 @@
   status = 200
 
 [[redirects]]
-  from = "https://skeletin.netlify.app"
-  to = "https://skeletin.dev"
+  from = "https://skeletin.netlify.app/*"
+  to = "https://skeletin.dev/:splat"
   status = 301
   force = true

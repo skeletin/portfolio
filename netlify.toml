@@ -2,3 +2,9 @@
   from = "/*"
   to = "/"
   status = 200
+
+[[redirects]]
+  from = "https://skeletin.netlify.app"
+  to = "https://skeletin.dev"
+  status = 301
+  force = true

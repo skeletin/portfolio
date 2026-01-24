@@ -3,6 +3,7 @@ import { CgWebsite } from "react-icons/cg";
 import StackIcon from "tech-stack-icons";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
+import ElectricBorder from "../ui/ElectricBorder";
 
 const ProjectCard = ({ project }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const ProjectCard = ({ project }) => {
   };
 
   return (
-    <div className="relative rounded-xl h-[30rem] w-full overflow-hidden text-white group cursor-pointer">
+    <div className="relative rounded-xl h-120 w-full overflow-hidden text-white group cursor-pointer">
       {/* Image */}
       <img
         src={project.displayPictureUrl}
@@ -20,7 +21,7 @@ const ProjectCard = ({ project }) => {
       />
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
+      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
 
       {/* Overlay with Content */}
       <div
@@ -38,7 +39,7 @@ const ProjectCard = ({ project }) => {
 
       {/* Shine effect */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
       </div>
     </div>
   );
@@ -52,7 +53,7 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
         <div className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-md border border-white/20 transform translate-y-[-10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
           <span className="text-lg md:text-xl michroma text-white">{year}</span>
         </div>
-        <div className="flex items-center gap-3 transform translate-y-[-10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+        <div className="flex items-center gap-3 transform -translate-y-2.5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
           {repoUrl && (
             <a
               href={repoUrl}
@@ -79,14 +80,14 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
       </div>
 
       {/* Project Name */}
-      <div className="flex justify-center transform translate-y-[20px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+      <div className="flex justify-center transform translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200">
         <span className="text-3xl md:text-4xl michroma text-center drop-shadow-lg text-white">
           {name}
         </span>
       </div>
 
       {/* Tech Stack */}
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4 michroma overflow-hidden transform translate-y-[10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-300">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4 michroma overflow-hidden transform translate-y-2.5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-300">
         <div className="text-sm md:text-base whitespace-nowrap">
           <span className="text-white font-medium">Tech</span>
         </div>
@@ -94,7 +95,7 @@ const ProjectInformation = ({ name, year, repoUrl, siteUrl, techStack }) => {
           {techStack.map((tech, index) => (
             <span
               key={tech}
-              className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 transform scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+              className="w-8 h-8 md:w-10 md:h-10 shrink-0 transform scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
               style={{ transitionDelay: `${400 + index * 50}ms` }}
             >
               <StackIcon name={tech} className="w-full h-full" />

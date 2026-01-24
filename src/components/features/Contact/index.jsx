@@ -129,7 +129,6 @@ const Contact = () => {
             >
               Julian Smith
             </motion.h3>
-          
           </div>
 
           {/* Contact Information */}

@@ -8,6 +8,7 @@ import { IoArrowBack } from "react-icons/io5";
 import StackIcon from "tech-stack-icons";
 import Skeletin from "../../svgs/Skeletin";
 import ServerError from "../ServerError";
+import ElectricBorder from "../../ui/ElectricBorder";
 
 const Project = () => {
   const { name } = useParams();
@@ -42,48 +43,56 @@ const Project = () => {
         animate={{ opacity: 1 }}
         className="relative flex flex-col items-center justify-center h-full text-white px-6"
       >
-        <div className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-black/55 backdrop-blur-md p-6 md:p-10">
-          <div
-            aria-hidden
-            className="absolute -inset-28 rounded-full bg-linear-to-r from-cyan-400/10 via-fuchsia-400/10 to-emerald-400/10 blur-3xl"
-          />
-          <div className="relative flex flex-col md:flex-row items-center gap-6">
-            <motion.div
-              animate={{ y: [0, -10, 0], rotate: [-1.5, 1.5, -1.5] }}
-              transition={{
-                duration: 3.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              style={{
-                filter: "drop-shadow(0 0 24px rgba(255,255,255,0.18))",
-              }}
-            >
-              <Skeletin className="w-20 h-20 md:w-24 md:h-24" />
-            </motion.div>
+        <ElectricBorder
+          color="#212121"
+          speed={0.2}
+          chaos={0.015}
+          thickness={1}
+          style={{ borderRadius: 16 }}
+        >
+          <div className="relative w-full max-w-xl overflow-hidden rounded-2xl bg-black/55 backdrop-blur-md p-6 md:p-10">
+            <div
+              aria-hidden
+              className="absolute -inset-28 rounded-full bg-linear-to-r from-cyan-400/10 via-fuchsia-400/10 to-emerald-400/10 blur-3xl"
+            />
+            <div className="relative flex flex-col md:flex-row items-center gap-6">
+              <motion.div
+                animate={{ y: [0, -10, 0], rotate: [-1.5, 1.5, -1.5] }}
+                transition={{
+                  duration: 3.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  filter: "drop-shadow(0 0 24px rgba(255,255,255,0.18))",
+                }}
+              >
+                <Skeletin className="w-20 h-20 md:w-24 md:h-24" />
+              </motion.div>
 
-            <div className="text-center md:text-left">
-              <div className="orbitron text-2xl md:text-3xl tracking-[0.25em]">
-                404
-              </div>
-              <div className="mt-2 text-white/85 space-grotesk-text text-base md:text-lg">
-                Project not found
-              </div>
-              <div className="mt-2 text-white/55 text-sm leading-relaxed">
-                We couldn’t find the project:{" "}
-                <span className="text-white/80">{name}</span>
-              </div>
-              <div className="mt-6 flex gap-3 justify-center md:justify-start">
-                <Link
-                  to="/projects"
-                  className="orbitron inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white hover:bg-white/10 transition-colors"
-                >
-                  Back to Projects
-                </Link>
+              <div className="text-center md:text-left">
+                <div className="orbitron text-2xl md:text-3xl tracking-[0.25em]">
+                  404
+                </div>
+                <div className="mt-2 text-white/85 space-grotesk-text text-base md:text-lg">
+                  Project not found
+                </div>
+                <div className="mt-2 text-white/55 text-sm leading-relaxed">
+                  We couldn’t find the project:{" "}
+                  <span className="text-white/80">{name}</span>
+                </div>
+                <div className="mt-6 flex gap-3 justify-center md:justify-start">
+                  <Link
+                    to="/projects"
+                    className="orbitron inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                  >
+                    Back to Projects
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ElectricBorder>
       </motion.div>
     );
   }

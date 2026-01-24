@@ -97,7 +97,7 @@ const Contact = () => {
       name: "Email",
       url: "mailto:skeletindev@gmail.com",
       icon: FaEnvelope,
-      color: "hover:text-red-400",
+      color: "hover:text-red-500",
     },
   ];
 

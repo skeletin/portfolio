@@ -45,7 +45,7 @@ const Project = () => {
         <div className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-black/55 backdrop-blur-md p-6 md:p-10">
           <div
             aria-hidden
-            className="absolute -inset-28 rounded-full bg-gradient-to-r from-cyan-400/10 via-fuchsia-400/10 to-emerald-400/10 blur-3xl"
+            className="absolute -inset-28 rounded-full bg-linear-to-r from-cyan-400/10 via-fuchsia-400/10 to-emerald-400/10 blur-3xl"
           />
           <div className="relative flex flex-col md:flex-row items-center gap-6">
             <motion.div
@@ -221,7 +221,7 @@ const Project = () => {
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   className="bg-black/50 backdrop-blur-sm rounded-lg p-4 border border-white/10 hover:border-white/30 transition-all duration-300 hover:bg-black/70 flex items-center gap-3 w-full"
                 >
-                  <div className="w-10 h-10 flex-shrink-0">
+                  <div className="w-10 h-10 shrink-0">
                     <StackIcon name={tech} className="w-full h-full" />
                   </div>
                   <h3 className="michroma text-lg text-white capitalize">

@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 const ProjectContainer = ({ projects }) => {
   return (
-    <div className="flex flex-col gap-8 md:gap-10 w-full h-full max-w-[50rem]">
+    <div className="flex flex-col gap-8 md:gap-10 w-full h-full max-w-200">
       {projects.map((project, index) => (
         <motion.div
           key={project.id}

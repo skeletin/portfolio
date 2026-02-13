@@ -1,6 +1,7 @@
 import ProjectCard from "../../cards/ProjectCard";
 import { motion, AnimatePresence } from "motion/react";
 import Skeletin from "../../svgs/Skeletin";
+import ElectricBorder from "../../ui/ElectricBorder";
 
 const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
   const filterTypes = ["all", "personal", "professional"];
@@ -8,31 +9,31 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
   return (
     <div className="flex flex-col w-full h-full gap-4 md:gap-6 md:flex-row">
       {/* ─── Mobile Filter Bar ─── */}
-      <div className="flex md:hidden w-full shrink-0 gap-3 items-center justify-between px-4 py-3 border border-white/10 rounded-xl bg-black/50 backdrop-blur-md">
+      <div className="flex md:hidden w-full shrink-0 gap-3 items-center justify-between px-4 py-3 border border-ink/10 rounded-xl bg-page/50 backdrop-blur-md">
         <div className="relative">
           <select
             value={activeType}
             onChange={(e) => onTypeChange(e.target.value)}
-            className="appearance-none pl-4 pr-10 py-2 rounded-lg bg-white/5 border border-white/15 text-white orbitron text-xs tracking-wide focus:outline-none focus:border-white/30 transition-all"
+            className="appearance-none pl-4 pr-10 py-2 rounded-lg bg-ink/5 border border-ink/15 text-ink orbitron text-xs tracking-wide focus:outline-none focus:border-ink/30 transition-all"
           >
-            <option value="all" className="bg-neutral-900 text-white">
+            <option value="all" className="bg-neutral-900 text-ink">
               All Projects
             </option>
-            <option value="personal" className="bg-neutral-900 text-white">
+            <option value="personal" className="bg-neutral-900 text-ink">
               Personal
             </option>
-            <option value="professional" className="bg-neutral-900 text-white">
+            <option value="professional" className="bg-neutral-900 text-ink">
               Professional
             </option>
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-white/40">
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-ink/40">
             <svg className="fill-current h-3.5 w-3.5" viewBox="0 0 20 20">
               <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
             </svg>
           </div>
         </div>
 
-        <span className="orbitron text-[10px] text-white/30 tracking-wider">
+        <span className="orbitron text-[10px] text-ink/30 tracking-wider">
           {projects.length} {projects.length === 1 ? "project" : "projects"}
         </span>
       </div>
@@ -43,25 +44,25 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="relative w-full h-full rounded-2xl border border-white/10 bg-linear-to-b from-white/4 via-black/50 to-black/70 backdrop-blur-md overflow-hidden flex flex-col"
+          className="relative w-full h-full rounded-2xl border border-ink/10 bg-linear-to-b from-ink/4 via-page/50 to-page/70 backdrop-blur-md overflow-hidden flex flex-col"
         >
           {/* Background gradient accents */}
           <div aria-hidden className="absolute inset-0 pointer-events-none">
             {/* Top corner glow */}
-            <div className="absolute -top-12 -left-12 w-40 h-40 bg-[radial-gradient(circle,rgba(255,255,255,0.04)_0%,transparent_70%)]" />
+            <div className="absolute -top-12 -left-12 w-40 h-40 bg-[radial-gradient(circle,rgba(var(--glow-rgb),0.04)_0%,transparent_70%)]" />
             {/* Bottom subtle warmth */}
-            <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-[radial-gradient(circle,rgba(255,255,255,0.02)_0%,transparent_70%)]" />
+            <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-[radial-gradient(circle,rgba(var(--glow-rgb),0.02)_0%,transparent_70%)]" />
           </div>
 
           {/* Top accent line */}
           <div
             aria-hidden
-            className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-white/35 to-transparent"
+            className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/35 to-transparent"
           />
 
           {/* ── Filters Section ── */}
           <div className="p-5 pb-4">
-            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-white/40">
+            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40">
               Filter by
             </span>
 
@@ -79,14 +80,14 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                     whileTap={{ scale: 0.97 }}
                     className={`relative w-full text-left px-3.5 py-2.5 rounded-lg transition-all duration-300 orbitron text-xs tracking-wide flex items-center justify-between ${
                       isActive
-                        ? "text-white"
-                        : "text-white/35 hover:text-white/60 hover:bg-white/3"
+                        ? "text-ink"
+                        : "text-ink/35 hover:text-ink/60 hover:bg-ink/3"
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeFilterBg"
-                        className="absolute inset-0 rounded-lg bg-linear-to-r from-white/10 to-white/5 border border-white/12 shadow-sm shadow-white/5"
+                        className="absolute inset-0 rounded-lg bg-linear-to-r from-ink/10 to-ink/5 border border-ink/12 shadow-sm shadow-ink/5"
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -99,7 +100,7 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                     </span>
                     <span
                       className={`relative z-10 text-[9px] tabular-nums transition-colors duration-300 ${
-                        isActive ? "text-white/50" : "text-white/20"
+                        isActive ? "text-ink/50" : "text-ink/20"
                       }`}
                     >
                       {count}
@@ -111,11 +112,11 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
           </div>
 
           {/* Divider */}
-          <div className="mx-5 h-px bg-linear-to-r from-transparent via-white/12 to-transparent" />
+          <div className="mx-5 h-px bg-linear-to-r from-transparent via-ink/12 to-transparent" />
 
           {/* ── Stats Section ── */}
           <div className="p-5 pt-4">
-            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-white/40">
+            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40">
               Overview
             </span>
 
@@ -125,11 +126,11 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="michroma text-3xl leading-none text-transparent bg-clip-text bg-linear-to-b from-white to-white/50"
+                className="michroma text-3xl leading-none text-transparent bg-clip-text bg-linear-to-b from-ink to-ink/50"
               >
                 {projects.length}
               </motion.span>
-              <span className="orbitron text-[10px] text-white/25 tracking-wider">
+              <span className="orbitron text-[10px] text-ink/25 tracking-wider">
                 {projects.length === 1 ? "project" : "projects"}
               </span>
             </div>
@@ -147,16 +148,16 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                 return (
                   <div key={type} className="flex flex-col gap-1.5">
                     <div className="flex items-center justify-between">
-                      <span className="orbitron text-[10px] text-white/30 capitalize tracking-wide">
+                      <span className="orbitron text-[10px] text-ink/30 capitalize tracking-wide">
                         {type}
                       </span>
-                      <span className="orbitron text-[10px] text-white/20 tabular-nums">
+                      <span className="orbitron text-[10px] text-ink/20 tabular-nums">
                         {count}
                       </span>
                     </div>
-                    <div className="h-1 w-full rounded-full bg-white/5 overflow-hidden">
+                    <div className="h-1 w-full rounded-full bg-ink/5 overflow-hidden">
                       <motion.div
-                        className="h-full rounded-full bg-linear-to-r from-white/25 to-white/10"
+                        className="h-full rounded-full bg-linear-to-r from-ink/25 to-ink/10"
                         initial={{ width: 0 }}
                         animate={{ width: `${pct}%` }}
                         transition={{
@@ -173,23 +174,23 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
           </div>
 
           {/* Divider */}
-          <div className="mx-5 h-px bg-linear-to-r from-transparent via-white/12 to-transparent" />
+          <div className="mx-5 h-px bg-linear-to-r from-transparent via-ink/12 to-transparent" />
 
           {/* ── Year Range ── */}
           <div className="p-5 pt-4">
-            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-white/40">
+            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40">
               Timeline
             </span>
             {projects.length > 0 && (
               <div className="mt-3.5 flex items-center gap-3">
-                <span className="michroma text-sm text-transparent bg-clip-text bg-linear-to-r from-white/80 to-white/50">
+                <span className="michroma text-sm text-transparent bg-clip-text bg-linear-to-r from-ink/80 to-ink/50">
                   {Math.min(...projects.map((p) => parseInt(p.year)))}
                 </span>
-                <div className="flex-1 h-px bg-linear-to-r from-white/20 via-white/8 to-white/20 relative">
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-linear-to-br from-white/50 to-white/20" />
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-linear-to-br from-white/50 to-white/20" />
+                <div className="flex-1 h-px bg-linear-to-r from-ink/20 via-ink/8 to-ink/20 relative">
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-linear-to-br from-ink/50 to-ink/20" />
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-linear-to-br from-ink/50 to-ink/20" />
                 </div>
-                <span className="michroma text-sm text-transparent bg-clip-text bg-linear-to-r from-white/50 to-white/80">
+                <span className="michroma text-sm text-transparent bg-clip-text bg-linear-to-r from-ink/50 to-ink/80">
                   {Math.max(...projects.map((p) => parseInt(p.year)))}
                 </span>
               </div>
@@ -204,7 +205,7 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
           {/* Bottom accent line */}
           <div
             aria-hidden
-            className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent"
+            className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent"
           />
         </motion.aside>
       </div>
@@ -226,7 +227,7 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                 initial={{ opacity: 0, scale: 0.95, y: 12 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                className="relative flex flex-col justify-center items-center flex-1 h-full rounded-2xl border border-white/15 bg-white/5 backdrop-blur shadow-lg shadow-black/30 overflow-hidden px-10 py-10"
+                className="relative flex flex-col justify-center items-center flex-1 h-full rounded-2xl border border-ink/15 bg-ink/5 backdrop-blur shadow-lg shadow-black/30 overflow-hidden px-10 py-10"
               >
                 {/* Glass highlights */}
                 <div
@@ -234,19 +235,19 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                   className="absolute inset-0 pointer-events-none"
                 >
                   {/* Top edge shine */}
-                  <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent" />
+                  <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/30 to-transparent" />
                   {/* Inner refraction gradient */}
-                  <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,255,255,0.06)_0%,transparent_50%)]" />
-                  <div className="absolute -bottom-1/4 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_70%_80%,rgba(255,255,255,0.03)_0%,transparent_50%)]" />
+                  <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(ellipse_at_30%_20%,rgba(var(--glow-rgb),0.06)_0%,transparent_50%)]" />
+                  <div className="absolute -bottom-1/4 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_70%_80%,rgba(var(--glow-rgb),0.03)_0%,transparent_50%)]" />
                   {/* Bottom edge subtle shine */}
-                  <div className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                  <div className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-ink/10 to-transparent" />
                 </div>
 
                 {/* Mascot */}
                 <div className="relative mb-6">
                   <motion.div
                     aria-hidden
-                    className="absolute -inset-6 rounded-full bg-white/5 blur-2xl"
+                    className="absolute -inset-6 rounded-full bg-ink/5 blur-2xl"
                     animate={{ opacity: [0.3, 0.55, 0.3] }}
                     transition={{
                       duration: 3,
@@ -262,7 +263,7 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.25 }}
-                  className="michroma text-sm text-white/80 mb-2"
+                  className="michroma text-sm text-ink/80 mb-2"
                 >
                   No Projects Found
                 </motion.h3>
@@ -270,7 +271,7 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.35 }}
-                  className="orbitron text-[10px] text-white/35 tracking-wider"
+                  className="orbitron text-[10px] text-ink/35 tracking-wider"
                 >
                   Try selecting a different filter
                 </motion.p>
@@ -280,7 +281,7 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
-                  className="mt-5 h-px w-20 bg-linear-to-r from-transparent via-white/20 to-transparent origin-center"
+                  className="mt-5 h-px w-20 bg-linear-to-r from-transparent via-ink/20 to-transparent origin-center"
                 />
               </motion.div>
             </motion.div>
@@ -337,10 +338,10 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                         },
                       },
                     }}
-                    className="hidden lg:block rounded-xl h-56  w-full bg-white/5 border border-white/5 backdrop-blur relative overflow-hidden group"
+                    className="hidden lg:block rounded-xl h-56  w-full bg-ink/5 border border-ink/5 backdrop-blur relative overflow-hidden group"
                   >
-                    <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-30"></div>
-                    <div className="absolute inset-0 flex items-center justify-center text-white/10">
+                    <div className="absolute inset-0 bg-linear-to-br from-ink/5 to-transparent opacity-30"></div>
+                    <div className="absolute inset-0 flex items-center justify-center text-ink/10">
                       <Skeletin className="w-12 h-12 md:w-16 md:h-16 opacity-20" />
                     </div>
                   </motion.div>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { useTheme } from "../../context/ThemeContext";
 
 function hexToRgba(hex, alpha = 1) {
   if (!hex) return `rgba(0,0,0,${alpha})`;
@@ -18,13 +19,15 @@ function hexToRgba(hex, alpha = 1) {
 
 const ElectricBorder = ({
   children,
-  color = '#5227FF',
+  color: colorProp,
   speed = 1,
   chaos = 0.12,
   borderRadius = 24,
   className,
   style
 }) => {
+  const { theme } = useTheme();
+  const color = colorProp || (theme === "dark" ? "#212121" : "#c0c0c0");
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const animationRef = useRef(null);

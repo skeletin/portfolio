@@ -29,7 +29,7 @@ const Projects = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex items-center justify-center h-full text-white"
+        className="flex items-center justify-center h-full text-ink"
       >
         <div className="text-xl michroma">Loading...</div>
       </motion.div>
@@ -52,13 +52,12 @@ const Projects = () => {
   }
 
   if (data) {
-    console.log(projectType);
     return (
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className="relative flex flex-col z-1 w-full h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-4 md:pb-6"
+        className="relative flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
       >
         <PageTitle className="mb-6">PROJECTS</PageTitle>
         <div className="w-full max-w-7xl mx-auto overflow-hidden h-full">

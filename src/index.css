@@ -1,4 +1,26 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+/* ─── Theme Tokens ─── */
+:root {
+  --t-page: #f5f5f5;
+  --t-ink: #3a3a3a;
+  --t-ink-muted: #6b7280;
+  --glow-rgb: 0, 0, 0;
+}
+
+.dark {
+  --t-page: #000000;
+  --t-ink: #ffffff;
+  --t-ink-muted: #9ca3af;
+  --glow-rgb: 255, 255, 255;
+}
+
+@theme {
+  --color-page: var(--t-page);
+  --color-ink: var(--t-ink);
+  --color-ink-muted: var(--t-ink-muted);
+}
 
 html,
 body,
@@ -7,7 +29,12 @@ body,
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
     sans-serif;
 }
 

@@ -78,7 +78,7 @@ const Experience = () => {
       <div className="w-full max-w-4xl mx-auto">
         <div className="relative space-y-12 pb-8">
           {/* Vertical timeline line - extends to cover all dots including the last one */}
-          <div className="absolute left-8 md:left-12 top-0 h-[calc(100%+1rem)] w-0.5 bg-white opacity-60"></div>
+          <div className="absolute left-8 md:left-12 top-0 h-[calc(100%+1rem)] w-0.5 bg-ink opacity-60"></div>
           {experienceData.map((experience, index) => (
             <motion.div
               key={experience.id}
@@ -88,16 +88,16 @@ const Experience = () => {
               className="relative pl-20 md:pl-24"
             >
               {/* Timeline dot */}
-              <div className="absolute left-6 md:left-10 top-2 w-4 h-4 rounded-full bg-white border-2 border-gray-900 shadow-lg z-10"></div>
+              <div className="absolute left-6 md:left-10 top-2 w-4 h-4 rounded-full bg-ink border-2 border-page shadow-lg z-10"></div>
 
               {/* Content card */}
-              <div className="bg-black/50 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20">
+              <div className="bg-page/50 backdrop-blur-sm rounded-lg p-6 border border-ink/10 hover:border-ink/50 transition-all duration-300 shadow-lg hover:shadow-ink/20">
                 {/* Header */}
                 <div className="mb-4">
-                  <h3 className="michroma text-xl md:text-2xl text-white mb-1">
+                  <h3 className="michroma text-xl md:text-2xl text-ink mb-1">
                     {experience.role}
                   </h3>
-                  <p className="text-lg text-white font-semibold mb-1">
+                  <p className="text-lg text-ink font-semibold mb-1">
                     {experience.company}
                   </p>
                   <div className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
@@ -114,22 +114,22 @@ const Experience = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-ink-muted mb-6 leading-relaxed">
                   {experience.description}
                 </p>
 
                 {/* Projects/Teams */}
                 <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-white uppercase tracking-wide">
+                  <h4 className="text-sm font-semibold text-ink uppercase tracking-wide">
                     Projects & Teams
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {experience.projects.map((project, projectIndex) => (
                       <div
                         key={projectIndex}
-                        className="bg-gray-800/50 border border-gray-700/50 rounded-md px-3 py-2 text-sm"
+                        className="bg-ink/5 border border-ink/10 rounded-md px-3 py-2 text-sm"
                       >
-                        <span className="text-white font-medium">
+                        <span className="text-ink font-medium">
                           {project.name}
                         </span>
                         <span className="text-gray-500 mx-2">•</span>

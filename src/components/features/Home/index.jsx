@@ -15,7 +15,7 @@ const Home = () => {
         transition={{ duration: 1 }}
         className="flex w-full h-full items-center justify-center"
       >
-        <Logo className="w-auto h-16 md:h-24" />
+        <Logo className="w-auto h-16 md:h-24 text-ink" />
       </motion.div>
     </motion.main>
   );

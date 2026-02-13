@@ -43,27 +43,26 @@ const About = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="relative flex flex-col z-1 w-full flex-1 px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
+      className="relative flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
-      <div className="w-full max-w-5xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto pb-12 md:pb-16">
         <PageTitle className="mb-10">ABOUT</PageTitle>
 
         {/* Hero */}
         <ElectricBorder
-          color="#212121"
           speed={0.2}
           chaos={0.015}
           thickness={1}
           style={{ borderRadius: 16 }}
         >
-          <div className="relative overflow-hidden bg-black/55 backdrop-blur-md">
+          <div className="relative overflow-hidden bg-page/55 backdrop-blur-md">
             <div
               aria-hidden
-              className="absolute -inset-28 rounded-full bg-linear-to-r from-white/10 via-cyan-400/10 to-fuchsia-400/10 blur-3xl"
+              className="absolute -inset-28 rounded-full bg-linear-to-r from-ink/10 via-cyan-400/10 to-fuchsia-400/10 blur-3xl"
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent"
+              className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/30 to-transparent"
               style={{ opacity: 0.35 }}
             />
 
@@ -77,7 +76,7 @@ const About = () => {
                 >
                   <motion.div
                     aria-hidden
-                    className="absolute -inset-5 rounded-full bg-white/5 blur-xl"
+                    className="absolute -inset-5 rounded-full bg-ink/5 blur-xl"
                     animate={{ opacity: [0.2, 0.55, 0.2] }}
                     transition={{
                       duration: 2.6,
@@ -91,19 +90,19 @@ const About = () => {
                       <img
                         src={avatarSrc}
                         alt="Skeletin avatar"
-                        className="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover border border-white/15 bg-black/60"
+                        className="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover border border-ink/15 bg-page/60"
                         style={{
                           filter:
-                            "drop-shadow(0 0 24px rgba(255,255,255,0.14))",
+                            "drop-shadow(0 0 24px rgba(var(--glow-rgb),0.14))",
                         }}
                         onError={() => setAvatarOk(false)}
                       />
                     ) : (
                       <div
-                        className="h-32 w-32 md:h-40 md:w-40 rounded-full border border-white/15 bg-black/60 flex items-center justify-center"
+                        className="h-32 w-32 md:h-40 md:w-40 rounded-full border border-ink/15 bg-page/60 flex items-center justify-center"
                         style={{
                           filter:
-                            "drop-shadow(0 0 24px rgba(255,255,255,0.14))",
+                            "drop-shadow(0 0 24px rgba(var(--glow-rgb),0.14))",
                         }}
                         title="Add your photo at /client/public/images/about-avatar.jpg"
                       >
@@ -118,7 +117,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="michroma text-sm tracking-widest text-white/60"
+                    className="michroma text-sm tracking-widest text-ink/60"
                   >
                     SKELETIN
                   </motion.div>
@@ -126,7 +125,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.15 }}
-                    className="michroma text-2xl md:text-3xl lg:text-4xl text-white mt-3"
+                    className="michroma text-2xl md:text-3xl lg:text-4xl text-ink mt-3"
                   >
                     Software Enginner & Creative
                   </motion.h3>
@@ -134,7 +133,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.22 }}
-                    className="mt-5 text-white/80 leading-relaxed text-base md:text-lg"
+                    className="mt-5 text-ink/80 leading-relaxed text-base md:text-lg"
                   >
                     Welcome.
                   </motion.p>
@@ -143,7 +142,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.29 }}
-                    className="mt-5 text-white/80 leading-relaxed text-base md:text-lg"
+                    className="mt-5 text-ink/80 leading-relaxed text-base md:text-lg"
                   >
                     I enjoy merging technology with art to build immersive
                     experiences.
@@ -152,7 +151,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.35 }}
-                    className="mt-3 text-white/65 leading-relaxed"
+                    className="mt-3 text-ink/65 leading-relaxed"
                   >
                     Ever since I transitioned to the tech space as a software
                     engineer, I have not looked back. I love what I do.
@@ -162,9 +161,9 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.55, delay: 0.42 }}
-                    className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70"
+                    className="mt-6 inline-flex items-center gap-2 rounded-xl border border-ink/10 bg-ink/5 px-4 py-2 text-sm text-ink/70"
                   >
-                    <span className="text-white/80">Currently:</span> building
+                    <span className="text-ink/80">Currently:</span> building
                     sleek, modern web experiences.
                   </motion.div>
                 </div>
@@ -182,22 +181,22 @@ const About = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 + idx * 0.08 }}
-                className="group rounded-2xl border border-white/10 bg-black/50 backdrop-blur-sm p-6 hover:border-white/30 hover:bg-white/5 hover:shadow-lg hover:shadow-white/20 transition"
+                className="group rounded-2xl border border-ink/10 bg-page/50 backdrop-blur-sm p-6 hover:border-ink/30 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/20 transition"
               >
                 <div className="flex items-start gap-4">
                   <div
-                    className="rounded-xl border border-white/10 bg-white/5 p-3"
+                    className="rounded-xl border border-ink/10 bg-ink/5 p-3"
                     style={{
-                      filter: "drop-shadow(0 0 18px rgba(255,255,255,0.10))",
+                      filter: "drop-shadow(0 0 18px rgba(var(--glow-rgb),0.10))",
                     }}
                   >
-                    <Icon className="text-white/85 text-xl" />
+                    <Icon className="text-ink/85 text-xl" />
                   </div>
                   <div>
-                    <div className="michroma text-base text-white">
+                    <div className="michroma text-base text-ink">
                       {c.title}
                     </div>
-                    <div className="mt-2 text-sm text-white/65 leading-relaxed">
+                    <div className="mt-2 text-sm text-ink/65 leading-relaxed">
                       {c.body}
                     </div>
                   </div>

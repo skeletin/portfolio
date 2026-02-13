@@ -80,7 +80,7 @@ const waveFragmentModifier = `
   }
 `;
 
-function CuriousSkeletonContent(props) {
+function CuriousSkeletonContent({ theme = "dark", ...props }) {
   const group = React.useRef();
   const { scene, animations } = useGLTF("/curious_skeleton/scene.gltf");
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
@@ -90,21 +90,44 @@ function CuriousSkeletonContent(props) {
   // Track opacity for fade-in animation
   const fadeInStartTime = React.useRef(Date.now());
 
-  // Create physical material with wave effects injected via shader modification
-  const obsidianMaterial = useMemo(() => {
-    const material = new THREE.MeshPhysicalMaterial({
+  // Material configs per theme
+  const materialConfigs = {
+    dark: {
       color: "#000000",
       roughness: 0.1,
-      metalness: 0,
-      clearcoat: 0,
       clearcoatRoughness: 0.03,
       reflectivity: 0.1,
       envMapIntensity: 2.5,
+      emissive: "#2f2f3f",
+      emissiveIntensity: 0.4,
+    },
+    light: {
+      color: "#ffffff",
+      roughness: 0.08,
+      clearcoatRoughness: 0.02,
+      reflectivity: 0.3,
+      envMapIntensity: 3.0,
+      emissive: "#e0e0f0",
+      emissiveIntensity: 0.35,
+    },
+  };
+
+  // Create physical material with wave effects injected via shader modification
+  const obsidianMaterial = useMemo(() => {
+    const cfg = materialConfigs[theme] || materialConfigs.dark;
+    const material = new THREE.MeshPhysicalMaterial({
+      color: cfg.color,
+      roughness: cfg.roughness,
+      metalness: 0,
+      clearcoat: 0,
+      clearcoatRoughness: cfg.clearcoatRoughness,
+      reflectivity: cfg.reflectivity,
+      envMapIntensity: cfg.envMapIntensity,
       ior: 1.25,
       transmission: 0.05,
       thickness: 0.5,
-      emissive: "#2f2f3f",
-      emissiveIntensity: 0.4,
+      emissive: cfg.emissive,
+      emissiveIntensity: cfg.emissiveIntensity,
       transparent: true,
       opacity: 1,
     });
@@ -193,10 +216,18 @@ function CuriousSkeletonContent(props) {
           `
       );
 
-      // Darken color in wave areas
+      // Modify color in wave areas
+      const isLight = theme === "light";
       shader.fragmentShader = shader.fragmentShader.replace(
         "#include <color_fragment>",
-        `
+        isLight
+          ? `
+          #include <color_fragment>
+          // Subtle wave shading for light mode — darken slightly in wave areas
+          vec3 waveShade = mix(vec3(0.0), vec3(-0.06, -0.06, -0.06), wave * 0.35);
+          diffuseColor.rgb += waveShade;
+          `
+          : `
           #include <color_fragment>
           // Make wave areas darker
           vec3 waveDarkness = mix(vec3(0.0, 0.0, 0.0), vec3(-0.1, -0.1, -0.1), wave * 0.4);
@@ -206,7 +237,7 @@ function CuriousSkeletonContent(props) {
     };
 
     return material;
-  }, []);
+  }, [theme]);
 
   // Animate the wave effect and fade-in
   // useFrame((state) => {
@@ -284,10 +315,10 @@ class SkeletonErrorBoundary extends React.Component {
 }
 
 // Export wrapped component
-export default function CuriousSkeleton(props) {
+export default function CuriousSkeleton({ theme, ...props }) {
   return (
     <SkeletonErrorBoundary>
-      <CuriousSkeletonContent {...props} />
+      <CuriousSkeletonContent theme={theme} {...props} />
     </SkeletonErrorBoundary>
   );
 }

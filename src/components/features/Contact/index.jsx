@@ -117,7 +117,7 @@ const Contact = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-black/50 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-gray-800/50 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20"
+          className="bg-page/50 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-ink/10 hover:border-ink/50 transition-all duration-300 shadow-lg hover:shadow-ink/20"
         >
           {/* Name and Title */}
           <div className="mb-8 text-center">
@@ -125,7 +125,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="michroma text-3xl md:text-4xl text-white mb-2"
+              className="michroma text-3xl md:text-4xl text-ink mb-2"
             >
               Julian Smith
             </motion.h3>
@@ -139,10 +139,10 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex items-center justify-center gap-3"
             >
-              <FaEnvelope className="text-xl text-white/60" />
+              <FaEnvelope className="text-xl text-ink/60" />
               <a
                 href="mailto:skeletindev@gmail.com"
-                className="text-lg md:text-xl text-white hover:text-white/80 transition-colors"
+                className="text-lg md:text-xl text-ink hover:text-ink/80 transition-colors"
               >
                 skeletindev@gmail.com
               </a>
@@ -169,10 +169,10 @@ const Contact = () => {
                   transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-lg bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-300 ${social.color}`}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-lg bg-ink/5 border border-ink/10 hover:border-ink/30 transition-all duration-300 ${social.color}`}
                 >
-                  <Icon className="text-3xl md:text-4xl text-white transition-colors" />
-                  <span className="michroma text-sm md:text-base text-white/80">
+                  <Icon className="text-3xl md:text-4xl text-ink transition-colors" />
+                  <span className="michroma text-sm md:text-base text-ink/80">
                     {social.name}
                   </span>
                 </motion.a>
@@ -198,9 +198,9 @@ const Contact = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="mt-8 md:mt-12 bg-black/50 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-gray-800/50 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20"
+          className="mt-8 md:mt-12 bg-page/50 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-ink/10 hover:border-ink/50 transition-all duration-300 shadow-lg hover:shadow-ink/20"
         >
-          <h3 className="michroma text-2xl md:text-3xl text-white mb-6 text-center">
+          <h3 className="michroma text-2xl md:text-3xl text-ink mb-6 text-center">
             Send a Message
           </h3>
 
@@ -213,7 +213,7 @@ const Contact = () => {
             >
               <label
                 htmlFor="name"
-                className="block text-sm md:text-base text-white/80 mb-2 michroma"
+                className="block text-sm md:text-base text-ink/80 mb-2 michroma"
               >
                 Name
               </label>
@@ -224,7 +224,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 hover:border-white/30 hover:bg-white/10 hover:shadow-lg hover:shadow-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 focus:shadow-lg focus:shadow-white/20 transition-all duration-300"
+                className="w-full px-4 py-3 bg-ink/5 border border-ink/10 rounded-lg text-ink placeholder-gray-500 hover:border-ink/30 hover:bg-ink/10 hover:shadow-lg hover:shadow-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/10 focus:shadow-lg focus:shadow-ink/20 transition-all duration-300"
                 placeholder="Your name"
               />
             </motion.div>
@@ -237,7 +237,7 @@ const Contact = () => {
             >
               <label
                 htmlFor="email"
-                className="block text-sm md:text-base text-white/80 mb-2 michroma"
+                className="block text-sm md:text-base text-ink/80 mb-2 michroma"
               >
                 Email
               </label>
@@ -248,7 +248,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 hover:border-white/30 hover:bg-white/10 hover:shadow-lg hover:shadow-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 focus:shadow-lg focus:shadow-white/20 transition-all duration-300"
+                className="w-full px-4 py-3 bg-ink/5 border border-ink/10 rounded-lg text-ink placeholder-gray-500 hover:border-ink/30 hover:bg-ink/10 hover:shadow-lg hover:shadow-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/10 focus:shadow-lg focus:shadow-ink/20 transition-all duration-300"
                 placeholder="your.email@example.com"
               />
             </motion.div>
@@ -261,7 +261,7 @@ const Contact = () => {
             >
               <label
                 htmlFor="message"
-                className="block text-sm md:text-base text-white/80 mb-2 michroma"
+                className="block text-sm md:text-base text-ink/80 mb-2 michroma"
               >
                 Message
               </label>
@@ -272,7 +272,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 hover:border-white/30 hover:bg-white/10 hover:shadow-lg hover:shadow-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 focus:shadow-lg focus:shadow-white/20 transition-all duration-300 resize-none"
+                className="w-full px-4 py-3 bg-ink/5 border border-ink/10 rounded-lg text-ink placeholder-gray-500 hover:border-ink/30 hover:bg-ink/10 hover:shadow-lg hover:shadow-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/10 focus:shadow-lg focus:shadow-ink/20 transition-all duration-300 resize-none"
                 placeholder="Your message..."
               />
             </motion.div>
@@ -287,7 +287,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full md:w-auto px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-lg text-white michroma text-base md:text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full md:w-auto px-8 py-3 bg-ink/10 backdrop-blur-sm border-2 border-ink/30 rounded-lg text-ink michroma text-base md:text-lg hover:bg-ink/20 hover:border-ink/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>

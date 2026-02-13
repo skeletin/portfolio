@@ -106,10 +106,10 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="relative z-1 flex flex-col w-full flex-1 pb-10 px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
+      className="relative z-1 flex flex-col w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
       <PageTitle className="mb-12">CONTACT</PageTitle>
-      <div className="w-full max-w-4xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto pb-12 md:pb-16">
         {/* Title */}
 
         {/* Contact Card */}

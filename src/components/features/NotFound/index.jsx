@@ -27,7 +27,7 @@ const NotFound = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="relative flex flex-col z-1 justify-center items-center flex-1 w-full px-4 pt-10"
+      className="relative flex flex-col z-1 justify-center items-center flex-1 w-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
       <ElectricBorder
         className={"w-full max-w-2xl"}

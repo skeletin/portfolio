@@ -5,6 +5,7 @@ import ProjectGrid from "./ProjectGrid";
 import PageTitle from "../../ui/PageTitle";
 import { motion } from "motion/react";
 import ServerError from "../ServerError";
+import { mockProjects } from "./mockData";
 
 const Projects = () => {
   const [projectType, setProjectType] = useState("all");
@@ -13,8 +14,8 @@ const Projects = () => {
     queryKey: ["projects"],
     queryFn: getProjects,
     select: (res) =>
-      res.data.filter((project) => 
-        projectType === "all" ? true : project.projectType === projectType
+      res.data.filter((project) =>
+        projectType === "all" ? true : project.projectType === projectType,
       ),
     retry: false,
   });
@@ -51,17 +52,18 @@ const Projects = () => {
   }
 
   if (data) {
+    console.log(projectType);
     return (
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className="relative flex flex-col z-1 w-full h-full px-4 pt-6 md:px-8 md:pt-10 lg:px-16"
+        className="relative flex flex-col z-1 w-full h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-4 md:pb-6"
       >
         <PageTitle className="mb-6">PROJECTS</PageTitle>
         <div className="w-full max-w-7xl mx-auto overflow-hidden h-full">
-          <ProjectGrid 
-            projects={data} 
+          <ProjectGrid
+            projects={data}
             activeType={projectType}
             onTypeChange={changeProjectType}
           />

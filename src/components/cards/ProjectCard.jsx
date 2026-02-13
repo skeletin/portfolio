@@ -13,7 +13,7 @@ const ProjectCard = ({ project }) => {
   };
 
   return (
-    <div className="relative rounded-xl h-120 w-full overflow-hidden text-white group cursor-pointer">
+    <div className="relative rounded-xl h-100 w-full overflow-hidden text-white group cursor-pointer opacity-98">
       {/* Image */}
       <img
         src={project.displayPictureUrl}
@@ -34,7 +34,7 @@ const ProjectCard = ({ project }) => {
         }}
         className="absolute inset-0 transition-all duration-700 opacity-0 group-hover:opacity-100 border-white/20 rounded-xl z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
       >
-        <ProjectInformation {...project} />
+        <ProjectInformation {...project} />{" "}
       </div>
 
       {/* Shine effect */}

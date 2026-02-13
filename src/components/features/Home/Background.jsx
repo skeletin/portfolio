@@ -5,7 +5,7 @@ import CuriousSkeleton from "./CuriousSkeleton";
 
 const Background = () => {
   return (
-    <div className="fixed inset-0 w-full h-full p-0 m-0 pointer-events-none bg-black">
+    <div className="fixed  w-full h-full p-0 m-0 pointer-events-none">
       <Canvas frameloop="demand">
         <Environment preset="studio" />
         <Suspense fallback={null}>

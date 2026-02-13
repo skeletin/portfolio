@@ -13,6 +13,22 @@ const formatDate = (dateString) => {
 
 const experienceData = [
   {
+    id: 0,
+    company: "Self-Employed",
+    role: "Freelance Developer",
+    startDate: "2026-01",
+    endDate: "Present",
+    location: "Remote",
+    description:
+      "Delivering custom web solutions for diverse clients, specializing in full-stack development with React, Node.js, and Ruby on Rails. Architecting scalable applications, optimizing performance, and integrating third-party APIs to meet specific business needs. Providing end-to-end development services from technical consultation and UI/UX design to deployment and maintenance.",
+    projects: [
+      {
+        name: "Portfolio & Brand Sites",
+        team: "Design & Dev",
+      },
+    ],
+  },
+  {
     id: 1,
     company: "CVS Health",
     role: "Software Engineer",
@@ -56,7 +72,7 @@ const Experience = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full min-h-full max-w-[60rem] px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
+      className="flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
     >
       <PageTitle className="mb-8">EXPERIENCE</PageTitle>
       <div className="w-full max-w-4xl mx-auto">

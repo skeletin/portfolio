@@ -125,7 +125,7 @@ const Project = () => {
     >
       <div className="relative w-full">
         {/* Hero Image Section */}
-        <div className="relative h-[40vh] md:h-[50vh] w-full overflow-hidden">
+        <div className="relative h-[40vh] md:h-[50vh] w-full overflow-hidden opacity-98">
           {project.displayPictureUrl && (
             <img
               src={project.displayPictureUrl}

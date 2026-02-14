@@ -7,7 +7,7 @@ const SplashScreen = () => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed flex flex-col items-center justify-center bg-black h-screen w-screen z-50 overflow-hidden"
+      className="fixed flex flex-col items-center justify-center bg-page h-screen w-screen z-50 overflow-hidden"
     >
       {/* Skeleton Animation */}
       <motion.div

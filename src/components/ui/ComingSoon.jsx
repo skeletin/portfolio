@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import Skeletin from "../svgs/Skeletin";
-import ElectricBorder from "./ElectricBorder";
 
 const ComingSoon = ({
   title = "Projects",
@@ -15,22 +14,10 @@ const ComingSoon = ({
       transition={{ duration: 0.5 }}
       className="relative flex flex-col z-1 justify-center items-center w-full flex-1 px-4 py-10"
     >
-      <ElectricBorder
-        className={"w-full max-w-2xl"}
-        color="#212121"
-        speed={0.2}
-        chaos={0.015}
-        thickness={1}
-        style={{ borderRadius: 16 }}
-      >
-        <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-black/55 backdrop-blur-md">
+        <div className="relative w-full max-w-2xl rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300">
           <div
             aria-hidden
-            className="absolute -inset-28 rounded-full bg-linear-to-r from-white/10 via-cyan-400/10 to-fuchsia-400/10 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="absolute -inset-18 rounded-full border border-white/10"
+            className="absolute -inset-16 rounded-full bg-[radial-gradient(circle,rgba(var(--glow-rgb),0.06)_0%,transparent_70%)]"
           />
 
           <div className="relative p-6 md:p-10">
@@ -43,7 +30,7 @@ const ComingSoon = ({
               >
                 <motion.div
                   aria-hidden
-                  className="absolute -inset-5 rounded-full bg-white/5 blur-xl"
+                  className="absolute -inset-4 rounded-full bg-ink/5 blur-lg"
                   animate={{ opacity: [0.2, 0.5, 0.2] }}
                   transition={{
                     duration: 2.4,
@@ -60,7 +47,7 @@ const ComingSoon = ({
                   }}
                   className="relative"
                   style={{
-                    filter: "drop-shadow(0 0 24px rgba(255,255,255,0.18))",
+                    filter: "drop-shadow(0 0 24px rgba(var(--glow-rgb),0.18))",
                   }}
                 >
                   <Skeletin className="w-24 h-24 md:w-32 md:h-32" />
@@ -68,33 +55,33 @@ const ComingSoon = ({
               </motion.div>
 
               <div className="flex-1 text-center md:text-left">
-                <div className="michroma text-xs tracking-[0.35em] text-white/60">
-                  COMING SOON
+                <div className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
+                  Coming Soon
                 </div>
-                <div className="mt-3 michroma text-3xl md:text-4xl text-white">
+                <div className="mt-3 michroma text-3xl md:text-4xl text-ink">
                   {title}
                 </div>
-                <div className="mt-3 text-white/70 text-sm md:text-base leading-relaxed">
+                <div className="mt-3 text-ink/70 text-sm md:text-base leading-relaxed">
                   {subtitle}
                 </div>
 
                 <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
                   <Link
                     to="/"
-                    className="orbitron inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                    className="orbitron inline-flex items-center justify-center rounded-xl border border-ink/15 bg-ink/5 px-4 py-2 text-ink hover:bg-ink/10 transition-colors"
                   >
                     Home
                   </Link>
                   <Link
                     to="/about"
-                    className="orbitron inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                    className="orbitron inline-flex items-center justify-center rounded-xl border border-ink/15 bg-ink/5 px-4 py-2 text-ink hover:bg-ink/10 transition-colors"
                   >
                     About
                   </Link>
                   {showContact && (
                     <Link
                       to="/contact"
-                      className="orbitron inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                      className="orbitron inline-flex items-center justify-center rounded-xl border border-ink/15 bg-ink/5 px-4 py-2 text-ink hover:bg-ink/10 transition-colors"
                     >
                       Contact
                     </Link>
@@ -105,12 +92,10 @@ const ComingSoon = ({
 
             <div
               aria-hidden
-              className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent"
-              style={{ opacity: 0.35 }}
+              className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
           </div>
         </div>
-      </ElectricBorder>
     </motion.main>
   );
 };

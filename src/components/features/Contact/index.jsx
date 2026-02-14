@@ -1,6 +1,13 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import { FaLinkedin, FaGithub, FaEnvelope, FaInstagram } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaEnvelope,
+  FaInstagram,
+  FaPaperPlane,
+} from "react-icons/fa";
+import { IoLocationOutline } from "react-icons/io5";
 import emailjs from "@emailjs/browser";
 import PageTitle from "../../ui/PageTitle";
 
@@ -27,21 +34,18 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      // EmailJS configuration from environment variables
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error(
-          "EmailJS configuration is missing. Please check your environment variables."
+          "EmailJS configuration is missing. Please check your environment variables.",
         );
       }
 
-      // Initialize EmailJS with public key
       emailjs.init(publicKey);
 
-      // Send email via EmailJS
       await emailjs.send(serviceId, templateId, {
         from_name: formData.name,
         from_email: formData.email,
@@ -53,7 +57,6 @@ const Contact = () => {
       setSubmitStatus("success");
       setFormData({ name: "", email: "", message: "" });
 
-      // Clear success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
@@ -61,43 +64,66 @@ const Contact = () => {
       console.error("EmailJS error:", error);
       setIsSubmitting(false);
 
-      // Check for specific error types
       if (error.status === 412) {
         setSubmitStatus("auth_error");
       } else {
         setSubmitStatus("error");
       }
 
-      // Clear error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
     }
   };
+
   const socialLinks = [
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/julian-antonio-smith/",
       icon: FaLinkedin,
-      color: "hover:text-blue-500",
+      accent: "group-hover/social:text-blue-400",
     },
     {
       name: "GitHub",
       url: "https://www.github.com/skeletin",
       icon: FaGithub,
-      color: "hover:text-gray-400",
+      accent: "group-hover/social:text-ink/90",
     },
     {
       name: "Instagram",
       url: "https://www.instagram.com/skeletindev",
       icon: FaInstagram,
-      color: "hover:text-pink-500",
+      accent: "group-hover/social:text-pink-400",
     },
     {
       name: "Email",
       url: "mailto:skeletindev@gmail.com",
       icon: FaEnvelope,
-      color: "hover:text-red-500",
+      accent: "group-hover/social:text-ink/80",
+    },
+  ];
+
+  const formFields = [
+    {
+      id: "name",
+      label: "Name",
+      type: "text",
+      placeholder: "Your name",
+      component: "input",
+    },
+    {
+      id: "email",
+      label: "Email",
+      type: "email",
+      placeholder: "your.email@example.com",
+      component: "input",
+    },
+    {
+      id: "message",
+      label: "Message",
+      type: "text",
+      placeholder: "Your message...",
+      component: "textarea",
     },
   ];
 
@@ -106,230 +132,299 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full min-h-full max-w-[60rem] pb-10 px-4 md:px-8 lg:px-16 pt-6 md:pt-10"
+      className="relative flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
-      <PageTitle className="mb-12">CONTACT</PageTitle>
-      <div className="w-full max-w-4xl mx-auto">
-        {/* Title */}
+      <PageTitle className="mb-2">CONTACT</PageTitle>
+      <motion.p
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="text-center orbitron text-[10px] md:text-xs tracking-[0.15em] uppercase text-ink/30"
+      >
+        Let's connect and build something great
+      </motion.p>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+        className="mt-4 mb-8 h-px w-32 mx-auto bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
+      />
 
-        {/* Contact Card */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-black/50 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-gray-800/50 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20"
-        >
-          {/* Name and Title */}
-          <div className="mb-8 text-center">
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="michroma text-3xl md:text-4xl text-white mb-2"
-            >
-              Julian Smith
-            </motion.h3>
-          </div>
-
-          {/* Contact Information */}
-          <div className="mb-10 space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center justify-center gap-3"
-            >
-              <FaEnvelope className="text-xl text-white/60" />
-              <a
-                href="mailto:skeletindev@gmail.com"
-                className="text-lg md:text-xl text-white hover:text-white/80 transition-colors"
-              >
-                skeletindev@gmail.com
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Social Links */}
+      <div className="w-full max-w-5xl mx-auto pb-12 md:pb-16">
+        {/* ─── Two-column layout ─── */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
+          {/* ─── Left Column: Info ─── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap items-center justify-center gap-6 md:gap-8"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.15,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+            className="lg:col-span-2 flex flex-col gap-5"
           >
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon;
-              return (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-lg bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-300 ${social.color}`}
+            {/* Info card */}
+            <div className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300">
+              <div
+                aria-hidden
+                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+              <div className="p-6 md:p-8">
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.25 }}
+                  className="michroma text-2xl md:text-3xl text-ink mb-1"
                 >
-                  <Icon className="text-3xl md:text-4xl text-white transition-colors" />
-                  <span className="michroma text-sm md:text-base text-white/80">
-                    {social.name}
-                  </span>
-                </motion.a>
-              );
-            })}
-          </motion.div>
-
-          {/* Call to Action */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="mt-12 text-center"
-          >
-            <p className="text-gray-400 text-sm md:text-base">
-              Let's connect and build.
-            </p>
-          </motion.div>
-        </motion.div>
-
-        {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="mt-8 md:mt-12 bg-black/50 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-gray-800/50 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20"
-        >
-          <h3 className="michroma text-2xl md:text-3xl text-white mb-6 text-center">
-            Send a Message
-          </h3>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name Field */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.3 }}
-            >
-              <label
-                htmlFor="name"
-                className="block text-sm md:text-base text-white/80 mb-2 michroma"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 hover:border-white/30 hover:bg-white/10 hover:shadow-lg hover:shadow-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 focus:shadow-lg focus:shadow-white/20 transition-all duration-300"
-                placeholder="Your name"
-              />
-            </motion.div>
-
-            {/* Email Field */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
-            >
-              <label
-                htmlFor="email"
-                className="block text-sm md:text-base text-white/80 mb-2 michroma"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 hover:border-white/30 hover:bg-white/10 hover:shadow-lg hover:shadow-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 focus:shadow-lg focus:shadow-white/20 transition-all duration-300"
-                placeholder="your.email@example.com"
-              />
-            </motion.div>
-
-            {/* Message Field */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.5 }}
-            >
-              <label
-                htmlFor="message"
-                className="block text-sm md:text-base text-white/80 mb-2 michroma"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={6}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 hover:border-white/30 hover:bg-white/10 hover:shadow-lg hover:shadow-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 focus:shadow-lg focus:shadow-white/20 transition-all duration-300 resize-none"
-                placeholder="Your message..."
-              />
-            </motion.div>
-
-            {/* Submit Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.6 }}
-              className="flex flex-col items-center gap-4"
-            >
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full md:w-auto px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-lg text-white michroma text-base md:text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
-
-              {submitStatus === "success" && (
+                  Julian Smith
+                </motion.h3>
                 <motion.p
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-green-400 text-sm md:text-base"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                  className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-5"
                 >
-                  Message sent! I'll get back to you soon.
+                  Full-Stack Developer
                 </motion.p>
-              )}
-              {submitStatus === "error" && (
-                <motion.p
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-red-400 text-sm md:text-base"
-                >
-                  Failed to send message. Please try again or contact me
-                  directly.
-                </motion.p>
-              )}
-              {submitStatus === "auth_error" && (
-                <motion.p
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-yellow-400 text-sm md:text-base"
-                >
-                  Email service configuration issue. Please contact me directly
-                  at{" "}
-                  <a
+
+                {/* Divider */}
+                <div className="h-px w-full bg-linear-to-r from-transparent via-ink/10 to-transparent mb-5" />
+
+                {/* Details */}
+                <div className="space-y-3">
+                  <motion.a
                     href="mailto:skeletindev@gmail.com"
-                    className="underline hover:text-yellow-300"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 }}
+                    className="flex items-center gap-3 group/link"
                   >
-                    skeletindev@gmail.com
-                  </a>
-                </motion.p>
-              )}
-            </motion.div>
-          </form>
-        </motion.div>
+                    <div className="w-8 h-8 rounded-lg bg-ink/5 border border-ink/8 flex items-center justify-center shrink-0 group-hover/link:border-ink/20 transition-colors duration-300">
+                      <FaEnvelope className="text-ink/40 text-xs group-hover/link:text-ink/70 transition-colors duration-300" />
+                    </div>
+                    <span className="text-sm text-ink/60 group-hover/link:text-ink transition-colors duration-300 truncate">
+                      skeletindev@gmail.com
+                    </span>
+                  </motion.a>
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.45 }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-ink/5 border border-ink/8 flex items-center justify-center shrink-0">
+                      <IoLocationOutline className="text-ink/40 text-xs" />
+                    </div>
+                    <span className="text-sm text-ink/60">Chicago, IL</span>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+
+            {/* Social links */}
+            <div
+              className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300"
+            >
+              <div
+                aria-hidden
+                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+              <div className="p-6 md:p-8">
+                <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-4 block">
+                  Connect
+                </span>
+                <div className="grid grid-cols-2 gap-2.5">
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <motion.a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{
+                          duration: 0.4,
+                          delay: 0.3 + index * 0.07,
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 25,
+                        }}
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="group/social flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-ink/5 border border-ink/8 hover:border-ink/20 hover:bg-ink/8 transition-[color,background-color,border-color] duration-300"
+                      >
+                        <Icon
+                          className={`text-lg text-ink/40 transition-colors duration-300 ${social.accent}`}
+                        />
+                        <span className="text-sm text-ink/60 group-hover/social:text-ink transition-colors duration-300">
+                          {social.name}
+                        </span>
+                      </motion.a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              className="h-px w-16 bg-linear-to-r from-transparent via-ink/10 to-transparent origin-center lg:origin-left"
+            />
+          </motion.div>
+
+          {/* ─── Right Column: Form ─── */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.2,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+            className="lg:col-span-3"
+          >
+            <div className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300 h-full">
+              <div
+                aria-hidden
+                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-8 h-8 rounded-lg bg-ink/5 border border-ink/8 flex items-center justify-center">
+                    <FaPaperPlane className="text-ink/40 text-xs" />
+                  </div>
+                  <h3 className="michroma text-lg text-ink">Send a Message</h3>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {formFields.map((field, index) => (
+                    <motion.div
+                      key={field.id}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.3 + index * 0.08,
+                      }}
+                    >
+                      <label
+                        htmlFor={field.id}
+                        className="orbitron text-[10px] tracking-[0.12em] uppercase text-ink/40 mb-2 block"
+                      >
+                        {field.label}
+                      </label>
+                      {field.component === "textarea" ? (
+                        <textarea
+                          id={field.id}
+                          name={field.id}
+                          value={formData[field.id]}
+                          onChange={handleChange}
+                          required
+                          rows={5}
+                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-[border-color,background-color,box-shadow] duration-300 resize-none"
+                          placeholder={field.placeholder}
+                        />
+                      ) : (
+                        <input
+                          type={field.type}
+                          id={field.id}
+                          name={field.id}
+                          value={formData[field.id]}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-[border-color,background-color,box-shadow] duration-300"
+                          placeholder={field.placeholder}
+                        />
+                      )}
+                    </motion.div>
+                  ))}
+
+                  {/* Submit */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.55 }}
+                    className="pt-1"
+                  >
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      whileHover={{ y: -1 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="relative w-full group/btn px-6 py-3.5 rounded-xl border border-ink/15 bg-ink/8 text-ink michroma text-xs tracking-wider uppercase overflow-hidden hover:border-ink/30 hover:bg-ink/12 transition-[color,background-color,border-color] duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      {/* Shimmer on hover */}
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 bg-linear-to-r from-transparent via-ink/5 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"
+                      />
+                      <span className="relative flex items-center justify-center gap-2">
+                        {isSubmitting ? (
+                          <>
+                            <motion.span
+                              animate={{ rotate: 360 }}
+                              transition={{
+                                duration: 1,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                              className="inline-block w-4 h-4 border border-ink/30 border-t-ink rounded-full"
+                            />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <FaPaperPlane className="text-[10px] text-ink/50" />
+                            Send Message
+                          </>
+                        )}
+                      </span>
+                    </motion.button>
+                  </motion.div>
+
+                  {/* Status messages */}
+                  {submitStatus && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-center"
+                    >
+                      {submitStatus === "success" && (
+                        <p className="text-green-400 text-sm">
+                          Message sent! I'll get back to you soon.
+                        </p>
+                      )}
+                      {submitStatus === "error" && (
+                        <p className="text-red-400 text-sm">
+                          Failed to send message. Please try again or contact me
+                          directly.
+                        </p>
+                      )}
+                      {submitStatus === "auth_error" && (
+                        <p className="text-yellow-400 text-sm">
+                          Email service issue. Please contact me directly at{" "}
+                          <a
+                            href="mailto:skeletindev@gmail.com"
+                            className="underline hover:text-yellow-300"
+                          >
+                            skeletindev@gmail.com
+                          </a>
+                        </p>
+                      )}
+                    </motion.div>
+                  )}
+                </form>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </motion.main>
   );

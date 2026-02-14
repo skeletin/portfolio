@@ -92,10 +92,24 @@ const Experience = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
+      className="relative flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
-      <PageTitle className="mb-10">EXPERIENCE</PageTitle>
-      <div className="w-full max-w-4xl mx-auto pb-12 md:pb-16">
+      <PageTitle className="mb-2">EXPERIENCE</PageTitle>
+      <motion.p
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="text-center orbitron text-[10px] md:text-xs tracking-[0.15em] uppercase text-ink/30"
+      >
+        Where I've worked and what I've built
+      </motion.p>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+        className="mt-4 mb-8 h-px w-32 mx-auto bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
+      />
+      <div className="w-full max-w-5xl mx-auto pb-12 md:pb-16">
         <div className="relative">
           {/* ─── Animated Timeline Line ─── */}
           <div className="absolute left-6 md:left-10 top-0 bottom-0 w-px">
@@ -170,7 +184,7 @@ const Experience = () => {
                     {/* Top accent line */}
                     <div
                       aria-hidden
-                      className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     />
 
                     <div className="p-5 md:p-7">

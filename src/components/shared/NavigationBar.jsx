@@ -31,7 +31,7 @@ const NavigationBar = () => {
   const navItems = [
     { to: "/about", label: "about" },
     { to: "/projects", label: "projects" },
-    { to: "/experience", label: "exp" , desktopLabel: "experience" },
+    { to: "/experience", label: "experience" },
     { to: "/contact", label: "contact" },
   ];
 
@@ -65,15 +65,7 @@ const NavigationBar = () => {
                   isActive ? "text-ink" : "text-ink/55 hover:text-ink/80"
                 }`}
               >
-                {/* Short label on mobile, full on desktop */}
-                {desktopLabel ? (
-                  <>
-                    <span className="sm:hidden">{label}</span>
-                    <span className="hidden sm:inline">{desktopLabel}</span>
-                  </>
-                ) : (
-                  label
-                )}
+                {label}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavUnderline"
@@ -95,7 +87,7 @@ const NavigationBar = () => {
       <button
         onClick={toggleTheme}
         aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-        className="ml-auto shrink-0 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg border border-ink/10 bg-ink/5 text-ink/70 hover:text-ink hover:bg-ink/10 transition-[color,background-color] duration-300"
+        className="ml-auto shrink-0 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg border border-ink/8 bg-ink/5 text-ink/70 hover:text-ink hover:border-ink/20 hover:bg-ink/10 transition-[color,background-color,border-color] duration-300"
       >
         <IoSkull className="text-xs sm:text-sm" />
         {theme === "dark" ? (

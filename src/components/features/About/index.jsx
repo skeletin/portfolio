@@ -52,19 +52,32 @@ const About = () => {
       className="relative flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
       <div className="w-full max-w-5xl mx-auto pb-12 md:pb-16">
-        <PageTitle className="mb-10">ABOUT</PageTitle>
+        <PageTitle className="mb-2">ABOUT</PageTitle>
+        <motion.p
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-center orbitron text-[10px] md:text-xs tracking-[0.15em] uppercase text-ink/30"
+        >
+          A bit about me and what I do
+        </motion.p>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="mt-4 mb-8 h-px w-32 mx-auto bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
+        />
 
         {/* ─── Hero ─── */}
-          <div className="relative overflow-hidden rounded-2xl border border-ink/10 bg-page/55 backdrop-blur-sm">
+          <div className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300">
             {/* Background glow */}
             <div
               aria-hidden
-              className="absolute -inset-16 rounded-full bg-linear-to-r from-ink/8 via-cyan-400/8 to-fuchsia-400/8 blur-2xl"
+              className="absolute -inset-16 rounded-full bg-[radial-gradient(circle,rgba(var(--glow-rgb),0.06)_0%,transparent_70%)]"
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/30 to-transparent"
-              style={{ opacity: 0.35 }}
+              className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
 
             <div className="relative p-6 md:p-10">
@@ -139,7 +152,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40"
+                    className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40"
                   >
                     SKELETIN
                   </motion.div>
@@ -243,7 +256,7 @@ const About = () => {
           transition={{ duration: 0.5, delay: 0.75 }}
           className="mb-5 text-center"
         >
-          <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/50">
+          <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
             What I bring
           </span>
         </motion.div>
@@ -267,7 +280,7 @@ const About = () => {
                 {/* Top accent */}
                 <div
                   aria-hidden
-                  className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 />
 
                 <div className="flex items-start gap-4">

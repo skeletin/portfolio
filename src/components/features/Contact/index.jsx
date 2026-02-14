@@ -132,9 +132,23 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="relative z-1 flex flex-col w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
+      className="relative flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
-      <PageTitle className="mb-10">CONTACT</PageTitle>
+      <PageTitle className="mb-2">CONTACT</PageTitle>
+      <motion.p
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="text-center orbitron text-[10px] md:text-xs tracking-[0.15em] uppercase text-ink/30"
+      >
+        Let's connect and build something great
+      </motion.p>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+        className="mt-4 mb-8 h-px w-32 mx-auto bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
+      />
 
       <div className="w-full max-w-5xl mx-auto pb-12 md:pb-16">
         {/* ─── Two-column layout ─── */}
@@ -217,7 +231,7 @@ const Contact = () => {
                 className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
               <div className="p-6 md:p-8">
-                <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/35 mb-4 block">
+                <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-4 block">
                   Connect
                 </span>
                 <div className="grid grid-cols-2 gap-2.5">
@@ -255,17 +269,13 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* CTA */}
+            {/* Decorative line */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="px-2"
-            >
-              <p className="text-ink/30 text-xs orbitron tracking-wide text-center lg:text-left">
-                Let's connect and build.
-              </p>
-            </motion.div>
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              className="h-px w-16 bg-linear-to-r from-transparent via-ink/10 to-transparent origin-center lg:origin-left"
+            />
           </motion.div>
 
           {/* ─── Right Column: Form ─── */}

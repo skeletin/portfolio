@@ -29,6 +29,7 @@ body,
   padding: 0;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
   font-family:
     system-ui,
     -apple-system,
@@ -89,6 +90,26 @@ button {
   -ms-overflow-style: none; /* for IE and Edge */
 }
 
+/* Custom thin scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--t-ink);
+  opacity: 0.15;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--t-ink) 15%, transparent) transparent;
+}
+
 /* ─── Performance Utilities ─── */
 
 /* GPU-promoted layer for smooth transforms & opacity */
@@ -101,13 +122,6 @@ button {
 /* Isolate rendering so repaints stay within the element */
 .contain-paint {
   contain: layout style paint;
-}
-
-/* Pre-blur: always-blurred image layer hidden behind the sharp one */
-.blur-ready {
-  filter: blur(12px) brightness(0.35);
-  transform: scale(1.1) translateZ(0);
-  backface-visibility: hidden;
 }
 
 /* Reduce motion for users who prefer it */

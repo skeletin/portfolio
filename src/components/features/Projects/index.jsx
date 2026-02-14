@@ -29,9 +29,16 @@ const Projects = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex items-center justify-center h-full text-ink"
+        className="flex flex-col items-center justify-center h-full text-ink gap-3"
       >
-        <div className="text-xl michroma">Loading...</div>
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+          className="w-6 h-6 border border-ink/20 border-t-ink/60 rounded-full"
+        />
+        <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
+          Loading
+        </span>
       </motion.div>
     );
   }
@@ -51,10 +58,6 @@ const Projects = () => {
     );
   }
 
-  const filteredProjects = mockProjects.filter((project) =>
-    projectType === "all" ? true : project.projectType === projectType,
-  );
-
   if (data) {
     return (
       <motion.main
@@ -70,7 +73,7 @@ const Projects = () => {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-center orbitron text-[10px] md:text-xs tracking-[0.2em] uppercase text-ink/30"
+            className="text-center orbitron text-[10px] md:text-xs tracking-[0.15em] uppercase text-ink/30"
           >
             A selection of things I've built
           </motion.p>
@@ -87,7 +90,7 @@ const Projects = () => {
         {/* ─── Grid ─── */}
         <div className="w-full max-w-7xl mx-auto overflow-hidden flex-1 min-h-0">
           <ProjectGrid
-            projects={filteredProjects}
+            projects={data}
             activeType={projectType}
             onTypeChange={changeProjectType}
           />

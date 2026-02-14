@@ -17,10 +17,10 @@ const ServerError = ({
       transition={{ duration: 0.35 }}
       className="relative flex flex-col z-1 justify-center items-center flex-1 w-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
-        <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-ink/10 bg-page/55 backdrop-blur-sm">
+        <div className="relative w-full max-w-2xl rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden">
           <div
             aria-hidden
-            className="absolute -inset-16 rounded-full bg-linear-to-r from-cyan-400/8 via-fuchsia-400/8 to-emerald-400/8 blur-2xl"
+            className="absolute -inset-16 rounded-full bg-[radial-gradient(circle,rgba(var(--glow-rgb),0.06)_0%,transparent_70%)]"
           />
 
           <div className="relative p-6 md:p-10">
@@ -45,7 +45,7 @@ const ServerError = ({
                   className="orbitron text-6xl md:text-8xl tracking-[0.35em] text-ink"
                   style={{
                     textShadow:
-                      "0 0 18px rgba(34,211,238,0.22), 0 0 26px rgba(217,70,239,0.14)",
+                      "0 0 18px rgba(var(--glow-rgb),0.15), 0 0 26px rgba(var(--glow-rgb),0.08)",
                   }}
                 >
                   500
@@ -97,8 +97,7 @@ const ServerError = ({
 
             <div
               aria-hidden
-              className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/30 to-transparent"
-              style={{ opacity: 0.35 }}
+              className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent"
             />
           </div>
         </div>

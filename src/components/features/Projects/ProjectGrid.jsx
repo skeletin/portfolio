@@ -33,7 +33,7 @@ const ProjectGrid = memo(({ projects, activeType, onTypeChange }) => {
 
         {/* Header row */}
         <div className="flex items-center justify-between">
-          <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40">
+          <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
             Filter by
           </span>
           <motion.span
@@ -112,7 +112,7 @@ const ProjectGrid = memo(({ projects, activeType, onTypeChange }) => {
 
           {/* ── Filters Section ── */}
           <div className="p-5 pb-4">
-            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40">
+            <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
               Filter by
             </span>
 
@@ -166,7 +166,7 @@ const ProjectGrid = memo(({ projects, activeType, onTypeChange }) => {
 
           {/* ── Stats Section ── */}
           <div className="p-5 pt-4">
-            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40">
+            <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
               Overview
             </span>
 
@@ -228,7 +228,7 @@ const ProjectGrid = memo(({ projects, activeType, onTypeChange }) => {
 
           {/* ── Year Range ── */}
           <div className="p-5 pt-4">
-            <span className="orbitron text-[10px] tracking-[0.2em] uppercase text-ink/40">
+            <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
               Timeline
             </span>
             {projects.length > 0 && (

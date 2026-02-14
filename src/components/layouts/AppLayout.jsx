@@ -9,7 +9,7 @@ const AppLayout = () => {
       <NavigationBar />
       <div className="relative flex-1 min-h-0">
         <BlurEdge edges="bottom" size={36} />
-        <div className="flex justify-center w-full h-full overflow-auto">
+        <div className="flex justify-center w-full h-full overflow-y-auto overflow-x-hidden">
           <Outlet />
         </div>
       </div>

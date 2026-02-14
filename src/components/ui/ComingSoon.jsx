@@ -14,10 +14,10 @@ const ComingSoon = ({
       transition={{ duration: 0.5 }}
       className="relative flex flex-col z-1 justify-center items-center w-full flex-1 px-4 py-10"
     >
-        <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-ink/10 bg-page/55 backdrop-blur-sm">
+        <div className="relative w-full max-w-2xl rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300">
           <div
             aria-hidden
-            className="absolute -inset-16 rounded-full bg-linear-to-r from-ink/8 via-cyan-400/8 to-fuchsia-400/8 blur-2xl"
+            className="absolute -inset-16 rounded-full bg-[radial-gradient(circle,rgba(var(--glow-rgb),0.06)_0%,transparent_70%)]"
           />
 
           <div className="relative p-6 md:p-10">
@@ -55,8 +55,8 @@ const ComingSoon = ({
               </motion.div>
 
               <div className="flex-1 text-center md:text-left">
-                <div className="michroma text-xs tracking-[0.35em] text-ink/60">
-                  COMING SOON
+                <div className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/40">
+                  Coming Soon
                 </div>
                 <div className="mt-3 michroma text-3xl md:text-4xl text-ink">
                   {title}
@@ -92,8 +92,7 @@ const ComingSoon = ({
 
             <div
               aria-hidden
-              className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/30 to-transparent"
-              style={{ opacity: 0.35 }}
+              className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
           </div>
         </div>

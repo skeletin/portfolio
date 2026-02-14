@@ -62,7 +62,11 @@ const Projects = () => {
         <PageTitle className="mb-6">PROJECTS</PageTitle>
         <div className="w-full max-w-7xl mx-auto overflow-hidden h-full">
           <ProjectGrid
-            projects={data}
+            projects={mockProjects.filter((project) =>
+              projectType === "all"
+                ? true
+                : project.projectType === projectType,
+            )}
             activeType={projectType}
             onTypeChange={changeProjectType}
           />

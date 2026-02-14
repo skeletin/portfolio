@@ -19,7 +19,7 @@ const ServerError = ({
       className="relative flex flex-col z-1 justify-center items-center flex-1 w-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
       <ElectricBorder
-        speed={0.2}
+        speed={0.1}
         chaos={0.015}
         thickness={1}
         style={{ borderRadius: 16 }}

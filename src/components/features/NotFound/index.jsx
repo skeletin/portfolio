@@ -31,7 +31,7 @@ const NotFound = () => {
     >
       <ElectricBorder
         className={"w-full max-w-2xl"}
-        speed={0.2}
+        speed={0.1}
         chaos={0.015}
         thickness={1}
         style={{ borderRadius: 16 }}

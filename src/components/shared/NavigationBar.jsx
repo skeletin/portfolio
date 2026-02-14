@@ -42,23 +42,24 @@ const NavigationBar = () => {
         className={`relative hover:opacity-80 transition-all duration-300 ${pathname === "/" ? "hover:opacity-100" : "opacity-70"}`}
       >
         {pathname === "/" && (
-          <span
-            className="absolute inset-0 rounded-full blur-xl bg-ink/20 animate-pulse pointer-events-none"
-          />
+          <span className="absolute inset-0 rounded-full blur-xl bg-ink/20 pointer-events-none" />
         )}
-        <Skeletin className="relative w-12 h-12 md:w-16 md:h-16" style={pathname === "/" ? { filter: "drop-shadow(0 0 10px rgba(var(--glow-rgb), 0.35))" } : undefined} />
+        <Skeletin
+          className="relative w-12 h-12 md:w-16 md:h-16"
+          style={
+            pathname === "/"
+              ? { filter: "drop-shadow(0 0 10px rgba(var(--glow-rgb), 0.35))" }
+              : undefined
+          }
+        />
       </Link>
       <div className="flex text-xs text-ink font-thin orbitron gap-1">
         {navItems.map(({ to, label }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className="relative"
-          >
+          <NavLink key={to} to={to} className="relative">
             {({ isActive }) => (
               <span
                 className={`relative z-10 block px-2.5 py-1.5 rounded-md transition-colors duration-200 ${
-                  isActive ? "text-ink" : "text-ink/50 hover:text-ink/80"
+                  isActive ? "text-ink" : "text-ink/55 hover:text-ink/80"
                 }`}
               >
                 {label}

@@ -35,7 +35,7 @@ const About = () => {
         body: "I sweat details: spacing, rhythm, accessibility, and micro-interactions that feel intentional.",
       },
     ],
-    []
+    [],
   );
 
   return (
@@ -50,7 +50,7 @@ const About = () => {
 
         {/* Hero */}
         <ElectricBorder
-          speed={0.2}
+          speed={0.1}
           chaos={0.015}
           thickness={1}
           style={{ borderRadius: 16 }}
@@ -187,15 +187,14 @@ const About = () => {
                   <div
                     className="rounded-xl border border-ink/10 bg-ink/5 p-3"
                     style={{
-                      filter: "drop-shadow(0 0 18px rgba(var(--glow-rgb),0.10))",
+                      filter:
+                        "drop-shadow(0 0 18px rgba(var(--glow-rgb),0.10))",
                     }}
                   >
                     <Icon className="text-ink/85 text-xl" />
                   </div>
                   <div>
-                    <div className="michroma text-base text-ink">
-                      {c.title}
-                    </div>
+                    <div className="michroma text-base text-ink">{c.title}</div>
                     <div className="mt-2 text-sm text-ink/65 leading-relaxed">
                       {c.body}
                     </div>

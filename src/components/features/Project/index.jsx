@@ -41,10 +41,10 @@ const Project = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative flex flex-col items-center justify-center h-full text-ink px-6"
+        className="relative flex flex-col items-center justify-center h-full text-ink px-6 z-1"
       >
         <ElectricBorder
-          speed={0.2}
+          speed={0.1}
           chaos={0.015}
           thickness={1}
           style={{ borderRadius: 16 }}
@@ -120,7 +120,7 @@ const Project = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full h-full overflow-y-auto hide-scrollbar px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12 max-w-[60rem]"
+      className="flex flex-col z-1 w-full h-full overflow-y-auto hide-scrollbar px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12 max-w-240"
     >
       <div className="relative w-full">
         {/* Hero Image Section */}

@@ -1,7 +1,6 @@
 import ProjectCard from "../../cards/ProjectCard";
 import { motion, AnimatePresence } from "motion/react";
 import Skeletin from "../../svgs/Skeletin";
-import ElectricBorder from "../../ui/ElectricBorder";
 
 const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
   const filterTypes = ["all", "personal", "professional"];
@@ -130,7 +129,7 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
               >
                 {projects.length}
               </motion.span>
-              <span className="orbitron text-[10px] text-ink/25 tracking-wider">
+              <span className="orbitron text-[10px] text-ink/40 tracking-wider">
                 {projects.length === 1 ? "project" : "projects"}
               </span>
             </div>
@@ -148,16 +147,16 @@ const ProjectGrid = ({ projects, activeType, onTypeChange }) => {
                 return (
                   <div key={type} className="flex flex-col gap-1.5">
                     <div className="flex items-center justify-between">
-                      <span className="orbitron text-[10px] text-ink/30 capitalize tracking-wide">
+                      <span className="orbitron text-[10px] text-ink/45 capitalize tracking-wide">
                         {type}
                       </span>
-                      <span className="orbitron text-[10px] text-ink/20 tabular-nums">
+                      <span className="orbitron text-[10px] text-ink/35 tabular-nums">
                         {count}
                       </span>
                     </div>
-                    <div className="h-1 w-full rounded-full bg-ink/5 overflow-hidden">
+                    <div className="h-1 w-full rounded-full bg-ink/10 overflow-hidden">
                       <motion.div
-                        className="h-full rounded-full bg-linear-to-r from-ink/25 to-ink/10"
+                        className="h-full rounded-full bg-linear-to-r from-ink/60 to-ink/35"
                         initial={{ width: 0 }}
                         animate={{ width: `${pct}%` }}
                         transition={{

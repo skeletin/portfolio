@@ -43,7 +43,7 @@ const Projects = () => {
         message={
           error?.status
             ? `The server returned an error (${error.status}).`
-            : "We couldn’t reach the server."
+            : "We couldn't reach the server."
         }
         onRetry={refetch}
         showContact
@@ -51,22 +51,43 @@ const Projects = () => {
     );
   }
 
+  const filteredProjects = mockProjects.filter((project) =>
+    projectType === "all" ? true : project.projectType === projectType,
+  );
+
   if (data) {
     return (
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className="relative flex flex-col z-1 w-full min-h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
+        className="relative flex flex-col z-1 w-full h-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
       >
-        <PageTitle className="mb-6">PROJECTS</PageTitle>
-        <div className="w-full max-w-7xl mx-auto overflow-hidden h-full">
+        {/* ─── Header ─── */}
+        <div className="relative mb-6 md:mb-8">
+          <PageTitle className="mb-2">PROJECTS</PageTitle>
+          <motion.p
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-center orbitron text-[10px] md:text-xs tracking-[0.2em] uppercase text-ink/30"
+          >
+            A selection of things I've built
+          </motion.p>
+
+          {/* Decorative line under header */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="mt-4 h-px w-32 mx-auto bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
+          />
+        </div>
+
+        {/* ─── Grid ─── */}
+        <div className="w-full max-w-7xl mx-auto overflow-hidden flex-1 min-h-0">
           <ProjectGrid
-            projects={mockProjects.filter((project) =>
-              projectType === "all"
-                ? true
-                : project.projectType === projectType,
-            )}
+            projects={filteredProjects}
             activeType={projectType}
             onTypeChange={changeProjectType}
           />

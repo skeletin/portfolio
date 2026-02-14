@@ -151,10 +151,10 @@ const Contact = () => {
             className="lg:col-span-2 flex flex-col gap-5"
           >
             {/* Info card */}
-            <div className="relative rounded-2xl border border-ink/10 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/25 hover:shadow-lg hover:shadow-ink/10 transition-all duration-300">
+            <div className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300">
               <div
                 aria-hidden
-                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
               <div className="p-6 md:p-8">
                 <motion.h3
@@ -209,7 +209,13 @@ const Contact = () => {
             </div>
 
             {/* Social links */}
-            <div className="relative rounded-2xl border border-ink/10 bg-page/50 backdrop-blur-sm overflow-hidden hover:border-ink/25 hover:shadow-lg hover:shadow-ink/10 transition-all duration-300">
+            <div
+              className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300"
+            >
+              <div
+                aria-hidden
+                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
               <div className="p-6 md:p-8">
                 <span className="orbitron text-[10px] tracking-[0.15em] uppercase text-ink/35 mb-4 block">
                   Connect
@@ -234,7 +240,7 @@ const Contact = () => {
                         }}
                         whileHover={{ y: -2 }}
                         whileTap={{ scale: 0.97 }}
-                        className="group/social flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-ink/5 border border-ink/8 hover:border-ink/20 hover:bg-ink/8 transition-all duration-300"
+                        className="group/social flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-ink/5 border border-ink/8 hover:border-ink/20 hover:bg-ink/8 transition-[color,background-color,border-color] duration-300"
                       >
                         <Icon
                           className={`text-lg text-ink/40 transition-colors duration-300 ${social.accent}`}
@@ -273,10 +279,10 @@ const Contact = () => {
             }}
             className="lg:col-span-3"
           >
-            <div className="relative rounded-2xl border border-ink/10 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/25 hover:shadow-lg hover:shadow-ink/10 transition-all duration-300 h-full">
+            <div className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300 h-full">
               <div
                 aria-hidden
-                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
 
               <div className="p-6 md:p-8">
@@ -312,7 +318,7 @@ const Contact = () => {
                           onChange={handleChange}
                           required
                           rows={5}
-                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-all duration-300 resize-none"
+                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-[border-color,background-color,box-shadow] duration-300 resize-none"
                           placeholder={field.placeholder}
                         />
                       ) : (
@@ -323,7 +329,7 @@ const Contact = () => {
                           value={formData[field.id]}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-all duration-300"
+                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-[border-color,background-color,box-shadow] duration-300"
                           placeholder={field.placeholder}
                         />
                       )}
@@ -342,7 +348,7 @@ const Contact = () => {
                       disabled={isSubmitting}
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
-                      className="relative w-full group/btn px-6 py-3.5 rounded-xl border border-ink/15 bg-ink/8 text-ink michroma text-xs tracking-wider uppercase overflow-hidden hover:border-ink/30 hover:bg-ink/12 transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="relative w-full group/btn px-6 py-3.5 rounded-xl border border-ink/15 bg-ink/8 text-ink michroma text-xs tracking-wider uppercase overflow-hidden hover:border-ink/30 hover:bg-ink/12 transition-[color,background-color,border-color] duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       {/* Shimmer on hover */}
                       <span

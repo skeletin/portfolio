@@ -31,21 +31,22 @@ const NavigationBar = () => {
   const navItems = [
     { to: "/about", label: "about" },
     { to: "/projects", label: "projects" },
-    { to: "/experience", label: "experience" },
+    { to: "/experience", label: "exp" , desktopLabel: "experience" },
     { to: "/contact", label: "contact" },
   ];
 
   return (
-    <nav className="w-full z-20 sticky top-0 bg-page flex space-x-4 items-center p-2 transition-colors duration-500">
+    <nav className="w-full z-20 sticky top-0 bg-page flex items-center gap-1.5 sm:gap-3 md:gap-4 px-2 py-2 transition-colors duration-500">
+      {/* Logo */}
       <Link
         to="/"
-        className={`relative hover:opacity-80 transition-all duration-300 ${pathname === "/" ? "hover:opacity-100" : "opacity-70"}`}
+        className={`relative shrink-0 hover:opacity-80 transition-opacity duration-300 ${pathname === "/" ? "hover:opacity-100" : "opacity-70"}`}
       >
         {pathname === "/" && (
           <span className="absolute inset-0 rounded-full blur-xl bg-ink/20 pointer-events-none" />
         )}
         <Skeletin
-          className="relative w-12 h-12 md:w-16 md:h-16"
+          className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
           style={
             pathname === "/"
               ? { filter: "drop-shadow(0 0 10px rgba(var(--glow-rgb), 0.35))" }
@@ -53,16 +54,26 @@ const NavigationBar = () => {
           }
         />
       </Link>
-      <div className="flex text-xs text-ink font-thin orbitron gap-1">
-        {navItems.map(({ to, label }) => (
+
+      {/* Nav links */}
+      <div className="flex text-[10px] sm:text-xs text-ink font-thin orbitron gap-0.5 sm:gap-1 min-w-0">
+        {navItems.map(({ to, label, desktopLabel }) => (
           <NavLink key={to} to={to} className="relative">
             {({ isActive }) => (
               <span
-                className={`relative z-10 block px-2.5 py-1.5 rounded-md transition-colors duration-200 ${
+                className={`relative z-10 block px-1.5 sm:px-2.5 py-1.5 rounded-md transition-colors duration-200 whitespace-nowrap ${
                   isActive ? "text-ink" : "text-ink/55 hover:text-ink/80"
                 }`}
               >
-                {label}
+                {/* Short label on mobile, full on desktop */}
+                {desktopLabel ? (
+                  <>
+                    <span className="sm:hidden">{label}</span>
+                    <span className="hidden sm:inline">{desktopLabel}</span>
+                  </>
+                ) : (
+                  label
+                )}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavUnderline"
@@ -80,17 +91,17 @@ const NavigationBar = () => {
         ))}
       </div>
 
-      {/* Theme toggle */}
+      {/* Theme toggle — always visible */}
       <button
         onClick={toggleTheme}
         aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-        className="ml-auto flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-ink/10 bg-ink/5 text-ink/70 hover:text-ink hover:bg-ink/10 transition-all duration-300"
+        className="ml-auto shrink-0 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg border border-ink/10 bg-ink/5 text-ink/70 hover:text-ink hover:bg-ink/10 transition-[color,background-color] duration-300"
       >
-        <IoSkull className="text-sm" />
+        <IoSkull className="text-xs sm:text-sm" />
         {theme === "dark" ? (
-          <IoSunny className="text-lg" />
+          <IoSunny className="text-base sm:text-lg" />
         ) : (
-          <IoMoon className="text-lg" />
+          <IoMoon className="text-base sm:text-lg" />
         )}
       </button>
     </nav>

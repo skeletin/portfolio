@@ -8,7 +8,7 @@ import { IoArrowBack } from "react-icons/io5";
 import StackIcon from "tech-stack-icons";
 import Skeletin from "../../svgs/Skeletin";
 import ServerError from "../ServerError";
-import ElectricBorder from "../../ui/ElectricBorder";
+import BlurEdge from "../../ui/BlurEdge";
 
 const Project = () => {
   const { name } = useParams();
@@ -43,16 +43,10 @@ const Project = () => {
         animate={{ opacity: 1 }}
         className="relative flex flex-col items-center justify-center h-full text-ink px-6 z-1"
       >
-        <ElectricBorder
-          speed={0.1}
-          chaos={0.015}
-          thickness={1}
-          style={{ borderRadius: 16 }}
-        >
-          <div className="relative w-full max-w-xl overflow-hidden rounded-2xl bg-page/55 backdrop-blur-md p-6 md:p-10">
+          <div className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-ink/10 bg-page/55 backdrop-blur-sm p-6 md:p-10">
             <div
               aria-hidden
-              className="absolute -inset-28 rounded-full bg-linear-to-r from-cyan-400/10 via-fuchsia-400/10 to-emerald-400/10 blur-3xl"
+              className="absolute -inset-16 rounded-full bg-linear-to-r from-cyan-400/8 via-fuchsia-400/8 to-emerald-400/8 blur-2xl"
             />
             <div className="relative flex flex-col md:flex-row items-center gap-6">
               <motion.div
@@ -91,7 +85,6 @@ const Project = () => {
               </div>
             </div>
           </div>
-        </ElectricBorder>
       </motion.div>
     );
   }
@@ -116,12 +109,14 @@ const Project = () => {
   const project = data;
 
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.7 }}
-      className="flex flex-col z-1 w-full h-full overflow-y-auto hide-scrollbar px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12 max-w-240"
-    >
+    <div className="relative z-1 w-full h-full max-w-240">
+      <BlurEdge edges="bottom" size={36} />
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7 }}
+        className="flex flex-col w-full h-full overflow-y-auto hide-scrollbar px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
+      >
       <div className="relative w-full">
         {/* Hero Image Section */}
         <div className="relative h-[40vh] md:h-[50vh] w-full overflow-hidden opacity-98">
@@ -137,7 +132,7 @@ const Project = () => {
           {/* Back Button */}
           <Link
             to="/projects"
-            className="absolute top-4 left-4 md:top-8 md:left-8 z-10 flex items-center gap-2 px-4 py-2 bg-page/50 backdrop-blur-sm rounded-lg border border-ink/20 text-ink hover:bg-ink/10 transition-all duration-300"
+            className="absolute top-4 left-4 md:top-8 md:left-8 z-10 flex items-center gap-2 px-4 py-2 bg-page/50 backdrop-blur-sm rounded-lg border border-ink/20 text-ink hover:bg-ink/10 transition-[color,background-color,border-color] duration-300"
           >
             <IoArrowBack className="text-xl" />
             <span className="michroma">Back</span>
@@ -174,7 +169,7 @@ const Project = () => {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-ink/10 backdrop-blur-sm rounded-lg border border-ink/20 text-ink hover:bg-ink/20 transition-all duration-300"
+                    className="flex items-center gap-2 px-4 py-2 bg-ink/10 backdrop-blur-sm rounded-lg border border-ink/20 text-ink hover:bg-ink/20 transition-[color,background-color] duration-300"
                   >
                     <FaGithub className="text-xl" />
                     <span className="michroma text-sm">Repository</span>
@@ -185,7 +180,7 @@ const Project = () => {
                     href={project.siteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-ink/10 backdrop-blur-sm rounded-lg border border-ink/20 text-ink hover:bg-ink/20 transition-all duration-300"
+                    className="flex items-center gap-2 px-4 py-2 bg-ink/10 backdrop-blur-sm rounded-lg border border-ink/20 text-ink hover:bg-ink/20 transition-[color,background-color] duration-300"
                   >
                     <CgWebsite className="text-xl" />
                     <span className="michroma text-sm">Website</span>
@@ -227,7 +222,7 @@ const Project = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="bg-page/50 backdrop-blur-sm rounded-lg p-4 border border-ink/10 hover:border-ink/30 transition-all duration-300 hover:bg-page/70 flex items-center gap-3 w-full"
+                  className="bg-page/50 backdrop-blur-sm rounded-lg p-4 border border-ink/10 hover:border-ink/30 transition-[border-color,background-color] duration-300 hover:bg-page/70 flex items-center gap-3 w-full"
                 >
                   <div className="w-10 h-10 shrink-0">
                     <StackIcon name={tech} className="w-full h-full" />
@@ -242,6 +237,7 @@ const Project = () => {
         </div>
       </div>
     </motion.main>
+    </div>
   );
 };
 

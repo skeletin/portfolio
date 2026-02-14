@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import Skeletin from "../../svgs/Skeletin";
-import ElectricBorder from "../../ui/ElectricBorder";
 
 const ServerError = ({
   title = "Internal server error",
@@ -18,20 +17,10 @@ const ServerError = ({
       transition={{ duration: 0.35 }}
       className="relative flex flex-col z-1 justify-center items-center flex-1 w-full px-4 md:px-8 lg:px-16 pt-6 md:pt-10 pb-8 md:pb-12"
     >
-      <ElectricBorder
-        speed={0.1}
-        chaos={0.015}
-        thickness={1}
-        style={{ borderRadius: 16 }}
-      >
-        <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-page/55 backdrop-blur-md">
+        <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-ink/10 bg-page/55 backdrop-blur-sm">
           <div
             aria-hidden
-            className="absolute -inset-28 rounded-full bg-linear-to-r from-cyan-400/12 via-fuchsia-400/12 to-emerald-400/12 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="absolute -inset-18 rounded-full border border-ink/10"
+            className="absolute -inset-16 rounded-full bg-linear-to-r from-cyan-400/8 via-fuchsia-400/8 to-emerald-400/8 blur-2xl"
           />
 
           <div className="relative p-6 md:p-10">
@@ -113,7 +102,6 @@ const ServerError = ({
             />
           </div>
         </div>
-      </ElectricBorder>
     </motion.main>
   );
 };

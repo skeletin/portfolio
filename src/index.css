@@ -45,16 +45,19 @@ button {
 @font-face {
   font-family: AeogoPxltdNext;
   src: url("/fonts/aeogo-pxltd-next-font/AeogoPxltdNext-5y27B.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: Michroma;
   src: url("/fonts/Michroma/Michroma-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: Orbitron;
   src: url("/fonts/Orbitron/static/Orbitron-Regular.ttf");
+  font-display: swap;
 }
 
 .space-grotesk-text {
@@ -84,4 +87,37 @@ button {
 .hide-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none; /* for IE and Edge */
+}
+
+/* ─── Performance Utilities ─── */
+
+/* GPU-promoted layer for smooth transforms & opacity */
+.gpu-layer {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Isolate rendering so repaints stay within the element */
+.contain-paint {
+  contain: layout style paint;
+}
+
+/* Pre-blur: always-blurred image layer hidden behind the sharp one */
+.blur-ready {
+  filter: blur(12px) brightness(0.35);
+  transform: scale(1.1) translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

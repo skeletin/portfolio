@@ -164,10 +164,8 @@ const Experience = () => {
                   </div>
 
                   {/* ─── Card ─── */}
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.25 }}
-                    className="relative rounded-2xl border border-ink/10 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/25 hover:shadow-lg hover:shadow-ink/10 transition-all duration-300"
+                  <div
+                    className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300"
                   >
                     {/* Top accent line */}
                     <div
@@ -260,7 +258,7 @@ const Experience = () => {
                                     index * 0.18 +
                                     projectIndex * 0.08,
                                 }}
-                                className="group/tag flex items-center gap-2 px-3 py-2 rounded-lg bg-ink/5 border border-ink/8 hover:border-ink/20 hover:bg-ink/8 transition-all duration-300"
+                                className="group/tag flex items-center gap-2 px-3 py-2 rounded-lg bg-ink/5 border border-ink/8 hover:border-ink/20 hover:bg-ink/8 transition-[color,background-color,border-color] duration-300"
                               >
                                 <span className="text-sm text-ink/80 group-hover/tag:text-ink transition-colors duration-300">
                                   {project.name}
@@ -275,7 +273,7 @@ const Experience = () => {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
               );
             })}

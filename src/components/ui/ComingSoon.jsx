@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import Skeletin from "../svgs/Skeletin";
-import ElectricBorder from "./ElectricBorder";
 
 const ComingSoon = ({
   title = "Projects",
@@ -15,21 +14,10 @@ const ComingSoon = ({
       transition={{ duration: 0.5 }}
       className="relative flex flex-col z-1 justify-center items-center w-full flex-1 px-4 py-10"
     >
-      <ElectricBorder
-        className={"w-full max-w-2xl"}
-        speed={0.1}
-        chaos={0.015}
-        thickness={1}
-        style={{ borderRadius: 16 }}
-      >
-        <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-page/55 backdrop-blur-md">
+        <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-ink/10 bg-page/55 backdrop-blur-sm">
           <div
             aria-hidden
-            className="absolute -inset-28 rounded-full bg-linear-to-r from-ink/10 via-cyan-400/10 to-fuchsia-400/10 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="absolute -inset-18 rounded-full border border-ink/10"
+            className="absolute -inset-16 rounded-full bg-linear-to-r from-ink/8 via-cyan-400/8 to-fuchsia-400/8 blur-2xl"
           />
 
           <div className="relative p-6 md:p-10">
@@ -42,7 +30,7 @@ const ComingSoon = ({
               >
                 <motion.div
                   aria-hidden
-                  className="absolute -inset-5 rounded-full bg-ink/5 blur-xl"
+                  className="absolute -inset-4 rounded-full bg-ink/5 blur-lg"
                   animate={{ opacity: [0.2, 0.5, 0.2] }}
                   transition={{
                     duration: 2.4,
@@ -109,7 +97,6 @@ const ComingSoon = ({
             />
           </div>
         </div>
-      </ElectricBorder>
     </motion.main>
   );
 };

@@ -57,9 +57,7 @@ const ProjectGrid = memo(({ projects, activeType, onTypeChange }) => {
                 onClick={() => onTypeChange(type)}
                 whileTap={{ scale: 0.95 }}
                 className={`relative flex-1 px-3 py-2 rounded-lg orbitron text-xs tracking-wide transition-colors duration-300 capitalize ${
-                  isActive
-                    ? "text-ink"
-                    : "text-ink/35 hover:text-ink/60"
+                  isActive ? "text-ink" : "text-ink/35 hover:text-ink/60"
                 }`}
               >
                 {isActive && (
@@ -273,157 +271,157 @@ const ProjectGrid = memo(({ projects, activeType, onTypeChange }) => {
           onScroll={handleScroll}
           className="overflow-y-auto h-full pr-2 custom-scrollbar"
         >
-        <AnimatePresence mode="wait">
-          {projects.length === 0 ? (
-            <motion.div
-              key="empty"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="flex items-center justify-center h-full"
-            >
-              {/* Glass card */}
+          <AnimatePresence mode="wait">
+            {projects.length === 0 ? (
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 12 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                className="relative flex flex-col justify-center items-center flex-1 h-full rounded-2xl border border-ink/10 bg-ink/3 backdrop-blur shadow-lg shadow-ink/5 overflow-hidden px-10 py-10"
+                key="empty"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex items-center justify-center h-full"
               >
-                {/* Glass highlights */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 pointer-events-none"
+                {/* Glass card */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                  className="relative flex flex-col justify-center items-center flex-1 h-full rounded-2xl border border-ink/10 bg-ink/3 backdrop-blur shadow-lg shadow-ink/5 overflow-hidden px-10 py-10"
                 >
-                  <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/20 to-transparent" />
-                  <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(ellipse_at_30%_20%,rgba(var(--glow-rgb),0.04)_0%,transparent_50%)]" />
-                  <div className="absolute -bottom-1/4 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_70%_80%,rgba(var(--glow-rgb),0.02)_0%,transparent_50%)]" />
-                  <div className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-ink/8 to-transparent" />
-                </div>
-
-                {/* Mascot */}
-                <div className="relative mb-6">
-                  <motion.div
+                  {/* Glass highlights */}
+                  <div
                     aria-hidden
-                    className="absolute -inset-8 rounded-full bg-ink/5 blur-2xl"
-                    animate={{ opacity: [0.2, 0.45, 0.2] }}
-                    transition={{
-                      duration: 3.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                  <motion.div
-                    animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
+                    className="absolute inset-0 pointer-events-none"
                   >
-                    <Skeletin className="relative w-14 h-14 opacity-15" />
-                  </motion.div>
-                </div>
+                    <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/20 to-transparent" />
+                    <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(ellipse_at_30%_20%,rgba(var(--glow-rgb),0.04)_0%,transparent_50%)]" />
+                    <div className="absolute -bottom-1/4 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_70%_80%,rgba(var(--glow-rgb),0.02)_0%,transparent_50%)]" />
+                    <div className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-ink/8 to-transparent" />
+                  </div>
 
-                {/* Text */}
-                <motion.h3
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.25 }}
-                  className="michroma text-sm text-ink/70 mb-2"
-                >
-                  No Projects Found
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.35 }}
-                  className="orbitron text-[10px] text-ink/30 tracking-wider"
-                >
-                  Try selecting a different filter
-                </motion.p>
+                  {/* Mascot */}
+                  <div className="relative mb-6">
+                    <motion.div
+                      aria-hidden
+                      className="absolute -inset-8 rounded-full bg-ink/5 blur-2xl"
+                      animate={{ opacity: [0.2, 0.45, 0.2] }}
+                      transition={{
+                        duration: 3.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                    <motion.div
+                      animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <Skeletin className="relative w-14 h-14 opacity-15" />
+                    </motion.div>
+                  </div>
 
-                {/* Decorative line */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
-                  className="mt-5 h-px w-24 bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
-                />
-              </motion.div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key={activeType}
-              initial="hidden"
-              animate="visible"
-              exit={{ opacity: 0, transition: { duration: 0.2 } }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.07,
-                    delayChildren: 0.08,
-                  },
-                },
-              }}
-              className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 pb-20 pt-1"
-            >
-              {projects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  variants={{
-                    hidden: { opacity: 0, y: 28, scale: 0.96 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      scale: 1,
-                      transition: {
-                        duration: 0.55,
-                        ease: [0.22, 0.61, 0.36, 1],
-                      },
-                    },
-                  }}
-                >
-                  <ProjectCard project={project} />
-                </motion.div>
-              ))}
+                  {/* Text */}
+                  <motion.h3
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.25 }}
+                    className="michroma text-sm text-ink/70 mb-2"
+                  >
+                    No Projects Found
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.35 }}
+                    className="orbitron text-[10px] text-ink/30 tracking-wider"
+                  >
+                    Try selecting a different filter
+                  </motion.p>
 
-              {/* Filler Cards — ghosted placeholders */}
-              {Array.from({ length: Math.max(0, 6 - projects.length) }).map(
-                (_, index) => (
+                  {/* Decorative line */}
                   <motion.div
-                    key={`empty-${index}`}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
+                    className="mt-5 h-px w-24 bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
+                  />
+                </motion.div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeType}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.07,
+                      delayChildren: 0.08,
+                    },
+                  },
+                }}
+                className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 pb-20 pt-1"
+              >
+                {projects.map((project) => (
+                  <motion.div
+                    key={project.id}
                     variants={{
-                      hidden: { opacity: 0, scale: 0.95 },
+                      hidden: { opacity: 0, y: 28, scale: 0.96 },
                       visible: {
                         opacity: 1,
+                        y: 0,
                         scale: 1,
                         transition: {
-                          duration: 0.4,
-                          ease: "easeOut",
+                          duration: 0.55,
+                          ease: [0.22, 0.61, 0.36, 1],
                         },
                       },
                     }}
-                    className="hidden lg:flex rounded-2xl h-64 w-full border border-dashed border-ink/8 relative overflow-hidden items-center justify-center group hover:border-ink/15 transition-[border-color] duration-500"
                   >
-                    {/* Subtle inner gradient */}
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(var(--glow-rgb),0.015)_0%,transparent_70%)] group-hover:opacity-100 opacity-50 transition-opacity duration-500"
-                    />
-                    <div className="flex flex-col items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <Skeletin className="w-8 h-8 opacity-10" />
-                      <span className="orbitron text-[9px] text-ink/15 tracking-[0.15em] uppercase">
-                        Coming soon
-                      </span>
-                    </div>
+                    <ProjectCard project={project} />
                   </motion.div>
-                ),
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+                ))}
+
+                {/* Filler Cards — ghosted placeholders */}
+                {Array.from({ length: Math.max(0, 6 - projects.length) }).map(
+                  (_, index) => (
+                    <motion.div
+                      key={`empty-${index}`}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.95 },
+                        visible: {
+                          opacity: 1,
+                          scale: 1,
+                          transition: {
+                            duration: 0.4,
+                            ease: "easeOut",
+                          },
+                        },
+                      }}
+                      className="hidden lg:flex rounded-2xl h-64 w-full border border-dashed border-ink/20 relative overflow-hidden items-center justify-center group hover:border-ink/15 transition-[border-color] duration-500"
+                    >
+                      {/* Subtle inner gradient */}
+                      <div
+                        aria-hidden
+                        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(var(--glow-rgb),0.015)_0%,transparent_70%)] group-hover:opacity-100 opacity-50 transition-opacity duration-500"
+                      />
+                      <div className="flex flex-col items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <Skeletin className="w-8 h-8 opacity-10" />
+                        <span className="orbitron text-[9px] text-ink/35 tracking-[0.15em] uppercase">
+                          Coming soon
+                        </span>
+                      </div>
+                    </motion.div>
+                  ),
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

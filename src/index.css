@@ -30,7 +30,7 @@ body,
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 button {
@@ -57,12 +57,12 @@ button {
 
 /* ─── Font Utility Classes ─── */
 
-/* Headings — Michroma: geometric, clean, techy */
+/* Headings */
 .michroma {
   font-family: Michroma, sans-serif;
 }
 
-/* Labels / UI chrome — Orbitron: futuristic, techy */
+/* Labels / UI */
 .orbitron {
   font-family: Orbitron, sans-serif;
 }

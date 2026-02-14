@@ -29,10 +29,10 @@ const NavigationBar = () => {
   }, [pathname]);
 
   const navItems = [
-    { to: "/about", label: "about" },
-    { to: "/projects", label: "projects" },
-    { to: "/experience", label: "experience" },
-    { to: "/contact", label: "contact" },
+    { to: "/about", label: "About" },
+    { to: "/projects", label: "Projects" },
+    { to: "/experience", label: "Experience" },
+    { to: "/contact", label: "Contact" },
   ];
 
   return (

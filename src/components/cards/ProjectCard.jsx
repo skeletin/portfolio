@@ -20,7 +20,7 @@ const ProjectCard = memo(({ project }) => {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") openProject();
       }}
-      className="relative h-56 rounded-xl w-full overflow-hidden text-ink group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+      className="relative h-56 rounded-xl w-full overflow-hidden text-ink border border-transparent group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 hover:border-ink/20 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,box-shadow] duration-300"
     >
       {/* Image */}
       <img

@@ -7,13 +7,13 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="relative z-10 flex w-full min-h-full items-center justify-center px-4"
+      className="relative z-10 flex flex-1 w-full items-center justify-center px-4 border-8 border-amber-300"
     >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="flex w-full h-full items-center justify-center"
+        className="flex flex-1 items-center justify-center"
       >
         <Logo className="w-auto h-16 md:h-24 text-ink" />
       </motion.div>

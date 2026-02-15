@@ -403,7 +403,7 @@ const ProjectGrid = memo(({ projects, activeType, onTypeChange }) => {
                           },
                         },
                       }}
-                      className="hidden lg:flex rounded-2xl h-64 w-full border border-dashed border-ink/20 relative overflow-hidden items-center justify-center group hover:border-ink/15 transition-[border-color] duration-500"
+                      className="hidden lg:flex rounded-2xl h-56 w-full border border-dashed border-ink/20 relative overflow-hidden items-center justify-center group hover:border-ink/15 transition-[border-color] duration-500 bg-page/50 backdrop-blur-sm"
                     >
                       {/* Subtle inner gradient */}
                       <div

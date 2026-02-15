@@ -321,27 +321,33 @@ const Contact = () => {
                         {field.label}
                       </label>
                       {field.component === "textarea" ? (
-                        <textarea
-                          id={field.id}
-                          name={field.id}
-                          value={formData[field.id]}
-                          onChange={handleChange}
-                          required
-                          rows={5}
-                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-[border-color,background-color,box-shadow] duration-300 resize-none"
-                          placeholder={field.placeholder}
-                        />
+                        <div className="relative group/input">
+                          <textarea
+                            id={field.id}
+                            name={field.id}
+                            value={formData[field.id]}
+                            onChange={handleChange}
+                            required
+                            rows={5}
+                            className="relative z-10 w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 transition-[border-color,background-color] duration-300 resize-none"
+                            placeholder={field.placeholder}
+                          />
+                          <div aria-hidden className="absolute -inset-px rounded-xl bg-linear-to-r from-ink/10 via-ink/5 to-ink/10 opacity-0 group-focus-within/input:opacity-100 blur-sm transition-opacity duration-500 -z-1" />
+                        </div>
                       ) : (
-                        <input
-                          type={field.type}
-                          id={field.id}
-                          name={field.id}
-                          value={formData[field.id]}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 focus:shadow-lg focus:shadow-ink/5 transition-[border-color,background-color,box-shadow] duration-300"
-                          placeholder={field.placeholder}
-                        />
+                        <div className="relative group/input">
+                          <input
+                            type={field.type}
+                            id={field.id}
+                            name={field.id}
+                            value={formData[field.id]}
+                            onChange={handleChange}
+                            required
+                            className="relative z-10 w-full px-4 py-3 bg-ink/4 border border-ink/8 rounded-xl text-ink text-sm placeholder-ink/20 hover:border-ink/20 focus:outline-none focus:border-ink/30 focus:bg-ink/6 transition-[border-color,background-color] duration-300"
+                            placeholder={field.placeholder}
+                          />
+                          <div aria-hidden className="absolute -inset-px rounded-xl bg-linear-to-r from-ink/10 via-ink/5 to-ink/10 opacity-0 group-focus-within/input:opacity-100 blur-sm transition-opacity duration-500 -z-1" />
+                        </div>
                       )}
                     </motion.div>
                   ))}
@@ -392,31 +398,41 @@ const Contact = () => {
                   {/* Status messages */}
                   {submitStatus && (
                     <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
                       className="text-center"
                     >
                       {submitStatus === "success" && (
-                        <p className="text-green-400 text-sm">
-                          Message sent! I'll get back to you soon.
-                        </p>
+                        <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-green-500/20 bg-green-500/5">
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                          </span>
+                          <p className="text-green-400 text-sm">
+                            Message sent! I'll get back to you soon.
+                          </p>
+                        </div>
                       )}
                       {submitStatus === "error" && (
-                        <p className="text-red-400 text-sm">
-                          Failed to send message. Please try again or contact me
-                          directly.
-                        </p>
+                        <div className="px-4 py-3 rounded-xl border border-red-500/20 bg-red-500/5">
+                          <p className="text-red-400 text-sm">
+                            Failed to send message. Please try again or contact me directly.
+                          </p>
+                        </div>
                       )}
                       {submitStatus === "auth_error" && (
-                        <p className="text-yellow-400 text-sm">
-                          Email service issue. Please contact me directly at{" "}
-                          <a
-                            href="mailto:skeletindev@gmail.com"
-                            className="underline hover:text-yellow-300"
-                          >
-                            skeletindev@gmail.com
-                          </a>
-                        </p>
+                        <div className="px-4 py-3 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
+                          <p className="text-yellow-400 text-sm">
+                            Email service issue. Please contact me directly at{" "}
+                            <a
+                              href="mailto:skeletindev@gmail.com"
+                              className="underline hover:text-yellow-300"
+                            >
+                              skeletindev@gmail.com
+                            </a>
+                          </p>
+                        </div>
                       )}
                     </motion.div>
                   )}

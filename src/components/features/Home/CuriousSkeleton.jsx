@@ -102,13 +102,13 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
       emissiveIntensity: 0.4,
     },
     light: {
-      color: "#ffffff",
+      color: "#d8d8d8",
       roughness: 0.08,
       clearcoatRoughness: 0.02,
       reflectivity: 0.3,
-      envMapIntensity: 3.0,
-      emissive: "#e0e0f0",
-      emissiveIntensity: 0.35,
+      envMapIntensity: 2.5,
+      emissive: "#c0c0d0",
+      emissiveIntensity: 0.25,
     },
   };
 
@@ -156,7 +156,7 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
         `
           #include <uv_vertex>
           vUv = uv;
-        `
+        `,
       );
 
       // Modify vertex position with wave displacement after UV is set
@@ -166,7 +166,7 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
           float displacement = waveDisplacement(uv, uTime);
           transformed += objectNormal * displacement;
           #include <project_vertex>
-          `
+          `,
       );
 
       // Inject wave functions, uniform, and varying declarations into fragment shader
@@ -184,7 +184,7 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
         `
           void main() {
             float wave = wavePattern(vUv, uTime);
-        `
+        `,
       );
 
       // Modify normal with wave pattern before lighting calculations
@@ -193,7 +193,7 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
         `
           #include <normal_fragment_maps>
           normal = waveNormalModifier(vUv, uTime, normal);
-          `
+          `,
       );
 
       // Modify roughness based on wave pattern - make wave areas rougher (darker)
@@ -203,7 +203,7 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
           #include <roughnessmap_fragment>
           // Make wave areas rougher (less reflective = darker)
           roughnessFactor = mix(roughnessFactor * 0.3, roughnessFactor * 1.5, wave);
-          `
+          `,
       );
 
       // Reduce emissive in wave areas to make them darker
@@ -213,7 +213,7 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
           #include <emissivemap_fragment>
           // Darken wave areas by reducing emissive
           totalEmissiveRadiance *= (1.0 - wave * 0.5);
-          `
+          `,
       );
 
       // Modify color in wave areas
@@ -232,31 +232,13 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
           // Make wave areas darker
           vec3 waveDarkness = mix(vec3(0.0, 0.0, 0.0), vec3(-0.1, -0.1, -0.1), wave * 0.4);
           diffuseColor.rgb += waveDarkness;
-          `
+          `,
       );
     };
 
     return material;
   }, [theme]);
 
-  // Animate the wave effect and fade-in
-  // useFrame((state) => {
-  //   // Update wave time uniform
-  //   if (obsidianMaterial.userData.uTime) {
-  //     obsidianMaterial.userData.uTime.value = state.clock.elapsedTime;
-  //     // Force shader update if uniform exists
-  //     if (obsidianMaterial.uniforms && obsidianMaterial.uniforms.uTime) {
-  //       obsidianMaterial.uniforms.uTime.value = state.clock.elapsedTime;
-  //     }
-  //   }
-
-  //   // Animate fade-in
-  //   if (obsidianMaterial.opacity < 1) {
-  //     const elapsed = (Date.now() - fadeInStartTime.current) / 1000; // Convert to seconds
-  //     const fadeDuration = 1.5; // 1.5 seconds fade-in
-  //     obsidianMaterial.opacity = Math.min(elapsed / fadeDuration, 1);
-  //   }
-  // });
   return (
     <group ref={group} {...props} dispose={null} position={[0, -3, 4.5]}>
       <group name="Sketchfab_Scene">

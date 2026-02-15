@@ -4,6 +4,28 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Preload local fonts  -->
+    <link
+      rel="preload"
+      href="/fonts/Michroma/Michroma-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Orbitron/static/Orbitron-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/aeogo-pxltd-next-font/AeogoPxltdNext-5y27B.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,9 +35,9 @@
     <title>SKELETIN - HOME</title>
     <script>
       // Prevent flash of wrong theme — runs before any paint
-      (function() {
-        var theme = localStorage.getItem('skeletin-theme') || 'dark';
-        if (theme === 'dark') document.documentElement.classList.add('dark');
+      (function () {
+        var theme = localStorage.getItem("skeletin-theme") || "dark";
+        if (theme === "dark") document.documentElement.classList.add("dark");
       })();
     </script>
   </head>

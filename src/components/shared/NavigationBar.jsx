@@ -36,20 +36,32 @@ const NavigationBar = () => {
   ];
 
   return (
-    <nav className="w-full z-20 sticky top-0 bg-page flex items-center gap-1.5 sm:gap-3 md:gap-4 px-2 py-2 transition-colors duration-500">
+    <nav className="w-full z-20 sticky top-0 bg-page/80 backdrop-blur-md flex items-center gap-1.5 sm:gap-3 md:gap-4 px-2 py-2 transition-colors duration-500">
+      {/* Bottom border gradient */}
+      <div
+        aria-hidden
+        className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-ink/10 to-transparent"
+      />
+
       {/* Logo */}
       <Link
         to="/"
         className={`relative shrink-0 hover:opacity-80 transition-opacity duration-300 ${pathname === "/" ? "hover:opacity-100" : "opacity-70"}`}
       >
         {pathname === "/" && (
-          <span className="absolute inset-0 rounded-full blur-xl bg-ink/20 pointer-events-none" />
+          <>
+            <motion.span
+              className="absolute -inset-1 rounded-full blur-xl bg-ink/15 pointer-events-none"
+              animate={{ opacity: [0.15, 0.35, 0.15], scale: [0.9, 1.1, 0.9] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
         )}
         <Skeletin
           className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
           style={
             pathname === "/"
-              ? { filter: "drop-shadow(0 0 10px rgba(var(--glow-rgb), 0.35))" }
+              ? { filter: "drop-shadow(0 0 14px rgba(var(--glow-rgb), 0.3))" }
               : undefined
           }
         />

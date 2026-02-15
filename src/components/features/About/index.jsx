@@ -1,8 +1,31 @@
-import { useMemo, useState } from "react";
-import { motion } from "motion/react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { motion, useInView } from "motion/react";
 import PageTitle from "../../ui/PageTitle";
 import Skeletin from "../../svgs/Skeletin";
 import { FaCode, FaPalette, FaBolt, FaHeart } from "react-icons/fa";
+
+// Animated counter hook
+const useCountUp = (end, duration = 1.5, startWhenVisible = true) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const numericEnd = parseInt(end) || 0;
+
+  useEffect(() => {
+    if (!startWhenVisible || !inView) return;
+    let start = 0;
+    const startTime = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - startTime) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      setCount(Math.round(eased * numericEnd));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [inView, numericEnd, duration, startWhenVisible]);
+
+  return { count, ref };
+};
 
 const About = () => {
   const [avatarOk, setAvatarOk] = useState(true);
@@ -215,30 +238,40 @@ const About = () => {
 
         {/* ─── Stats Row ─── */}
         <div className="mt-8 grid grid-cols-3 gap-3 md:gap-4">
-          {stats.map((s, idx) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.45,
-                delay: 0.45 + idx * 0.06,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm p-3 md:p-4 text-center group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300 overflow-hidden"
-            >
-              <div
-                aria-hidden
-                className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              />
-              <div className="michroma text-xl md:text-2xl text-ink">
-                {s.value}
-              </div>
-              <div className="orbitron text-[8px] md:text-[9px] tracking-[0.15em] uppercase text-ink/35 mt-1">
-                {s.label}
-              </div>
-            </motion.div>
-          ))}
+          {stats.map((s, idx) => {
+            const { count, ref } = useCountUp(s.value, 1.2 + idx * 0.3);
+            const suffix = s.value.includes("+") ? "+" : "";
+            return (
+              <motion.div
+                key={s.label}
+                ref={ref}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.45,
+                  delay: 0.45 + idx * 0.06,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm p-3 md:p-4 text-center group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300 overflow-hidden"
+              >
+                <div
+                  aria-hidden
+                  className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+                {/* Hover glow */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--glow-rgb),0.06)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+                <div className="relative michroma text-xl md:text-2xl text-transparent bg-clip-text bg-linear-to-b from-ink to-ink/50">
+                  {count}{suffix}
+                </div>
+                <div className="relative orbitron text-[8px] md:text-[9px] tracking-[0.15em] uppercase text-ink/35 mt-1">
+                  {s.label}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* ─── Section divider ─── */}
@@ -283,9 +316,14 @@ const About = () => {
                   className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 />
 
-                <div className="flex items-start gap-4">
+                {/* Hover radial glow */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(var(--glow-rgb),0.06)_0%,transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+                <div className="relative flex items-start gap-4">
                   <motion.div
-                    whileHover={{ rotate: 6 }}
+                    whileHover={{ rotate: 6, scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="rounded-xl border border-ink/10 bg-ink/5 p-3 group-hover:border-ink/20 group-hover:bg-ink/8 transition-[border-color,background-color] duration-300 shrink-0"
                     style={{

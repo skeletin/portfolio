@@ -178,7 +178,9 @@ const Experience = () => {
                   </div>
 
                   {/* ─── Card ─── */}
-                  <div
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
                     className="relative rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm overflow-hidden group hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300"
                   >
                     {/* Top accent line */}
@@ -287,7 +289,7 @@ const Experience = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               );
             })}

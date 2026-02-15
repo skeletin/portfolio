@@ -126,15 +126,28 @@ const Project = () => {
       >
         <div className="relative w-full">
           {/* Hero Image Section */}
-          <div className="relative h-[40vh] md:h-[50vh] w-full overflow-hidden rounded-xl">
+          <motion.div
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="relative h-[40vh] md:h-[50vh] w-full overflow-hidden rounded-xl"
+          >
             {project.displayPictureUrl && (
-              <img
+              <motion.img
                 src={project.displayPictureUrl}
                 alt={project.name}
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.4, ease: "easeOut" }}
                 className="object-cover w-full h-full"
               />
             )}
-            <div className="absolute inset-0 bg-linear-to-t from-page via-page/50 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-page via-page/60 to-page/10" />
+            {/* Vignette */}
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(var(--glow-rgb),0.04)_100%)]"
+            />
 
             {/* Back Button */}
             <Link
@@ -144,7 +157,7 @@ const Project = () => {
               <IoArrowBack className="text-xl" />
               <span className="michroma text-sm">Back</span>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Content Section */}
           <div className="relative px-4 md:px-8 lg:px-16 py-8 md:py-12 max-w-6xl mx-auto">
@@ -234,19 +247,28 @@ const Project = () => {
                 {project.techStack?.map((tech, index) => (
                   <motion.div
                     key={tech}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.08 }}
+                    initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{
+                      duration: 0.45,
+                      delay: 0.3 + index * 0.06,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                    whileHover={{ y: -2 }}
                     className="group/tech rounded-xl border border-ink/8 bg-page/50 backdrop-blur-sm p-4 hover:border-ink/20 hover:bg-ink/5 hover:shadow-lg hover:shadow-ink/10 transition-[border-color,background-color,box-shadow] duration-300 flex items-center gap-3 w-full overflow-hidden relative"
                   >
                     <div
                       aria-hidden
                       className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-ink/15 to-transparent opacity-0 group-hover/tech:opacity-100 transition-opacity duration-500"
                     />
-                    <div className="w-9 h-9 shrink-0">
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(var(--glow-rgb),0.05)_0%,transparent_60%)] opacity-0 group-hover/tech:opacity-100 transition-opacity duration-500"
+                    />
+                    <div className="relative w-9 h-9 shrink-0 group-hover/tech:scale-110 transition-transform duration-300">
                       <StackIcon name={tech} className="w-full h-full" />
                     </div>
-                    <h3 className="michroma text-sm text-ink capitalize">
+                    <h3 className="relative michroma text-sm text-ink capitalize">
                       {tech}
                     </h3>
                   </motion.div>

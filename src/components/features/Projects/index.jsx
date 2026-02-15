@@ -77,14 +77,6 @@ const Projects = () => {
           >
             A selection of things I've built
           </motion.p>
-
-          {/* Decorative line under header */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="mt-4 h-px w-32 mx-auto bg-linear-to-r from-transparent via-ink/15 to-transparent origin-center"
-          />
         </div>
 
         {/* ─── Grid ─── */}

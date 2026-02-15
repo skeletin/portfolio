@@ -114,6 +114,12 @@ const ProjectCard = memo(({ project }) => {
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30 pointer-events-none">
         <div className="absolute inset-0 bg-linear-to-r from-transparent via-ink/10 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
       </div>
+
+      {/* ─── Top Edge Glow ─── */}
+      <div
+        aria-hidden
+        className="absolute left-0 right-0 top-0 h-px z-30 bg-linear-to-r from-transparent via-ink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+      />
     </div>
   );
 });

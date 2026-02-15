@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import Skeletin from "../../svgs/Skeletin";
 
 const SplashScreen = () => {
   return (
@@ -9,26 +8,26 @@ const SplashScreen = () => {
       transition={{ duration: 0.8 }}
       className="fixed flex flex-col items-center justify-center bg-page h-screen w-screen z-50 overflow-hidden"
     >
-      {/* Skeleton Animation */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative h-50 z-10"
-      >
+      {/* Loading bar */}
+      <div className="relative h-0.5 w-32 bg-ink/10 rounded-full overflow-hidden">
         <motion.div
-          animate={{
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <Skeletin className="scale-145 translate-y-10" />
-        </motion.div>
-      </motion.div>
+          className="absolute inset-y-0 left-0 w-full bg-ink/40 rounded-full origin-left"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* Label */}
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="mt-4 orbitron text-[9px] tracking-[0.2em] uppercase text-ink/25"
+      >
+        Initializing
+        <span className="cursor-blink ml-0.5">_</span>
+      </motion.span>
     </motion.div>
   );
 };

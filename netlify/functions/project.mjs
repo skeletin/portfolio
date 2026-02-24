@@ -26,20 +26,6 @@ export const handler = async (event) => {
   }
 
   try {
-    // If Netlify routes /api/projects or /api/projects/ here, treat it as list endpoint.
-    const normalizedPath = event.path?.replace(/\/+$/, "");
-    if (!projectId && normalizedPath === "/api/projects") {
-      const listResponse = await fetch(`${baseUrl}/api/v1/projects`, {
-        headers: { "X-API-Key": apiKey },
-      });
-      const listText = await listResponse.text();
-      return {
-        statusCode: listResponse.status,
-        headers: { "Content-Type": "application/json" },
-        body: listText,
-      };
-    }
-
     if (!projectId) {
       return jsonResponse(400, { error: "Missing project id." });
     }

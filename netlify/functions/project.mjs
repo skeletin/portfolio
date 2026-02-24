@@ -11,10 +11,12 @@ export const handler = async (event) => {
     return jsonResponse(405, { error: "Method Not Allowed" });
   }
 
-  const projectId = event.queryStringParameters?.id;
-  if (!projectId) {
-    return jsonResponse(400, { error: "Missing project id." });
-  }
+  const pathProjectId = event.path
+    ?.replace(/\/+$/, "")
+    .match(/\/api\/projects\/([^/]+)$/)?.[1];
+  const urlProjectId = event.rawUrl
+    ?.match(/\/api\/projects\/([^/?#]+)/)?.[1];
+  const projectId = event.queryStringParameters?.id || pathProjectId || urlProjectId;
 
   const baseUrl = apiUrl();
   const apiKey = process.env.RAILS_API_KEY;
@@ -24,6 +26,24 @@ export const handler = async (event) => {
   }
 
   try {
+    // If Netlify routes /api/projects or /api/projects/ here, treat it as list endpoint.
+    const normalizedPath = event.path?.replace(/\/+$/, "");
+    if (!projectId && normalizedPath === "/api/projects") {
+      const listResponse = await fetch(`${baseUrl}/api/v1/projects`, {
+        headers: { "X-API-Key": apiKey },
+      });
+      const listText = await listResponse.text();
+      return {
+        statusCode: listResponse.status,
+        headers: { "Content-Type": "application/json" },
+        body: listText,
+      };
+    }
+
+    if (!projectId) {
+      return jsonResponse(400, { error: "Missing project id." });
+    }
+
     const response = await fetch(
       `${baseUrl}/api/v1/projects/${encodeURIComponent(projectId)}`,
       { headers: { "X-API-Key": apiKey } },

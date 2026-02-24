@@ -102,13 +102,13 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
       emissiveIntensity: 0.4,
     },
     light: {
-      color: "#d8d8d8",
+      color: "#ffffff",
       roughness: 0.08,
       clearcoatRoughness: 0.02,
       reflectivity: 0.3,
-      envMapIntensity: 2.5,
-      emissive: "#c0c0d0",
-      emissiveIntensity: 0.25,
+      envMapIntensity: 3.0,
+      emissive: "#e0e0f0",
+      emissiveIntensity: 0.35,
     },
   };
 
@@ -239,6 +239,24 @@ function CuriousSkeletonContent({ theme = "dark", ...props }) {
     return material;
   }, [theme]);
 
+  // Animate the wave effect and fade-in
+  // useFrame((state) => {
+  //   // Update wave time uniform
+  //   if (obsidianMaterial.userData.uTime) {
+  //     obsidianMaterial.userData.uTime.value = state.clock.elapsedTime;
+  //     // Force shader update if uniform exists
+  //     if (obsidianMaterial.uniforms && obsidianMaterial.uniforms.uTime) {
+  //       obsidianMaterial.uniforms.uTime.value = state.clock.elapsedTime;
+  //     }
+  //   }
+
+  //   // Animate fade-in
+  //   if (obsidianMaterial.opacity < 1) {
+  //     const elapsed = (Date.now() - fadeInStartTime.current) / 1000; // Convert to seconds
+  //     const fadeDuration = 1.5; // 1.5 seconds fade-in
+  //     obsidianMaterial.opacity = Math.min(elapsed / fadeDuration, 1);
+  //   }
+  // });
   return (
     <group ref={group} {...props} dispose={null} position={[0, -3, 4.5]}>
       <group name="Sketchfab_Scene">

@@ -11,11 +11,11 @@ import ServerError from "../ServerError";
 import BlurEdge from "../../ui/BlurEdge";
 
 const Project = () => {
-  const { name } = useParams();
+  const { id } = useParams();
 
   const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["project", name],
-    queryFn: () => getProject(name),
+    queryKey: ["project", id],
+    queryFn: () => getProject(id),
     select: (res) => res.data,
     retry: false,
   });

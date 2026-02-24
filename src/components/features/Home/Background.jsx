@@ -19,7 +19,7 @@ const Background = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="fixed w-full h-full p-0 m-0 pointer-events-none" style={{ minHeight: 600 }}>
+    <div className="fixed w-full h-full p-0 m-0 pointer-events-none">
       {/* Dot grid sits behind the 3D canvas */}
       <DotGrid />
       <Canvas

@@ -8,7 +8,7 @@ const ProjectCard = memo(({ project }) => {
   const navigate = useNavigate();
 
   const openProject = () => {
-    navigate("/projects/" + project.name);
+    navigate("/projects/" + project.id);
   };
 
   return (

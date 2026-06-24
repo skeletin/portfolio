@@ -19,7 +19,9 @@ const NavigationBar = () => {
             ? "PROJECT"
             : pathname.startsWith("/projects")
               ? "PROJECTS"
-              : pathname.startsWith("/experience")
+              : pathname.startsWith("/services")
+                ? "SERVICES"
+                : pathname.startsWith("/experience")
                 ? "EXPERIENCE"
                 : pathname.startsWith("/contact")
                   ? "CONTACT"
@@ -31,6 +33,7 @@ const NavigationBar = () => {
   const navItems = [
     { to: "/about", label: "About" },
     { to: "/projects", label: "Projects" },
+    { to: "/services", label: "Services" },
     // { to: "/experience", label: "Experience" },
     { to: "/contact", label: "Contact" },
   ];

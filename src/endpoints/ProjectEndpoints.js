@@ -1,9 +1,4 @@
-const normalizeEndpoint = (endpoint) =>
-  endpoint.endsWith("/") ? endpoint.slice(0, -1) : endpoint;
-
-const PROJECTS_ENDPOINT = normalizeEndpoint(
-  import.meta.env.VITE_GET_PROJECTS || "/api/projects",
-);
+const PROJECTS_ENDPOINT = import.meta.env.VITE_GET_PROJECTS;
 
 async function getProjects() {
   const endpoint = PROJECTS_ENDPOINT;

@@ -1,13 +1,20 @@
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { motion } from "motion/react";
 import { IoArrowForward, IoCheckmark, IoClose } from "react-icons/io5";
 import PageTitle from "../../ui/PageTitle";
+
+const PORTAL_URL = (import.meta.env.VITE_PORTAL_URL || "http://localhost:3000").replace(
+  /\/$/,
+  "",
+);
 
 const PACKAGES = [
   {
     name: "Landing page",
     price: "From $100",
     summary: "A focused one-page site to get your business online.",
+    checkoutProduct: "landing",
+    ctaLabel: "Get started",
     included: [
       "One mobile-friendly page",
       "Contact form",
@@ -21,6 +28,8 @@ const PACKAGES = [
     name: "Hosting and care",
     price: "$25/mo",
     summary: "Keep your site live, secure, and maintained.",
+    checkoutProduct: "hosting",
+    ctaLabel: "Subscribe",
     included: [
       "SSL and hosting",
       "Deploys and uptime",
@@ -38,6 +47,7 @@ const PACKAGES = [
     name: "Custom apps",
     price: "Quote",
     summary: "Portal-style apps, dashboards, and integrations built for your workflow.",
+    ctaLabel: "Get in touch",
     included: [
       "Discovery and scoping",
       "Custom features and workflows",
@@ -47,6 +57,85 @@ const PACKAGES = [
     notIncluded: ["Fixed package pricing", "Off-the-shelf templates only"],
   },
 ];
+
+const CheckoutBanner = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const checkout = searchParams.get("checkout");
+  const packageName = searchParams.get("package");
+
+  if (!checkout) return null;
+
+  const dismiss = () => {
+    const next = new URLSearchParams(searchParams);
+    next.delete("checkout");
+    next.delete("package");
+    setSearchParams(next, { replace: true });
+  };
+
+  if (checkout === "success") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-6 rounded-xl border border-ink/15 bg-ink/5 px-4 py-3 text-sm text-ink/70"
+      >
+        <p>
+          Payment received{packageName ? ` for ${packageName}` : ""}. Check your email for a
+          portal invitation to track your project and billing.
+        </p>
+        <button
+          type="button"
+          onClick={dismiss}
+          className="mt-2 orbitron text-[9px] tracking-wider uppercase text-ink/45 hover:text-ink"
+        >
+          Dismiss
+        </button>
+      </motion.div>
+    );
+  }
+
+  if (checkout === "cancelled") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-6 rounded-xl border border-ink/10 bg-page/50 px-4 py-3 text-sm text-ink/50"
+      >
+        <p>Checkout was cancelled. You can try again or get in touch if you have questions.</p>
+        <button
+          type="button"
+          onClick={dismiss}
+          className="mt-2 orbitron text-[9px] tracking-wider uppercase text-ink/45 hover:text-ink"
+        >
+          Dismiss
+        </button>
+      </motion.div>
+    );
+  }
+
+  return null;
+};
+
+const PackageCta = ({ pkg }) => {
+  const className =
+    "group/cta mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-ink/15 bg-ink/8 px-4 py-2.5 michroma text-[10px] tracking-wider uppercase text-ink hover:border-ink/30 hover:bg-ink/12 transition-[color,background-color,border-color] duration-300";
+
+  if (pkg.checkoutProduct) {
+    return (
+      <a href={`${PORTAL_URL}/checkout/${pkg.checkoutProduct}`} className={className}>
+        <span>{pkg.ctaLabel}</span>
+        <IoArrowForward className="text-ink/50 group-hover/cta:text-ink group-hover/cta:translate-x-0.5 transition-all duration-300" />
+      </a>
+    );
+  }
+
+  return (
+    <Link to="/contact" className={className}>
+      <span>{pkg.ctaLabel}</span>
+      <IoArrowForward className="text-ink/50 group-hover/cta:text-ink group-hover/cta:translate-x-0.5 transition-all duration-300" />
+    </Link>
+  );
+};
 
 const Services = () => {
   return (
@@ -73,6 +162,8 @@ const Services = () => {
       />
 
       <div className="w-full max-w-5xl mx-auto pb-12 md:pb-16">
+        <CheckoutBanner />
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {PACKAGES.map((pkg, index) => (
             <motion.div
@@ -136,13 +227,7 @@ const Services = () => {
                   </div>
                 </div>
 
-                <Link
-                  to="/contact"
-                  className="group/cta mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-ink/15 bg-ink/8 px-4 py-2.5 michroma text-[10px] tracking-wider uppercase text-ink hover:border-ink/30 hover:bg-ink/12 transition-[color,background-color,border-color] duration-300"
-                >
-                  <span>Get in touch</span>
-                  <IoArrowForward className="text-ink/50 group-hover/cta:text-ink group-hover/cta:translate-x-0.5 transition-all duration-300" />
-                </Link>
+                <PackageCta pkg={pkg} />
               </div>
             </motion.div>
           ))}

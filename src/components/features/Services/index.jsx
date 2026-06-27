@@ -3,18 +3,11 @@ import { motion } from "motion/react";
 import { IoArrowForward, IoCheckmark, IoClose } from "react-icons/io5";
 import PageTitle from "../../ui/PageTitle";
 
-const PORTAL_URL = (import.meta.env.VITE_PORTAL_URL || "http://localhost:3000").replace(
-  /\/$/,
-  "",
-);
-
 const PACKAGES = [
   {
     name: "Landing page",
     price: "From $100",
     summary: "A focused one-page site to get your business online.",
-    checkoutProduct: "landing",
-    ctaLabel: "Get started",
     included: [
       "One mobile-friendly page",
       "Contact form",
@@ -28,8 +21,6 @@ const PACKAGES = [
     name: "Hosting and care",
     price: "$25/mo",
     summary: "Keep your site live, secure, and maintained.",
-    checkoutProduct: "hosting",
-    ctaLabel: "Subscribe",
     included: [
       "SSL and hosting",
       "Deploys and uptime",
@@ -47,7 +38,6 @@ const PACKAGES = [
     name: "Custom apps",
     price: "Quote",
     summary: "Portal-style apps, dashboards, and integrations built for your workflow.",
-    ctaLabel: "Get in touch",
     included: [
       "Discovery and scoping",
       "Custom features and workflows",
@@ -101,7 +91,7 @@ const CheckoutBanner = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6 rounded-xl border border-ink/10 bg-page/50 px-4 py-3 text-sm text-ink/50"
       >
-        <p>Checkout was cancelled. You can try again or get in touch if you have questions.</p>
+        <p>Checkout was cancelled. Reach out if you would like a new payment link.</p>
         <button
           type="button"
           onClick={dismiss}
@@ -114,27 +104,6 @@ const CheckoutBanner = () => {
   }
 
   return null;
-};
-
-const PackageCta = ({ pkg }) => {
-  const className =
-    "group/cta mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-ink/15 bg-ink/8 px-4 py-2.5 michroma text-[10px] tracking-wider uppercase text-ink hover:border-ink/30 hover:bg-ink/12 transition-[color,background-color,border-color] duration-300";
-
-  if (pkg.checkoutProduct) {
-    return (
-      <a href={`${PORTAL_URL}/checkout/${pkg.checkoutProduct}`} className={className}>
-        <span>{pkg.ctaLabel}</span>
-        <IoArrowForward className="text-ink/50 group-hover/cta:text-ink group-hover/cta:translate-x-0.5 transition-all duration-300" />
-      </a>
-    );
-  }
-
-  return (
-    <Link to="/contact" className={className}>
-      <span>{pkg.ctaLabel}</span>
-      <IoArrowForward className="text-ink/50 group-hover/cta:text-ink group-hover/cta:translate-x-0.5 transition-all duration-300" />
-    </Link>
-  );
 };
 
 const Services = () => {
@@ -227,7 +196,13 @@ const Services = () => {
                   </div>
                 </div>
 
-                <PackageCta pkg={pkg} />
+                <Link
+                  to="/contact"
+                  className="group/cta mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-ink/15 bg-ink/8 px-4 py-2.5 michroma text-[10px] tracking-wider uppercase text-ink hover:border-ink/30 hover:bg-ink/12 transition-[color,background-color,border-color] duration-300"
+                >
+                  <span>Get in touch</span>
+                  <IoArrowForward className="text-ink/50 group-hover/cta:text-ink group-hover/cta:translate-x-0.5 transition-all duration-300" />
+                </Link>
               </div>
             </motion.div>
           ))}

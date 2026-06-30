@@ -1,7 +1,7 @@
 # https://docs.railway.com/config-as-code
 [build]
 builder = "RAILPACK"
-# Clean install avoids EBUSY on cached node_modules/.vite; then build static assets.
-buildCommand = "rm -rf node_modules .vite && npm ci --legacy-peer-deps && npm run build"
+# npm ci cleans node_modules; only clear project-root Vite cache before install.
+buildCommand = "rm -rf .vite && npm ci --legacy-peer-deps && npm run build"
 
 # Omit startCommand — Railpack detects Vite and serves dist/ with Caddy (SPA mode).

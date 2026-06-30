@@ -1,12 +1,7 @@
-const normalizeEndpoint = (endpoint) =>
-  endpoint.endsWith("/") ? endpoint.slice(0, -1) : endpoint;
-
-const PROJECTS_ENDPOINT = normalizeEndpoint(
-  import.meta.env.VITE_GET_PROJECTS || "/api/projects",
-);
+const API_URL = import.meta.env.VITE_RAILS_API_URL;
 
 async function getProjects() {
-  const endpoint = PROJECTS_ENDPOINT;
+  const endpoint = API_URL + "/api/v1/projects";
   try {
     const response = await fetch(endpoint);
     const json = await response.json().catch(() => null);
@@ -23,7 +18,7 @@ async function getProjects() {
 }
 
 async function getProject(id) {
-  const endpoint = `${PROJECTS_ENDPOINT}/${id}`;
+  const endpoint = `${API_URL}/api/v1/projects/${id}`;
   try {
     const response = await fetch(endpoint);
     const json = await response.json().catch(() => null);

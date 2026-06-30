@@ -1,0 +1,6 @@
+# https://docs.railway.com/config-as-code
+[build]
+builder = "RAILPACK"
+buildCommand = "npm run build"
+
+# Omit startCommand — Railpack detects Vite and serves dist/ with Caddy (SPA mode).

@@ -6,6 +6,7 @@ import About from "./components/features/About/index.jsx";
 import Projects from "./components/features/Projects/index.jsx";
 import Project from "./components/features/Project/index.jsx";
 import Contact from "./components/features/Contact/index.jsx";
+import Services from "./components/features/Services/index.jsx";
 import Experience from "./components/features/Experience/index.jsx";
 import NotFound from "./components/features/NotFound/index.jsx";
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<Project />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             {/* <Route path="/experience" element={<Experience />} /> */}
             <Route path="*" element={<NotFound />} />

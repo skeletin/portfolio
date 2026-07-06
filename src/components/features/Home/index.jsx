@@ -54,6 +54,12 @@ const Home = () => {
             <IoArrowForward className="relative text-ink/50 group-hover/cta:text-ink group-hover/cta:translate-x-0.5 transition-all duration-300" />
           </Link>
           <Link
+            to="/services"
+            className="px-5 py-2.5 rounded-xl border border-ink/8 text-ink/50 michroma text-xs tracking-wider uppercase hover:text-ink hover:border-ink/20 hover:bg-ink/5 transition-[color,background-color,border-color] duration-300 backdrop-blur-xs"
+          >
+            Services
+          </Link>
+          <Link
             to="/contact"
             className="px-5 py-2.5 rounded-xl border border-ink/8 text-ink/50 michroma text-xs tracking-wider uppercase hover:text-ink hover:border-ink/20 hover:bg-ink/5 transition-[color,background-color,border-color] duration-300 backdrop-blur-xs"
           >
@@ -73,7 +79,7 @@ const Home = () => {
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-ink/60" />
           </span>
           <span className="orbitron text-[9px] text-ink/40 tracking-wider uppercase">
-            Available for work
+            Building and hosting sites for small businesses
           </span>
         </motion.div>
       </div>

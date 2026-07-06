@@ -1,12 +1,14 @@
 import { Link, useSearchParams } from "react-router";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { IoArrowForward, IoCheckmark, IoClose } from "react-icons/io5";
 import PageTitle from "../../ui/PageTitle";
+import { getCheckoutConfirmation } from "../../../endpoints/CheckoutEndpoints";
 
 const PACKAGES = [
   {
     name: "Landing page",
-    price: "From $100",
+    price: "From $99.99",
     summary: "A focused one-page site to get your business online.",
     included: [
       "One mobile-friendly page",
@@ -15,11 +17,14 @@ const PACKAGES = [
       "Launch-ready build",
       "Client portal access",
     ],
-    notIncluded: ["Extra pages (quoted separately)", "Ongoing hosting (see below)"],
+    notIncluded: [
+      "Extra pages (quoted separately)",
+      "Ongoing hosting (see below)",
+    ],
   },
   {
     name: "Hosting and care",
-    price: "$25/mo",
+    price: "$12.99/mo",
     summary: "Keep your site live, secure, and maintained.",
     included: [
       "SSL and hosting",
@@ -37,7 +42,8 @@ const PACKAGES = [
   {
     name: "Custom apps",
     price: "Quote",
-    summary: "Portal-style apps, dashboards, and integrations built for your workflow.",
+    summary:
+      "Portal-style apps, dashboards, and integrations built for your workflow.",
     included: [
       "Discovery and scoping",
       "Custom features and workflows",
@@ -52,6 +58,37 @@ const CheckoutBanner = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const checkout = searchParams.get("checkout");
   const packageName = searchParams.get("package");
+  const sessionId = searchParams.get("session_id");
+  const [confirmation, setConfirmation] = useState(null);
+  const [confirmationError, setConfirmationError] = useState(false);
+
+  useEffect(() => {
+    if (checkout !== "success" || !sessionId) {
+      setConfirmation(null);
+      setConfirmationError(false);
+      return;
+    }
+
+    let cancelled = false;
+
+    getCheckoutConfirmation(sessionId)
+      .then((data) => {
+        if (!cancelled) {
+          setConfirmation(data);
+          setConfirmationError(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setConfirmation(null);
+          setConfirmationError(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [checkout, sessionId]);
 
   if (!checkout) return null;
 
@@ -59,10 +96,19 @@ const CheckoutBanner = () => {
     const next = new URLSearchParams(searchParams);
     next.delete("checkout");
     next.delete("package");
+    next.delete("session_id");
     setSearchParams(next, { replace: true });
   };
 
+  const packageLabel = packageName ? ` for ${packageName}` : "";
+
   if (checkout === "success") {
+    const showSignInMessage =
+      confirmation?.message_type === "sign_in" && confirmation?.portal_login_url;
+    const showInvitationMessage =
+      !showSignInMessage &&
+      (confirmation?.message_type === "invitation" || confirmationError || !sessionId);
+
     return (
       <motion.div
         initial={{ opacity: 0, y: -8 }}
@@ -70,8 +116,27 @@ const CheckoutBanner = () => {
         className="mb-6 rounded-xl border border-ink/15 bg-ink/5 px-4 py-3 text-sm text-ink/70"
       >
         <p>
-          Payment received{packageName ? ` for ${packageName}` : ""}. Check your email for a
-          portal invitation to track your project and billing.
+          Payment received{packageLabel}.
+          {showSignInMessage ? (
+            <>
+              {" "}
+              <a
+                href={confirmation.portal_login_url}
+                className="underline underline-offset-2 text-ink hover:text-ink/90"
+              >
+                Sign in to the client portal
+              </a>{" "}
+              to track your project and billing.
+            </>
+          ) : showInvitationMessage ? (
+            <>
+              {" "}
+              Check your email for a portal invitation to track your project and
+              billing.
+            </>
+          ) : (
+            <> Your payment is being processed.</>
+          )}
         </p>
         <button
           type="button"
@@ -91,7 +156,10 @@ const CheckoutBanner = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6 rounded-xl border border-ink/10 bg-page/50 px-4 py-3 text-sm text-ink/50"
       >
-        <p>Checkout was cancelled. Reach out if you would like a new payment link.</p>
+        <p>
+          Checkout was cancelled. Reach out if you would like a new payment
+          link.
+        </p>
         <button
           type="button"
           onClick={dismiss}

@@ -1,7 +1,7 @@
-const PROJECTS_ENDPOINT = import.meta.env.VITE_RAILS_API_URL;
+const API_URL = import.meta.env.VITE_RAILS_API_URL;
 
 async function getProjects() {
-  const endpoint = `${PROJECTS_ENDPOINT}/api/v1/projects`;
+  const endpoint = API_URL + "/api/v1/projects";
   try {
     const response = await fetch(endpoint);
     const json = await response.json().catch(() => null);
@@ -18,7 +18,7 @@ async function getProjects() {
 }
 
 async function getProject(id) {
-  const endpoint = `${PROJECTS_ENDPOINT}/api/v1/projects/${id}`;
+  const endpoint = `${API_URL}/api/v1/projects/${id}`;
   try {
     const response = await fetch(endpoint);
     const json = await response.json().catch(() => null);

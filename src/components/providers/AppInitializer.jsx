@@ -41,10 +41,8 @@ const AppInitializer = ({ children }) => {
       <AnimatePresence>
         {!isReady && <SplashScreen />}
       </AnimatePresence>
-      {/* Always render children so the 3D model can load behind the splash */}
-      <div className={`w-full h-full ${isReady ? "" : "invisible"}`}>
-        {children}
-      </div>
+      {/* Keep children visible so WebGL can create a context behind the splash overlay. */}
+      {children}
     </>
   );
 };

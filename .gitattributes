@@ -9,3 +9,6 @@
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.exr filter=lfs diff=lfs merge=lfs -text
 *.hdr filter=lfs diff=lfs merge=lfs -text
+
+# Static deploy assets must be real files in git — Railway does not fetch Git LFS.
+public/** -filter -diff -merge
